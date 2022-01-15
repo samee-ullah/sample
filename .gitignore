@@ -4,9 +4,9 @@ custom/*
 !custom/plugins/.gitkeep
 !custom/static-plugins/
 
-/vendor/
+vendor/*
 /bin/vendor/
-!/vendor/.htaccess
+!vendor/.htaccess
 
 /.idea
 /docker-compose.override.yml
