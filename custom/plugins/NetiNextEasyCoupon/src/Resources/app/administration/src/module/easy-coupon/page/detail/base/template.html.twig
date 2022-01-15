@@ -1,0 +1,178 @@
+<div class="neti-easy-coupon-detail-base">
+    <neti-easy-coupon-status></neti-easy-coupon-status>
+
+    <sw-card
+            :title="$t('neti-easy-coupon.detail.cardTitle.base')"
+            v-if="model"
+    >
+
+        <sw-container columns="1fr auto" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon.detail.titleLabel')"
+                    type="text"
+                    v-model="model.title"
+                    :error="modelTitleError"
+                    :placeholder="placeholder(model, 'title', $t('neti-easy-coupon.detail.titlePlaceholder'))"
+                    :helpText="$t('neti-easy-coupon.detail.titleHelpText')"
+            ></sw-field>
+
+            <sw-field
+                    type="switch"
+                    bordered
+                    :label="$t('neti-easy-coupon.detail.activeLabel')"
+                    v-model="model.active"
+                    :helpText="$t('neti-easy-coupon.detail.activeHelpText')"
+            ></sw-field>
+        </sw-container>
+
+        <sw-container
+                :columns="valueContainerColumns"
+                gap="15px"
+                ref="valueContainer"
+        >
+            <neti-easy-coupon-value-type-select
+                    v-model="model.valueType"
+                    :disabled="!isCreateMode"
+            ></neti-easy-coupon-value-type-select>
+
+            <neti-easy-coupon-value-field
+                    v-model="model.value"
+                    :disabled="!isCreateMode"
+                    :error="modelValueError"
+                    :currencyFactor="model.currencyFactor"
+                    :valueType="model.valueType"
+            ></neti-easy-coupon-value-field>
+
+            <sw-entity-single-select
+                    :label="$t('neti-easy-coupon.detail.currencyLabel')"
+                    entity="currency"
+                    v-model="model.currencyId"
+                    :disabled="!isCreateMode"
+                    ref="currencySelect"
+                    :error="modelCurrencyIdError"
+                    :helpText="$t('neti-easy-coupon.detail.currencyHelpText')"
+                    v-if="model.valueType !== 10020"
+            ></sw-entity-single-select>
+
+            <sw-field
+                    type="switch"
+                    bordered
+                    :label="$t('neti-easy-coupon.detail.discardRemainingLabel')"
+                    v-model="model.discardRemaining"
+                    :helpText="$t('neti-easy-coupon.detail.discardRemainingHelpText')"
+                    {# Note: The value of this field is handled by a corresponding "model.valueType" watcher. #}
+                    v-if="model.valueType !== 10020"
+            ></sw-field>
+        </sw-container>
+
+        <neti-easy-coupon-voucher-type-select
+                v-model="model.voucherType"
+                :disabled="!isCreateMode"
+        ></neti-easy-coupon-voucher-type-select>
+
+        <sw-alert variant="info" v-if="model.voucherType !== null">
+            <p v-html="valueTypeHelpText"></p>
+        </sw-alert>
+
+        <sw-container columns="1fr auto" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon.detail.codeLabel')"
+                    type="text"
+                    v-model="model.code"
+                    :error="modelCodeError || customApiErrors.neti_easy_coupon.code"
+                    :helpText="$t('neti-easy-coupon.detail.codeHelpText')"
+                    :disabled="!isCreateMode"
+            ></sw-field>
+
+            <sw-button-process
+                    v-if="isCreateMode"
+                    class="neti-easy-coupon-generate-code-button"
+                    :disabled="isGeneratingCode"
+                    :isLoading="isGeneratingCode"
+                    :processSuccess="isGeneratingCodeSuccessful"
+                    @click.prevent="onGenerateCode"
+                    @process-finish="isGeneratingCodeSuccessful = false"
+            >
+                {{ $t('neti-easy-coupon.detail.generateCodeBtn') }}
+            </sw-button-process>
+
+            <sw-button
+                    v-else
+                    class="neti-easy-coupon-copy-code-button"
+                    @click.prevent="onCopyCode"
+            >
+                {{ $t('neti-easy-coupon.detail.copyCodeBtn') }}
+            </sw-button>
+        </sw-container>
+
+        <sw-container columns="1fr 1fr" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon.detail.orderPositionNumberLabel')"
+                    type="text"
+                    v-model="model.orderPositionNumber"
+                    :error="modelOrderPositionNumberError"
+                    :helpText="$t('neti-easy-coupon.detail.orderPositionNumberHelpText')"
+            ></sw-field>
+
+            <neti-easy-coupon-price-field
+                    :main="true"
+                    :prices="model.maxRedemptionValue"
+                    :label="$t('neti-easy-coupon.detail.maxRedemptionValueLabel')"
+                    :helpText="$t('neti-easy-coupon.detail.maxRedemptionValueHelpText')"
+            ></neti-easy-coupon-price-field>
+        </sw-container>
+
+        <sw-container columns="1fr 1fr" gap="15px">
+            <sw-field
+                type="switch"
+                bordered
+                :label="$t('neti-easy-coupon.detail.combineVouchersLabel')"
+                v-model="model.combineVouchers"
+                :helpText="$t('neti-easy-coupon.detail.combineVouchersHelpText')"
+            ></sw-field>
+
+            <sw-datepicker
+                    dateType="datetime-local"
+                    :label="$t('neti-easy-coupon.detail.validUntilLabel')"
+                    :helpText="$t('neti-easy-coupon.detail.validUntilHelpText')"
+                    v-model="model.validUntil"
+            ></sw-datepicker>
+        </sw-container>
+
+        <neti-easy-coupon-cart-processor-priority-config
+                :coupon="model"
+        ></neti-easy-coupon-cart-processor-priority-config>
+    </sw-card>
+
+    <sw-card
+        :title="$t('neti-easy-coupon.detail.cardTitle.conditions')"
+        v-if="model"
+    >
+        <sw-alert variant="info">
+            <p>{{$t('neti-easy-coupon.detail.cardTitle.conditionHelpText')}}</p>
+        </sw-alert>
+
+        <neti-easy-coupon-condition-tree
+            :model="model"
+        ></neti-easy-coupon-condition-tree>
+    </sw-card>
+
+    <sw-card
+            :title="$t('neti-easy-coupon.detail.cardTitle.misc')"
+            v-if="model"
+    >
+        <sw-entity-single-select
+                :label="$t('neti-easy-coupon.detail.tagLabel')"
+                entity="tag"
+                v-model="model.tagId"
+                :helpText="$t('neti-easy-coupon.detail.tagHelpText')"
+        ></sw-entity-single-select>
+
+        <sw-textarea-field
+                :label="$t('neti-easy-coupon.detail.commentLabel')"
+                v-model="model.comment"
+                :helpText="$t('neti-easy-coupon.detail.commentHelpText')"
+                :error="modelCommentError"
+        ></sw-textarea-field>
+    </sw-card>
+</div>

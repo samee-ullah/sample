@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/component/quickview/index.html.twig' %}
+
+{% block swag_cms_extensions_component_quickview_close_button %}
+    <div class="swag-cms-extensions-quickview-close-button">
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+            {% sw_icon 'x' style { 'pack': 'feather' } %}
+        </button>
+    </div>
+{% endblock %}

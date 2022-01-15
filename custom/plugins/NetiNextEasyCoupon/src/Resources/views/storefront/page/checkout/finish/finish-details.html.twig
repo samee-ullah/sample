@@ -1,0 +1,178 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+{% block page_checkout_finish_teaser %}
+    {{ parent() }}
+
+    {% block neti_easy_coupon_checkout_voucher_rest_values %}
+        {% if page.extensions.EasyCouponVoucherRestValues %}
+            {% if page.extensions.EasyCouponVoucherRestValues|length is same as(1) %}
+                {% block neti_easy_coupon_checkout_voucher_single_rest_value %}
+                    {% for voucher in page.extensions.EasyCouponVoucherRestValues %}
+                        {% if voucher.discardRemaining or voucher.value <= 0 %}
+                            {% block neti_easy_coupon_checkout_voucher_no_single_rest_value_info_text %}
+                                {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                    type:"info",
+                                    content:"neti-easy-coupon.store-front.checkout.finish.noSingleRestValue"|trans({'%code%': voucher.code})|sw_sanitize,
+                                } %}
+                            {% endblock %}
+                        {% else %}
+                            {% block neti_easy_coupon_checkout_voucher_single_rest_value_info_text %}
+                                {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                    type:"info",
+                                    content:"neti-easy-coupon.store-front.checkout.finish.singleRestValue"|trans({'%code%': voucher.code,'%restValue%': (voucher.value * page.header.activeCurrency.factor) | currency})|sw_sanitize
+                                } %}
+                            {% endblock %}
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            {% else %}
+                {% block neti_easy_coupon_checkout_voucher_multiple_rest_values %}
+                    {% block neti_easy_coupon_checkout_voucher_multiple_rest_values_info_text %}
+                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                            type:"info",
+                            content:"neti-easy-coupon.store-front.checkout.finish.multipleRestValues"|trans|sw_sanitize,
+                        } %}
+                    {% endblock %}
+                        {% block neti_easy_coupon_checkout_voucher_multiple_rest_values_table %}
+                            <table class="table table-borderless table-hover">
+                                {% block neti_easy_coupon_checkout_voucher_multiple_rest_values_table_head %}
+                                    <thead>
+                                        <tr>
+                                            <th>{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.voucher-code"|trans|sw_sanitize }}</th>
+                                            <th>{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.voucher-value"|trans|sw_sanitize }}</th>
+                                        </tr>
+                                    </thead>
+                                {% endblock %}
+                                {% block neti_easy_coupon_checkout_voucher_multiple_rest_values_table_body %}
+                                    <tbody>
+                                        {% for voucher in page.extensions.EasyCouponVoucherRestValues %}
+                                            <tr>
+                                                <td>
+                                                    {{ voucher.code }}
+                                                </td>
+                                                <td>
+                                                    {{ (voucher.value * page.header.activeCurrency.factor) | currency }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                {% endblock %}
+                            </table>
+                        {% endblock %}
+                    {% endblock %}
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+
+    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers %}
+        {% if page.extensions is defined and page.extensions.netiEasyCouponPurchaseVouchers %}
+            {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_inner %}
+                <div class="is--neti-next-easycoupon is--nec_confirm">
+                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_info %}
+                        <div class="card is--nec_confirm_info">
+                            <div class="card-body">
+                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_header %}
+                                    <h2 class="card-title text-center">
+                                        {% if page.extensions.netiEasyCouponPurchaseVouchers|length is same as(1) %}
+                                            {{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.headline-singular"|trans|sw_sanitize }}
+                                        {% else %}
+                                            {{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.headline-plural"|trans|sw_sanitize }}
+                                        {% endif %}
+                                    </h2>
+                                {% endblock %}
+
+                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_info_message %}
+                                    {% set accountVoucherLink = path('frontend.easy_coupon.list') %}
+
+                                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_info_message_inner %}
+                                        {% if page.extensions.netiEasyCouponPurchaseVouchers|length is same as(1) %}
+                                            {% sw_include "@Storefront/storefront/utilities/alert.html.twig" with { 'type': 'info',
+                                                'content': "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.info-message-singular"|trans({'%accountVoucherLink%': accountVoucherLink})} %}
+                                        {% else %}
+                                            {% sw_include "@Storefront/storefront/utilities/alert.html.twig" with { 'type': 'info',
+                                                'content': "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.info-message-plural"|trans({'%accountVoucherLink%': accountVoucherLink})} %}
+                                        {% endif %}
+                                    {% endblock %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table %}
+                        <div class="card is--nec_confirm_voucher_table">
+                            {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_inner %}
+                                <div class="card-body">
+                                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_title %}
+                                        <div class="card-title text-center">
+                                            {{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.title"|trans|sw_sanitize }}
+                                        </div>
+                                    {% endblock %}
+                                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_content %}
+                                        <table class="table table-borderless table-hover">
+                                            {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_head %}
+                                                <thead>
+                                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_head_row %}
+                                                    <tr>
+                                                        {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_head_row_inner %}
+                                                            <th>{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.article-name"|trans|sw_sanitize }}</th>
+                                                            <th>{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.voucher-code"|trans|sw_sanitize }}</th>
+                                                            <th>{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.voucher-value"|trans|sw_sanitize }}</th>
+                                                        {% endblock %}
+                                                    </tr>
+                                                {% endblock %}
+                                                </thead>
+                                            {% endblock %}
+
+                                            {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body %}
+                                                <tbody>
+                                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_data %}
+                                                    {% for purchaseVoucher in page.extensions.netiEasyCouponPurchaseVouchers %}
+                                                        {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_data_row %}
+                                                            <tr>
+                                                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_data_inner %}
+                                                                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_article_name %}
+                                                                        <td data-title="{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.article-name"|trans|sw_sanitize }}">
+                                                                            {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_article_name_inner %}
+                                                                                <strong>{{ purchaseVoucher.product.translated.name }}</strong>
+                                                                            {% endblock %}
+                                                                        </td>
+                                                                    {% endblock %}
+
+                                                                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_voucher_code %}
+                                                                        <td data-title="{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.voucher-code"|trans|sw_sanitize }}">
+                                                                            {% if not(purchaseVoucher.active) and config('NetiNextEasyCoupon').config.showCodeAfterPayment %}
+                                                                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_voucher_code_inner_hidden %}
+                                                                                    {{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.showAfterPayment"|trans|sw_sanitize }}
+                                                                                {% endblock %}
+                                                                            {% else %}
+                                                                                {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_voucher_code_inner %}
+                                                                                    <strong>{{ purchaseVoucher.code }}</strong>
+                                                                                {% endblock %}
+                                                                            {% endif %}
+                                                                        </td>
+                                                                    {% endblock %}
+
+                                                                    {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_voucher_value %}
+                                                                        <td data-title="{{ "neti-easy-coupon.store-front.checkout.finish.purchase-voucher.table-header.voucher-value"|trans|sw_sanitize }}">
+                                                                            {% block neti_easy_coupon_checkout_confirm_purchase_vouchers_table_body_voucher_value_inner %}
+                                                                                {{ (purchaseVoucher.value * purchaseVoucher.currencyFactor) | number_format(purchaseVoucher.currency.decimalPrecision) }} {{ purchaseVoucher.currency.symbol }}
+                                                                            {% endblock %}
+                                                                        </td>
+                                                                    {% endblock %}
+                                                                {% endblock %}
+                                                            </tr>
+                                                        {% endblock %}
+                                                    {% endfor %}
+                                                {% endblock %}
+                                                </tbody>
+                                            {% endblock %}
+                                        </table>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}

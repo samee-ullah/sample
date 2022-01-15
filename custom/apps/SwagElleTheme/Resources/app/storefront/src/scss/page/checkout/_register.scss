@@ -1,0 +1,91 @@
+.is-ctl-register {
+  .checkout {
+    padding-top: 5px;
+
+    &-container {
+      > .checkout-aside {
+        @extend .col-xl-4;
+        @extend .col-lg-4;
+        @extend .col-md-6;
+        @extend .offset-md-6;
+
+        @include media-breakpoint-up(xl) {
+          margin-left: 0;
+        }
+
+        @include media-breakpoint-up(lg) {
+          margin-left: 0;
+          padding-top: 55px;
+        }
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-top: 30px;
+
+      .address-main-header {
+        font-size: $h2-font-size;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      padding-top: 0;
+    }
+  }
+
+  .register-login-collapse-toogle,
+  .login-card {
+    margin-bottom: 0;
+    padding-bottom: $spacer;
+  }
+
+  .register-card {
+    margin-top: 40px;
+
+    .card-title {
+      @extend .h4;
+    }
+  }
+
+  .checkout-aside-products {
+    padding: 24px 0 0 0;
+  }
+
+  .checkout-aside-item {
+    &-image {
+      padding-left: 0;
+      padding-right: 0;
+
+      .cart-item-img {
+        width: 75px;
+        height: auto;
+      }
+    }
+
+    &-data {
+      padding-right: 0;
+    }
+
+    &-title {
+      padding-bottom: 20px;
+      font-weight: $font-weight-semibold;
+    }
+
+    &-link-price {
+      text-align: right;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  .privacy-notice {
+    margin-bottom: 0;
+  }
+}
+
+.page-checkout-address-login {
+  .swag-amazon-pay-card {
+    .card-title {
+      border-bottom: none;
+    }
+  }
+}

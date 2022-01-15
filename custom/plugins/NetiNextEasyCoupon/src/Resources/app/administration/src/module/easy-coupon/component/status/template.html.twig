@@ -1,0 +1,48 @@
+<div class="neti-easy-coupon-status" v-if="status">
+    <sw-alert variant="info">
+        <!-- Absolute coupon -->
+        <template v-if="status.valueType === 10010">
+            <p>
+                <!-- General coupon -->
+                <span
+                        v-if="status.voucherType === 40010"
+                        v-html="$t('neti-easy-coupon.detail.status.absolute.general', { value: currency(status.value.total, status.currencyCode) })"
+                ></span>
+                <!-- Individual coupon -->
+                <span
+                        v-else-if="status.voucherType === 40020"
+                        v-html="$t('neti-easy-coupon.detail.status.absolute.individual', { value: currency(status.value.total, status.currencyCode) })"
+                ></span>
+                <span v-html="$t('neti-easy-coupon.detail.status.absolute.redemptionValue', { value: currency(status.value.redemption, status.currencyCode) })"></span>
+                <br />
+                <span v-html="$t('neti-easy-coupon.detail.status.absolute.remainingValue', { value: currency(status.value.remaining, status.currencyCode) })"></span>
+            </p>
+
+            <p>
+                {{ $t('neti-easy-coupon.detail.status.redemptionCount', { count: status.redemptionCount }) }}
+            </p>
+
+            <sw-progress-bar
+                    v-if="status.valueType === 10010"
+                    :value="status.value.redemption"
+                    :maxValue="status.value.total"
+            ></sw-progress-bar>
+        </template>
+
+        <!-- Percentage coupon -->
+        <template v-else-if="status.valueType === 10020">
+            <!-- General coupon -->
+            <template v-if="status.voucherType === 40010">
+                <p v-html="$t('neti-easy-coupon.detail.status.percentage.general', { percentage: status.value })"></p>
+            </template>
+            <!-- Individual coupon -->
+            <template v-else-if="status.voucherType === 40020">
+                <p v-html="$t('neti-easy-coupon.detail.status.percentage.individual', { percentage: status.value })"></p>
+            </template>
+
+            <p>
+                {{ $t('neti-easy-coupon.detail.status.redemptionCount', { count: status.redemptionCount }) }}
+            </p>
+        </template>
+    </sw-alert>
+</div>

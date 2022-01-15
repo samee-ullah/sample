@@ -1,0 +1,36 @@
+.is--neti-next-easycoupon {
+    &.is--nec-vouchertyp_preselected {
+        .is--nec-voucher-value-wrap{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+
+            .is--nec-voucher-value{
+                padding: 10px 20px;
+                cursor: pointer;
+                margin: 0 10px 10px 0;
+                border: 1px solid #ccc;
+                color: #000;
+                text-align: center;
+                font-size: 14px;
+                font-weight: normal;
+                transition: border-color 0.15s ease-in, background-color 0.15s ease-in;
+
+                &:last-child{
+                    margin-right: 0;
+                }
+
+                &:hover{
+                    border-color: $sw-color-brand-primary;
+                    background-color: #eee;
+                }
+                &.active {
+                    border-color: $sw-color-brand-primary;
+                    background-color: #eee;
+                }
+            }
+        }
+    }
+}
+
+

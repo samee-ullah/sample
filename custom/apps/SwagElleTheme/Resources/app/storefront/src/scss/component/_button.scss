@@ -1,0 +1,20 @@
+.btn,
+.btn-buy {
+  &.disabled,
+  &:disabled {
+    color: $disabled-btn-color;
+  }
+}
+
+.btn {
+  .icon-feather {
+    > svg {
+      top: 6px;
+    }
+  }
+}
+
+.btn-square {
+  width: $input-height;
+  padding: unset;
+}

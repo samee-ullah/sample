@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/component/blog/_partials/_block_author.html.twig' %}
+
+{% block sas_block_partials_author %}
+    <figure class="sas-author figure mr-2">
+        <figcaption class="figure-caption">{% sw_icon 'avatar' style { 'size': 'sm' } %}
+            <span data-toggle="tooltip" title="{{ "sas-blog.detail.meta.author"|trans|striptags }}"><a
+                    href="{{ path('aj.frontend.blogAuthor.detail', {authorId: author.id}) }}">{{ author.displayName ?? author.translated.name }}</a></span>
+        </figcaption>
+    </figure>
+{% endblock %}

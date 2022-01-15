@@ -1,0 +1,36 @@
+$modal-max-width: 800px;
+
+.modal {
+    &-content {
+        border: 1px solid $border-color;
+        border-radius: 3px;
+    }
+
+    &-header {
+        padding: 20px;
+        border-bottom: unset;
+
+        .close {
+            position: absolute;
+            right: 16px;
+            margin: -10px 0 0 0;
+            padding: 0;
+            color: $body-color;
+            opacity: unset;
+
+            @include hover {
+                color: $body-color;
+            }
+        }
+    }
+
+    &-body {
+        padding: 20px;
+    }
+
+    @include media-breakpoint-up(sm) {
+        .modal-dialog {
+            max-width: $modal-max-width;
+        }
+    }
+}

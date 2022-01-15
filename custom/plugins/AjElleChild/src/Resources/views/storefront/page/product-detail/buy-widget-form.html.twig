@@ -1,0 +1,48 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+
+{# @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
+    {% set product = page.product %}
+    {% set maxQty = product.calculatedMaxPurchase %}
+    {% set minQty = product.minPurchase %}
+
+{% block page_product_detail_buy_container %}
+    {% if product.extension('netiEasyCouponProduct') %}
+        <div class="form-row buy-widget-container mb-3 d-flex align-items-center">
+            <div class="col-3 email-recipient-label text-center">
+                <label for="email_recipient">Add Recipient</label>
+            </div>
+            <div class="col-6 product-detail-email-recipient">
+                <input type="email" class="form-control form-control-lg email-recipient"
+                       name="custom_vouchers_email_field"
+                       id="email_recipient"
+                       title="Recipient"
+                       placeholder="example@domain.com">
+            </div>
+        </div>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_product_detail_buy_quantity %}
+    <div class="product-detail-quantity-input input-group input-group-lg"
+         data-quantity-field="true"
+         data-quantity-field-options='{
+            "purchaseSteps": "{{ product.purchaseSteps }}",
+            "maxQty": "{{ maxQty }}"
+         }'>
+        <div class="input-group-prepend">
+            <button class="btn btn-secondary decrease" type="button">-</button>
+        </div>
+
+        <input type="number" class="form-control form-control-lg line-item-custom"
+               name="lineItems[{{ product.id }}][quantity]"
+               title="Quantity"
+               value="{{ minQty }}"
+               min="{{ minQty }}"
+               max="{{ maxQty }}">
+
+        <div class="input-group-append">
+            <button class="btn btn-secondary increase" type="button">+</button>
+        </div>
+    </div>
+{% endblock %}

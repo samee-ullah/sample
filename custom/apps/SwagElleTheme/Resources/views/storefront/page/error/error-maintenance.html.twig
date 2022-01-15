@@ -1,0 +1,60 @@
+{% sw_extends '@Storefront/storefront/page/error/error-maintenance.html.twig' %}
+
+{% block error_maintenance_header_inner %}
+    <div class="container">
+        <div class="row align-items-center header-row justify-content-center">
+            <div class="col-12 col-lg-auto text-center">
+                {% sw_include '@Storefront/storefront/layout/header/logo.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block error_maintenance_main_content %}
+    {% if page is not null %}
+        {{ parent() }}
+    {% else %}
+        {% block error_maintenance_main_fallback %}
+            <div class="container container-maintenance mt-5 align-middle d-flex h-100">
+                <div class="row justify-content-center align-self-center w-100 mx-auto">
+                    <div class="text-center col-12">
+                        <img src="{{ asset('bundles/storefront/assets/illustration/maintenance_mode.svg', 'theme') }}"
+                             alt="{{ "general.maintenanceModeHeader"|trans|striptags }}"
+                             class="rounded mx-auto img-fluid" />
+                    </div>
+                    <div class="col-12 col-md-12 col-xs-auto">
+                        <h1 class="mt-4 text-center maintenance-heading">{{ "general.maintenanceModeHeader"|trans }}</h1>
+                    </div>
+                    <div class="col-12 col-md-3 col-xs-auto">
+                        <p class="text-center">{{ "general.maintenanceModeDescription"|trans }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}
+
+
+{% block error_maintenance_footer %}
+    <footer class="footer-maintenance mt-5 w-75 mx-auto">
+        {% block error_maintenance_footer_content %}
+            <div class="container mt-3 text-center">
+                {% if config('core.basicInformation.imprintPage') is not null %}
+                    <a href="{{ seoUrl('frontend.maintenance.singlepage',{ id: config('core.basicInformation.imprintPage') }) }}"
+                       title="{{ "general.imprintLink"|trans|sw_sanitize }}"
+                       class="pl-2 pr-2">
+                        {{ "general.imprintLink"|trans|sw_sanitize }}
+                    </a>
+                {% endif %}
+
+                {% if config('core.basicInformation.privacyPage') is not null %}
+                    <a href="{{ seoUrl('frontend.maintenance.singlepage',{ id: config('core.basicInformation.privacyPage') }) }}"
+                       title="{{ "general.privacyLink"|trans|sw_sanitize }}"
+                       class="pl-2 pr-2">
+                        {{ "general.privacyLink"|trans|sw_sanitize }}
+                    </a>
+                {% endif %}
+            </div>
+        {% endblock %}
+    </footer>
+{% endblock %}

@@ -1,0 +1,190 @@
+<div class="neti-easy-coupon-product-detail-base">
+    <sw-card
+            v-if="model"
+            :title="$t('neti-easy-coupon-product.detail.cardTitle.base')"
+    >
+        <sw-field
+                :label="$t('neti-easy-coupon-product.detail.titleLabel')"
+                type="text"
+                v-model="model.title"
+                :placeholder="placeholder(model, 'title', $t('neti-easy-coupon-product.detail.titlePlaceholder'))"
+                :error="modelTitleError"
+                :helpText="$t('neti-easy-coupon-product.detail.titleHelpText')"
+        ></sw-field>
+
+        <sw-container columns="1fr 1fr" gap="15px">
+            <neti-easy-coupon-product-value-type-select
+                    v-model="model.valueType"
+            ></neti-easy-coupon-product-value-type-select>
+
+            <neti-easy-coupon-product-price-field
+                    :prices="model.value"
+                    :valueType="model.valueType"
+                    :main="true"
+            ></neti-easy-coupon-product-price-field>
+        </sw-container>
+
+        <sw-container columns="1fr 1fr" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon-product.detail.orderPositionNumberLabel')"
+                    type="text"
+                    v-model="model.orderPositionNumber"
+                    :error="modelOrderPositionNumberError"
+                    :helpText="$t('neti-easy-coupon-product.detail.orderPositionNumberHelpText')"
+            ></sw-field>
+
+
+            <sw-field
+                type="switch"
+                bordered
+                :label="$t('neti-easy-coupon-product.detail.combineVouchersLabel')"
+                v-model="model.combineVouchers"
+                :helpText="$t('neti-easy-coupon-product.detail.combineVouchersHelpText')"
+            ></sw-field>
+        </sw-container>
+
+        <sw-container columns="1fr 1fr" gap="15px">
+            <sw-select-number-field
+                    :label="$t('neti-easy-coupon-product.detail.validityTimeLabel')"
+                    :helpText="$t('neti-easy-coupon-product.detail.validityTimeHelpText')"
+                    v-model="model.validityTime"
+            >
+                <option value="0">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.0') }}</option>
+                <option value="30">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.30') }}</option>
+                <option value="90">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.90') }}</option>
+                <option value="180">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.180') }}</option>
+                <option value="365">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.365') }}</option>
+                <option value="730">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.730') }}</option>
+                <option value="1095">{{ $t('neti-easy-coupon-product.detail.validityTimeValues.1095') }}</option>
+            </sw-select-number-field>
+
+            <sw-field
+                    :label="$t('neti-easy-coupon-product.detail.validityByEndOfYearLabel')"
+                    :helpText="$t('neti-easy-coupon-product.detail.validityByEndOfYearHelpText')"
+                    v-model="model.validityByEndOfYear"
+                    type="switch"
+                    bordered
+            ></sw-field>
+        </sw-container>
+    </sw-card>
+
+    <sw-card
+            :title="$t('neti-easy-coupon-product.detail.cardTitle.conditions')"
+            v-if="model"
+    >
+        <sw-alert variant="info">
+            {{ $t('neti-easy-coupon-product.detail.conditionInfo') }}
+        </sw-alert>
+
+        <neti-easy-coupon-product-condition-tree
+                :model="model"
+        ></neti-easy-coupon-product-condition-tree>
+    </sw-card>
+
+    <sw-card
+            v-if="isCreateMode"
+            :title="$t('neti-easy-coupon-product.detail.cardTitle.product')"
+    >
+        <sw-alert
+                variant="info"
+        >
+            {{ $t('neti-easy-coupon-product.detail.product.saveInfo') }}
+        </sw-alert>
+    </sw-card>
+    <sw-card
+            v-else-if="model.product"
+            :title="$t('neti-easy-coupon-product.detail.cardTitle.product')"
+    >
+        <neti-easy-coupon-product-open-link
+            :model="model"
+            :product="product"
+        ></neti-easy-coupon-product-open-link>
+
+        <sw-container columns="1fr 250px" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon-product.detail.product.nameLabel')"
+                    type="text"
+                    v-model="model.product.name"
+                    :error="productNameError"
+                    :helpText="$t('neti-easy-coupon-product.detail.product.nameHelpText')"
+                    :placeholder="placeholder(model.product, 'name')"
+            ></sw-field>
+
+            <sw-field
+                :label="$t('neti-easy-coupon-product.detail.product.numberLabel')"
+                type="text"
+                v-model="model.product.productNumber"
+                :error="productProductNumberError || customApiErrors.product.productNumber"
+                :helpText="$t('neti-easy-coupon-product.detail.product.numberHelpText')"
+            ></sw-field>
+        </sw-container>
+        <sw-text-editor
+                :label="$t('neti-easy-coupon-product.detail.product.descriptionLabel')"
+                v-model="model.product.description"
+                :helpText="$t('neti-easy-coupon-product.detail.product.descriptionHelpText')"
+        ></sw-text-editor>
+
+        <sw-alert variant="info">
+            {{ $t('neti-easy-coupon-product.detail.product.priceInformation') }}
+        </sw-alert>
+        <sw-container columns="1fr 1fr" gap="15px">
+            <neti-easy-coupon-product-product-price-field
+                    v-model="model.product.price"
+                    :taxId="model.product.taxId"
+                    :disabled="model.valueType !== 20010"
+            ></neti-easy-coupon-product-product-price-field>
+            <sw-entity-single-select
+                    :label="$t('neti-easy-coupon-product.detail.product.taxLabel')"
+                    entity="tax"
+                    v-model="model.product.taxId"
+                    :helpText="$t('neti-easy-coupon-product.detail.product.taxHelpText')"
+                    :error="productTaxIdError"
+            ></sw-entity-single-select>
+        </sw-container>
+        <sw-container columns="auto auto 1fr" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon-product.detail.product.stockLabel')"
+                    type="number"
+                    v-model="model.product.stock"
+                    :error="productStockError"
+                    :helpText="$t('neti-easy-coupon-product.detail.product.stockHelpText')"
+            ></sw-field>
+            <sw-field
+                    type="switch"
+                    bordered
+                    :label="$t('neti-easy-coupon-product.detail.product.isCloseoutLabel')"
+                    v-model="model.product.isCloseout"
+                    :helpText="$t('neti-easy-coupon-product.detail.product.isCloseoutHelpText')"
+            ></sw-field>
+            <sw-field
+                    type="switch"
+                    bordered
+                    :label="$t('neti-easy-coupon-product.detail.product.shippingFreeLabel')"
+                    v-model="model.product.shippingFree"
+                    :helpText="$t('neti-easy-coupon-product.detail.product.shippingFreeHelpText')"
+            ></sw-field>
+        </sw-container>
+        <sw-category-tree-field
+                :label="$t('neti-easy-coupon-product.detail.product.categoriesLabel')"
+                :categoriesCollection="model.product.categories"
+                :placeholder="$t('neti-easy-coupon-product.detail.product.categoriesPlaceholder')"
+                v-model="model.product.categories"
+                :helpText="$t('neti-easy-coupon-product.detail.product.categoriesHelpText')"
+        ></sw-category-tree-field>
+        <neti-easy-coupon-product-visibility-select
+                :label="$t('neti-easy-coupon-product.detail.product.visibilitiesLabel')"
+                :mainProduct="model.product"
+                :entityCollection="model.product.visibilities"
+                :placeholder="$t('neti-easy-coupon-product.detail.product.visibilitiesPlaceholder')"
+                v-model="model.product.visibilities"
+                :helpText="$t('neti-easy-coupon-product.detail.product.visibilitiesHelptext')"
+        ></neti-easy-coupon-product-visibility-select>
+        <sw-entity-tag-select
+                :label="$t('neti-easy-coupon-product.detail.product.tagsLabel')"
+                :placeholder="$t('neti-easy-coupon-product.detail.product.tagsPlaceholder')"
+                :entityCollection="model.product.tags"
+                v-model="model.product.tags"
+                :helpText="$t('neti-easy-coupon-product.detail.product.tagsHelpText')"
+        ></sw-entity-tag-select>
+    </sw-card>
+</div>

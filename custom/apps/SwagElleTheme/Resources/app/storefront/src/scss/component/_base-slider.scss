@@ -1,0 +1,11 @@
+.base-slider {
+  .base-slider-dots {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+
+    &.hide-dots {
+      display: none;
+    }
+  }
+}

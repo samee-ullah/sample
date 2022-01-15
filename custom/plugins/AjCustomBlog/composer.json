@@ -1,0 +1,18 @@
+{
+  "name": "aj/custom-blog",
+  "description": "Custom Blog",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "AjCustomBlog\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "AjCustomBlog\\AjCustomBlog",
+    "label": {
+      "de-DE": "Custom Blog",
+      "en-GB": "Custom Blog"
+    }
+  }
+}

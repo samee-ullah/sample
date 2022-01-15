@@ -1,0 +1,31 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/review/review-widget.html.twig' %}
+
+{% block page_product_detail_review_filter_box %}
+	<div class="row product-detail-review-filter">
+
+		{% block page_product_detail_review_filter_checkbox %}
+			<div class="col-md-8 col-lg-5 product-detail-review-checkbox mb-3">
+				<div class="custom-control custom-checkbox">
+					{% block page_product_detail_review_filter_checkbox_input %}
+						{{ parent() }}
+					{% endblock %}
+
+					{% block page_product_detail_review_filter_checkbox_label %}
+						<label class="custom-control-label text-nowrap"
+							   for="reviewRating{{ matrix.points }}">
+							{{ "detail.review#{matrix.points}PointRatingText"|trans|sw_sanitize }} ({{ matrix.count }})
+						</label>
+					{% endblock %}
+				</div>
+			</div>
+		{% endblock %}
+
+		{% block page_product_detail_review_filter_progressbar %}{% endblock %}
+
+		{% block page_product_detail_review_filter_share %}
+			<div class="col-12 col-md-3 product-detail-review-share d-none">
+				<p><small>{{ matrix.percent|round }}%</small></p>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

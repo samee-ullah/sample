@@ -1,0 +1,119 @@
+{
+    "neti-easy-coupon-product": {
+        "general": {
+            "mainMenuItemGeneral": "Purchasable vouchers",
+            "descriptionTextModule": "Maintain your purchasable vouchers"
+        },
+        "list": {
+            "title": "Purchasable vouchers",
+            "buttonCreate": "add",
+            "buttonCancel": "cancel",
+            "buttonDelete": "delete",
+            "contextMenuEdit": "edit",
+            "contextMenuDelete": "delete",
+            "modalTitleDelete": "delete purchasable voucher",
+            "textDeleteConfirm": "Are you sure you want to delete the voucher? If the purchasable voucher is deleted, the associated product will also be deleted.",
+            "messageEmpty": "No purchasable vouchers available",
+            "column": {
+                "id": "ID",
+                "active": "active",
+                "title": "Title",
+                "code": "Code",
+                "createdAt": "created",
+                "updatedAt": "updated",
+                "valueType": "Value type"
+            },
+            "deleteMessage": "Do you really want to delete the entry? The associated product will also be deleted. | Are you sure you want to delete these {count} entries? The associated products will also be deleted."
+        },
+        "detail": {
+            "title": "Purchasable voucher",
+            "buttonCancel": "cancel",
+            "buttonSave": "save",
+            "titleLabel": "Voucher title on redemption",
+            "titlePlaceholder": "Title",
+            "discardRemainingLabel": "Residual value expires",
+            "orderPositionNumberLabel": "Order number on redemption",
+            "errorTitle": "Error",
+            "errorMessage": "The purchasable voucher could not be saved.",
+            "successTitle": "Success",
+            "successMessage": "The purchasable voucher has been saved successfully.",
+            "titleHelpText": "Will be displayed in the shopping cart on redemption.",
+            "discardRemainingHelpText": "",
+            "orderPositionNumberHelpText": "",
+            "conditionInfo": "The conditions specified here will later be transferred to the created voucher and will not affect the order process of the purchase voucher.",
+            "combineVouchersLabel": "Combine Vouchers?",
+            "combineVouchersHelpText": "Should the vouchers created with the purchase voucher be combinable with other EasyCoupon vouchers?",
+            "validityTimeLabel": "Validity time (optional)",
+            "validityTimeHelpText": "Defines the validity time of the voucher that is being created later.",
+            "validityByEndOfYearLabel": "Valid by end of the year",
+            "validityByEndOfYearHelpText": "If enabled the validity time is calculated from the end of the current year instead of the purchase date.",
+            "validityTimeValues": {
+                "0": "No limit",
+                "30": "30 days",
+                "90": "90 days",
+                "180": "6 months (180 days)",
+                "365": "1 year",
+                "730": "2 years",
+                "1095": "3 years"
+            },
+            "tab": {
+                "base": "Details"
+            },
+            "cardTitle": {
+                "base": "Basic information",
+                "conditions": "Conditions",
+                "product": "Product configuration"
+            },
+            "product": {
+                "saveInfo": "The product configuration will be displayed here as soon as the purchasable voucher has been saved.",
+                "nameLabel": "Name",
+                "descriptionLabel": "Description",
+                "taxLabel": "Tax rate",
+                "isCloseoutLabel": "Sale",
+                "shippingFreeLabel": "Product is free of charge",
+                "categoriesLabel": "Product categories",
+                "categoriesPlaceholder": "Product categories",
+                "visibilitiesLabel": "Sales channel",
+                "visibilitiesPlaceholder": "Sales channel",
+                "tagsLabel": "Tags",
+                "tagsPlaceholder": "Tags",
+                "numberLabel": "Product number",
+                "stockLabel": "Stock",
+                "priceHelpText": "",
+                "nameHelpText": "",
+                "numberHelpText": "",
+                "descriptionHelpText": "",
+                "taxHelpText": "",
+                "stockHelpText": "",
+                "isCloseoutHelpText": "",
+                "shippingFreeHelpText": "",
+                "categoriesHelpText": "",
+                "visibilitiesHelptext": "",
+                "tagsHelpText": "",
+                "priceInformation": "For purchase vouchers of the type \"defined values and individual values\" the price results from the voucher configuration. For a voucher of the type \"fixed value\" you can change the price of the voucher here - the defined value of the voucher will not be adjusted."
+            },
+            "open-product-link": {
+                "linkLabel": "open product"
+            }
+        },
+        "price-field": {
+            "valueLabel": "Value",
+            "fromValueLabel": "from",
+            "toValueLabel": "to",
+            "valuesLabel": "Values",
+            "currencyModalBtn": "Currency dependent values",
+            "currency-modal": {
+                "title": "edit currencies",
+                "closeBtn": "close"
+            },
+            "values-field": {
+                "validMessage": "add value",
+                "invalidMessage": "Please enter a numeric value"
+            },
+            "fromValueHelpText": "",
+            "toValueHelpText": "",
+            "valuesHelpText": "",
+            "valueHelpText": ""
+        }
+    }
+}

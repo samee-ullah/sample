@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Rule\UsesPerCustomerRule"
+                 public="true"
+                 shared="false">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+
+            <tag name="shopware.rule.definition"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Rule\LineItemOfManufacturerRule">
+            <tag name="shopware.rule.definition"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Rule\CustomerRule">
+            <tag name="shopware.rule.definition"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Rule\DateRangeRule">
+            <tag name="shopware.rule.definition"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Rule\TotalUsesRule"
+                 public="true"
+                 shared="false">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+            <tag name="shopware.rule.definition"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Rule\MailAddressRule">
+            <tag name="shopware.rule.definition"/>
+        </service>
+    </services>
+</container>

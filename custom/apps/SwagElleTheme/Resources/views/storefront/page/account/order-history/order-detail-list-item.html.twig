@@ -1,0 +1,66 @@
+{% sw_extends '@Storefront/storefront/page/account/order-history/order-detail-list-item.html.twig' %}
+
+{% block page_account_order_item_detail_image %}
+    <div class="col-12 col-md-auto order-item order-item-image">
+        {% block page_account_order_item_detail_image_value %}
+           {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_account_order_item_detail_name %}
+    <div class="col-12 col-md order-item order-item-name">
+        {% block page_account_order_item_detail_name_value %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_order_item_detail_variants %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_order_item_detail_unitprice %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_account_order_item_detail_quantity %}
+    <div class="col-12 col-md-2 order-item order-item-quantity">
+        {% if not isChild %}
+            {% block page_account_order_item_detail_quantity_label %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_account_order_item_detail_quantity_value %}
+                {{ parent() }}
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block page_account_order_item_detail_price %}
+    <div class="col-12 col-md-2 order-item order-item-price">
+        {% if not isDiscount and not isNested %}
+            {% block page_account_order_item_detail_price_label %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_account_order_item_detail_price_value %}
+                {{ parent() }}
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block page_account_order_item_detail_total %}
+    <div class="col-12 col-md-2 order-item order-item-total">
+        {% block page_account_order_item_detail_total_label %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_order_item_detail_total_value %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}

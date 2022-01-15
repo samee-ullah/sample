@@ -1,0 +1,44 @@
+<sw-card
+        class="neti-easy-coupon-order-detail-vouchers"
+        :title="$t('neti-easy-coupon.order-detail.vouchersTitle')"
+        :is-loading="isLoading"
+>
+    <template #grid>
+        <sw-data-grid
+            :dataSource="mappedData"
+            :columns="columns"
+            :showSelection="false"
+            :showActions="true"
+        >
+            <template #column-name="{ item }">
+                {{ item.label }}
+            </template>
+
+            <template #column-value="{ item }">
+                {{ item.unitPrice | currency(order.currency.shortName) }}
+            </template>
+
+            <template #column-code="{ item }">
+                {{ getCode(item) }}
+
+                <span class="unresolved-code" v-if="!getCode(item)">
+                    {{ $t('neti-easy-coupon.order-detail.voucherList.unresolvedCode') }}
+
+                    <sw-help-text
+                        :text="$t('neti-easy-coupon.order-detail.voucherList.unresolvedCodeHelpText')"
+                    ></sw-help-text>
+                </span>
+            </template>
+
+            <template #column-type="{ item }">
+                {{ $t('neti-easy-coupon.order-detail.voucherList.type.' + getVoucherType(item)) }}
+            </template>
+
+            <template #actions="{ item }">
+                <sw-context-menu-item @click="onOpenVoucher(item)" :disabled="!getCode(item)">
+                    {{ $t('neti-easy-coupon.order-detail.voucherList.actionOpenVoucher') }}
+                </sw-context-menu-item>
+            </template>
+        </sw-data-grid>
+    </template>
+</sw-card>

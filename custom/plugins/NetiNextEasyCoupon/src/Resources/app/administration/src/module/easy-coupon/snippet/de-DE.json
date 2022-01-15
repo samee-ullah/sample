@@ -1,0 +1,132 @@
+{
+    "neti-easy-coupon": {
+        "navigation": {
+            "mainMenuItemEasyCoupon": "EasyCoupon"
+        },
+        "general": {
+            "mainMenuItemGeneral": "EasyCoupon",
+            "descriptionTextModule": "Hier verwaltest Du Deine EasyCoupon-Gutscheine."
+        },
+        "list": {
+            "title": "Gutscheine",
+            "buttonCreate": "Hinzufügen",
+            "messageEmpty": "Keine Gutscheine vorhanden",
+            "titleSidebarItemRefresh": "Neu laden",
+            "contextMenuEdit": "Bearbeiten",
+            "contextMenuDelete": "Löschen",
+            "modalTitleDelete": "Gutschein löschen",
+            "textDeleteConfirm": "Bist Du sicher, dass Du den Gutschein löschen möchtest?",
+            "buttonCancel": "Abbrechen",
+            "buttonDelete": "Löschen",
+            "column": {
+                "active": "Aktiv",
+                "title": "Titel",
+                "code": "Code",
+                "value": "Wert",
+                "createdAt": "Erstellt",
+                "updatedAt": "Geändert"
+            }
+        },
+        "detail": {
+            "activeLabel": "Aktiv",
+            "activeHelpText": "Aktiviert den Gutschein. Nur aktive Gutscheinen können eingelöst werden.",
+            "buttonCancel": "Abbrechen",
+            "buttonSave": "Speichern",
+            "codeLabel": "Code",
+            "codeHelpText": "Gib hier den Gutscheincode ein oder erzeuge einen Gutscheincode.",
+            "commentLabel": "Kommentar",
+            "commentHelpText": "Platz für interne Kommentare.",
+            "currencyLabel": "Währung",
+            "currencyHelpText": "Wähle die Währung, in der der Gutschein geführt wird.",
+            "discardRemainingLabel": "Restwert verfällt",
+            "discardRemainingHelpText": "Jeglicher Restwert des Gutscheins verfällt, sobald der Gutschein das erste mal eingelöst wurde.",
+            "errorMessage": "Der Gutschein konnte nicht gespeichert werden.",
+            "errorTitle": "Fehler",
+            "generateCodeBtn": "Generieren",
+            "copyCodeBtn": "Code kopieren",
+            "maxRedemptionValueLabel": "Maximaler Einlösewert je Kunde",
+            "maxRedemptionValueHelpText": "<p>Definiert bei einem prozentualen Abzug das absolute Limit:</p><p>Beispiel:</p><ul><li>10% Gutschein</li><li>max. Einl&ouml;sewert = 20&euro;</li><li>Warenkorbwert 500&euro;</li></ul><p>Normalerweise erh&auml;lt dein Kunde 50&euro; Abzug. Durch den max. Einl&ouml;sewert wird der Abzug aber bei 20&euro; gekappt.</p>",
+            "orderPositionNumberLabel": "Produktnummer bei Einlösung",
+            "orderPositionNumberHelpText": "Diese Nummer wird bei Einlösung des Gutscheins als Produktnummer in der Warenkorbposition des Gutscheins hinterlegt.",
+            "successMessage": "Der Gutschein wurde erfolgreich gespeichert.",
+            "successTitle": "Erfolg",
+            "tagLabel": "Tag",
+            "tagHelpText": "Vergib optional einen Tag für den Gutschein.",
+            "title": "Gutschein",
+            "titleHelpText": "Wähle einen Titel deiner Wahl.",
+            "titleLabel": "Titel",
+            "titlePlaceholder": "Gutscheintitel",
+            "valueLabel": "Wert",
+            "valueHelpText": "Wähle einen Wert.",
+            "combineVouchersLabel": "Kombinierbar mit weiteren Gutscheinen?",
+            "combineVouchersHelpText": "Kann dieser Gutschein mit weiteren Gutscheinen eingelöst werden?",
+            "validUntilLabel": "Gültig bis (optional)",
+            "validUntilHelpText": "Der Gutschein kann bis zu dem angegebenen Datum eingelöst werden.",
+            "cardTitle": {
+                "base": "Stammdaten",
+                "conditions": "Einlösebedingungen",
+                "conditionHelpText": "Definiere die Bedingungen, unter denen ein Gutschein eingelöst werden kann. Wurden keine Bedingungen gewählt, kann der Gutschein immer eingelöst werden.",
+                "misc": "Sonstiges"
+            },
+            "tab": {
+                "base": "Details",
+                "transactions": "Transaktionen"
+            },
+            "generateCode": {
+                "errorTitle": "Fehler",
+                "errorMessage": "Es konnte leider kein Code generiert werden. Bitte versuchen Sie es erneut."
+            },
+            "status": {
+                "redemptionCount": "Der Gutschein wurde bereits {count} mal eingelöst.",
+                "absolute": {
+                    "general": "Dieser <strong>allgemeine</strong> Gutschein hat einen <strong>absoluten</strong> Wert von <strong>{value}</strong>.",
+                    "individual": "Dieser <strong>individuelle</strong> Gutschein hat einen <strong>absoluten</strong> Wert von <strong>{value}</strong>.",
+                    "redemptionValue": "Davon wurden bereits <strong>{value}</strong> eingelöst.",
+                    "remainingValue": "Der Restwert beträgt <strong>{value}</strong>."
+                },
+                "percentage": {
+                    "general": "Dieser <strong>allgemeine</strong> Gutschein hat einen <strong>prozentualen</strong> Wert von {percentage} Prozent.",
+                    "individual": "Dieser <strong>individuelle</strong> Gutschein hat einen <strong>prozentualen</strong> Wert von {percentage} Prozent."
+                }
+            },
+            "copyCode": {
+                "successTitle": "Erfolg",
+                "successMessage": "Der Gutschein-Code wurde erfolgreich in die Zwischenablage kopiert.",
+                "errorTitle": "Fehler",
+                "errorMessage": "Der Gutschein-Code konnte nicht in die Zwischenablage kopiert werden."
+            }
+        },
+        "transaction-list": {
+            "buttonCreate": "Neue Transaktion",
+            "create-transaction": {
+                "title": "Neue Transaktion",
+                "valueLabel": "Wert",
+                "currencyLabel": "Währung",
+                "internCommentLabel": "Kommentar",
+                "buttonCreate": "Speichern",
+                "buttonCancel": "Abbrechen",
+                "successTitle": "Erfolg",
+                "successMessage": "Die Transaktion wurde erfolgreich erstellt.",
+                "errorTitle": "Fehler",
+                "errorMessage": "Die Transsaktion konnte nicht erstellt werden."
+            },
+            "column": {
+                "createdAt": "Datum",
+                "id": "ID",
+                "value": "Wert",
+                "currency": "Währung",
+                "internComment": "Kommentar",
+                "orderNumber": "Bestellung",
+                "username": "Benutzername",
+                "customer": "Kunde"
+            }
+        },
+        "price-field": {
+            "currencyModalBtn": "Währungsabhängige Preise",
+            "currency-modal": {
+                "title": "Währungen pflegen",
+                "closeBtn": "Schließen"
+            }
+        }
+    }
+}

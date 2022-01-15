@@ -1,0 +1,35 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-image-gallery.html.twig' %}
+
+{% block element_image_gallery_inner_control_prev_icon %}
+    {% sw_icon 'chevron-left' style { 'pack': 'feather', 'size': 'lg' } %}
+{% endblock %}
+
+{% block element_image_gallery_inner_control_next_icon %}
+    {% sw_icon 'chevron-right' style { 'pack': 'feather', 'size': 'lg' } %}
+{% endblock %}
+
+{% block element_image_gallery_inner_thumbnails_col %}
+    {% if imageCount > 1 %}
+        <div class="gallery-slider-thumbnails-col{% if galleryPosition == "left" %} col-0 col-md-auto order-2 order-md-1 is-left{% elseif galleryPosition == "underneath" %} col-12 order-2 is-underneath{% endif %}">
+            <div class="gallery-slider-thumbnails-container{% if imageCount > 5 %} hide-thumbs{% endif %}">
+                {% block element_image_gallery_inner_thumbnails %}
+                    {{ parent() }}
+                {% endblock %}
+
+                {% block element_image_gallery_inner_thumbnails_controls %}
+                    {{ parent() }}
+                {% endblock %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block element_image_gallery_slider_dots %}
+    {% if imageCount > 1 and navigationDots %}
+        <div class="base-slider-dots{% if imageCount > 5 %} hide-dots{% endif %}" >
+            {% block element_image_gallery_slider_dots_buttons %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

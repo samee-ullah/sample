@@ -1,0 +1,26 @@
+.js-main-header-sticky {
+    background: #ffffff;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    transition: transform 0.4s ease-in-out;
+    transform: translateY(-100%);
+    padding: 0 3.65rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+
+    &.is--active {
+        transform: translateY(0);
+        box-shadow: 5px 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .navigation-flyouts {
+        top: 70px;
+    }
+}

@@ -1,0 +1,64 @@
+.navigation-offcanvas {
+  .top-bar-nav-item {
+    &:first-child {
+      padding: 0 0 0 10px;
+      margin-right: 0;
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+  }
+
+  .top-bar-nav-btn {
+    .icon-feather {
+      & > svg {
+        top: 3px;
+      }
+    }
+  }
+
+  .top-bar-nav-text {
+    display: block;
+  }
+
+  .languages-menu {
+    .top-bar-list-icon {
+      display: inherit;
+      width: 20px;
+      height: 15px;
+      margin-right: 0;
+    }
+
+    .top-bar-nav-text {
+      display: none;
+    }
+  }
+
+  .currencies-menu {
+    .top-bar-nav-text {
+      display: inline;
+    }
+  }
+
+  .navigation-offcanvas-link {
+    .loader {
+      @include sw-icon-size(16px);
+    }
+
+    .icon-feather {
+      & > svg {
+        top: 0;
+      }
+    }
+
+    &.is-back-link,
+    &.is-home-link {
+      .icon-feather {
+        & > svg {
+          top: -2px;
+        }
+      }
+    }
+  }
+}

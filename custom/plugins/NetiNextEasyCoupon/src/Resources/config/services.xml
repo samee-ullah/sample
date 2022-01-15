@@ -1,0 +1,440 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="services/rule.xml" />
+    </imports>
+
+    <!-- https://docs.shopware.com/en/shopware-platform-dev-en/how-to/indepth-guide-bundle/checkout -->
+    <services>
+        <!-- decorations -->
+        <service decorates="Shopware\Core\Framework\DataAbstractionLayer\FieldSerializer\IntFieldSerializer"
+                 id="NetInventors\NetiNextEasyCoupon\Core\Framework\FieldSerializer\Decoration\IntFieldSerializer">
+            <argument type="service" id="validator"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Framework\FieldSerializer\Decoration\IntFieldSerializer.inner"/>
+
+            <tag name="shopware.field_serializer"/>
+        </service>
+
+        <service decorates="Shopware\Core\Checkout\Cart\SalesChannel\CartItemAddRoute"
+                id="NetInventors\NetiNextEasyCoupon\Service\CartItemAddService">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\CartItemAddService.inner" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\LineItemExtension\LineItemRequestService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\LineItemExtension\LineItemExtensionBuilder"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Decorator\EasyCouponRepositoryDecorator"
+                 decorates="neti_easy_coupon.repository">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Decorator\EasyCouponRepositoryDecorator.inner" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\EasyCouponDecorationService" />
+        </service>
+
+        <!-- services -->
+        <service id="NetInventors\NetiNextEasyCoupon\Service\EasyCouponDecorationService">
+            <argument type="service" id="currency.repository" />
+            <argument type="service" id="neti_easy_coupon_transaction.repository" />
+            <argument type="service" id="neti_easy_coupon_condition.repository" />
+            <argument type="service" id="product_manufacturer.repository" />
+            <argument type="service" id="sales_channel.repository" />
+            <argument type="service" id="product.repository" />
+            <argument type="service" id="customer.repository" />
+            <argument type="service" id="category.repository" />
+            <argument type="service" id="customer_group.repository" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherService" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\ValidationProcessor"/>
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherCodeGenerator\ValidationProcessor"/>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Framework\FieldSerializer\ProductValuePriceFieldSerializer">
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+            <argument type="service" id="validator" />
+
+            <tag name="shopware.field_serializer"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherService">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherCodeGenerator"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherCodeGenerator">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherCodeGenerator\ValidationProcessor"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\ConditionService">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Shopware\Core\Framework\Rule\Collector\RuleConditionRegistry"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="request_stack"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\OrderVoucherService">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherProductRepository"/>
+            <argument type="service" id="neti_easy_coupon.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherRepository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\PaymentActivationStateValidator"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\ConditionService"/>
+            <argument type="service" id="order_line_item.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\CurrencyService"/>
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherRepository">
+            <argument type="service" id="neti_easy_coupon.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherProductRepository">
+            <argument type="service" id="neti_easy_coupon_product.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Repository\TransactionRepository">
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\ProductService"/>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Gateway\EasyCouponGateway">
+            <argument type="service" id="neti_easy_coupon.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\ItemBuilder" />
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemptionService">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Gateway\EasyCouponGateway"/>
+            <argument type="service" id="Shopware\Core\Checkout\Promotion\Gateway\PromotionGateway"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\ItemBuilder" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService" public="true">
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\LineItemExtension\LineItemExtensionBuilder">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\LineItemExtension\LineItemRequestService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\LineItemExtension\LineItemRequestService">
+            <argument type="service" id="request_stack"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\FakeDataService">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="neti_easy_coupon.repository"/>
+            <argument type="service" id="currency.repository"/>
+            <argument type="service" id="tax.repository"/>
+            <argument type="service" id="neti_easy_coupon_product.repository"/>
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="user.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Api\ApiService">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Api\ValidateService"/>
+            <argument type="service" id="neti_easy_coupon.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Api\ItemBuilder"/>
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Api\ValidateService">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherRepository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\Api\ItemBuilder">
+            <argument type="service" id="currency.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Controller\EasyCoupon" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherCodeGenerator\Validator\DuplicateValidator"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="neti_easy_coupon.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\PaymentActivationStateValidator"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\CurrencyService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Storefront\Page\Account\VoucherListingPageLoader">
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\PaymentActivationStateValidator"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\ValidationProcessor"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\CurrencyService">
+            <argument type="service" id="currency.repository"/>
+        </service>
+
+        <!-- Voucher code generator validators -->
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherCodeGenerator\Validator\DuplicateValidator">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+
+            <tag name="neti_easy_coupon.voucher_generator.validator" />
+        </service>
+
+        <!-- Voucher redemption validators -->
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\NotEmptyCartValidator">
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="10000" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\VoucherActiveValidator">
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="9000" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\VoucherCombinableValidator">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="neti_easy_coupon.repository"/>
+
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="8500"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\PaymentActivationStateValidator">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="8000" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\VoucherConditionsValidator">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\ConditionService"/>
+
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="7000" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\DiscardRemainingValidator">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService" />
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="6000" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\VoucherCreditValidator">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService" />
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="4000" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\VoucherValidValidator">
+            <tag name="neti_easy_coupon.voucher_redemption.validator" priority="3000" />
+        </service>
+
+        <!-- Event subscriber -->
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\CouponSubscriber">
+            <argument type="service" id="neti_easy_coupon_product_condition.repository"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\ExportSubscriber">
+            <argument type="service" id="neti_easy_coupon_condition.repository" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\LineItemSubscriber">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemptionService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\OrderSubscriber">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\OrderVoucherService"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\SalesChannelSubscriber">
+            <tag name="kernel.event_subscriber"/>
+
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\ProductService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\KernelRequestSubscriber">
+            <tag name="kernel.event_listener" event="kernel.request"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\BusinessEvent">
+            <tag name="kernel.event_subscriber"/>
+
+            <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\CartCollector">
+            <!-- inject before promotion collector (4900) -->
+            <tag name="shopware.cart.collector" priority="4950" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\ValidationProcessor"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Gateway\EasyCouponGateway"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\ItemBuilder" />
+            <argument type="service" id="session"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\CartProcessorBeforePromotions">
+            <!-- inject before promotion collector (4900) -->
+            <tag name="shopware.cart.processor" priority="4950" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\CartCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\LineItem\Group\LineItemGroupBuilder"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\CartProcessorAfterPromotions">
+            <!-- inject after promotion collector (4900) -->
+            <tag name="shopware.cart.processor" priority="4850" />
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\CartCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\LineItem\Group\LineItemGroupBuilder"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\Cart\CartCalculator">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\AmountCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\AbsolutePriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\PercentagePriceCalculator"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\PurchaseVoucher\Cart\CartProcessor">
+            <!-- inject after product processor (5000) -->
+            <tag name="shopware.cart.processor" priority="4500" />
+
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\LineItemExtension\LineItemExtensionBuilder"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Checkout\PurchaseVoucher\Cart\CartCollector">
+            <tag name="shopware.cart.collector" priority="4500" />
+
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="neti_easy_coupon_product.repository"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Subscriber\Mail">
+            <tag name="kernel.event_subscriber"/>
+
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\OrderVoucherService"/>
+        </service>
+
+        <!-- Controller -->
+        <service id="NetInventors\NetiNextEasyCoupon\Storefront\Controller\AccountVoucherListingController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Storefront\Page\Account\VoucherListingPageLoader"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Storefront\Controller\VoucherLinkController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemptionService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\ValidationProcessor"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Framework\Api\Controller\ApiController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Api\ApiService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherRepository"/>
+            <argument type="service" id="Shopware\Core\Framework\Api\Converter\ApiVersionConverter"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\TransactionRepository"/>
+        </service>
+
+        <!-- Commands -->
+        <service id="NetInventors\NetiNextEasyCoupon\Commands\FakeCouponData">
+            <tag name="console.command"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\FakeDataService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Commands\FakeVoucherProductData">
+            <tag name="console.command"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\FakeDataService"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Commands\FakeCouponTransactionData">
+            <tag name="console.command"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\FakeDataService"/>
+        </service>
+
+        <!-- Entity Extensions -->
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\Product\ProductExtensionDefinition">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!-- Entities -->
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\EasyCouponDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\Transaction\TransactionDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_transaction"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\LegacySetting\LegacySettingDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_legacy_setting"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\ProductForVoucher\ProductForVoucherDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_product_for_voucher"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\Product\Aggregate\EasyCouponProductDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_product"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\EasyCoupon\Aggregate\EasyCouponTranslation\EasyCouponTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_translation"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\Product\Aggregate\EasyCouponProductTranslation\EasyCouponProductTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_product_translation"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\Condition\ConditionDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_condition"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Core\Content\Product\Aggregate\Condition\ConditionDefinition">
+            <tag name="shopware.entity.definition" entity="neti_easy_coupon_product_condition"/>
+        </service>
+    </services>
+</container>

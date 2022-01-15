@@ -1,0 +1,45 @@
+{
+  "header": {
+    "searchPlaceholder": "What are you looking for?",
+    "supportInfo": "<b>Questions regarding your order?<br /><a href=\"tel:+49123456798\">+49 1234-56798</a></b> <small>Daily from 7:30 am to 10:00 pm</small>"
+  },
+  "footer": {
+    "newsletterHeadline": "Newsletter",
+    "newsletterInfo": "Subscribe to the free newsletter and ensure that you will no longer miss any offers or news of %shopname%.",
+    "serviceHotline": "<a href=\"tel:+49180000000\">0180 - 000000</a> Mon-Fri, 9 am - 5 pm",
+    "serviceContactLink": "<a data-toggle=\"modal\" data-url=\"%url%\" href=\"%url%\" title=\"contact form\">Or via our contact form</a>."
+  },
+  "account": {
+    "orRegisterLink": "register",
+    "colonCharacter": ":",
+    "loginHeader": "Login",
+    "loginMailLabel": "Email address",
+    "loginPasswordLabel": "Password",
+    "loginPasswordRecover": "Did you forget your password?",
+    "personalMailLabel": "Email address",
+    "personalPasswordDescription": "Your password must contain at least %minLength%  characters."
+  },
+  "address": {
+    "streetLabel": "Street and number",
+    "zipcodeLabel": "Postal code"
+  },
+  "general": {
+    "paginationNumber": "Page %current_page% of %total_page%",
+    "requiredFields": "Fields marked with an * are required",
+    "privacyNotice": "<a data-toggle=\"modal\" data-url=\"%url%\" href=\"%url%\" title=\"Data protection information\">I have read the data protection information</a>."
+  },
+  "checkout": {
+    "finishButtonBackToShop": "Back to shop",
+    "addPromotionPlaceholder": "Gift card or discount number...",
+    "shippingCosts": "Configure shipping costs",
+    "finishHeader": "Thank you for your order at %shop%!",
+    "addressAlreadyHaveAccount": "Do you already have an account?",
+    "addressLoginToggle": "Click here to login."
+  },
+  "wishlist": {
+    "headline": "Your wish list"
+  },
+  "captcha": {
+    "basicCaptchaInputPlaceholder": "Enter characters..."
+  }
+}

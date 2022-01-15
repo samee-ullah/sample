@@ -1,0 +1,11 @@
+// remove button padding for input-groups to fit custom icons inside the button
+.input-group,
+.input-group-lg,
+.input-group-sm {
+  .input-group-append {
+    .btn {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}

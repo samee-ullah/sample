@@ -1,0 +1,13 @@
+.error-heading {
+  font-size: $error-heading;
+}
+
+.container-404 {
+  min-height: 65vh;
+}
+
+@include media-breakpoint-between(sm, md) {
+  .container-404 {
+    min-height: 45vh;
+  }
+}

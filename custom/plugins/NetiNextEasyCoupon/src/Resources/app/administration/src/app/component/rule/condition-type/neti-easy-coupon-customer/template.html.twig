@@ -1,0 +1,30 @@
+{% block sw_condition_value_content %}
+    <div class="sw-condition-sales-channel sw-condition__condition-value">
+        <sw-condition-operator-select
+                v-bind="{ operators, condition }"
+                :disabled="disabled"
+        ></sw-condition-operator-select>
+
+        <sw-entity-multi-select
+                size="medium"
+                entity="customer"
+                :disabled="disabled"
+                :entityCollection="customers"
+                @change="setCustomerIds"
+        >
+            <template #selection-label-property="{ item }">
+                <span class="sw-select-result__result-item-text">
+                    {{ item.firstName }} {{ item.lastName }}
+                </span>
+            </template>
+
+            <template #result-label-property="{ item, index }">
+                <slot name="result-label-property" v-bind="{ item, index }">
+                    <span class="sw-select-result__result-item-text">
+                        {{ item.firstName }} {{ item.lastName }}
+                    </span>
+                </slot>
+            </template>
+        </sw-entity-multi-select>
+    </div>
+{% endblock %}

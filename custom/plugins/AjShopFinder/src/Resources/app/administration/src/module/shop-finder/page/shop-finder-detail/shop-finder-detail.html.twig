@@ -1,0 +1,32 @@
+{% block shop_finder_detail %}
+    <sw-page class="shop-finder-detail">
+        <template #smart-bar-actions>
+            <sw-button :routerLink="{ name: 'shop.finder.index' }">
+                {{ $tc('shop-finder.detail.cancelButtonText') }}
+            </sw-button>
+
+            <sw-button-process
+                :isLoading="isLoading"
+                :processSuccess="processSuccess"
+                variant="primary"
+                @process-finish="saveFinish"
+                @click="onClickSave">
+                {{ $tc('shop-finder.detail.saveButtonText') }}
+            </sw-button-process>
+        </template>
+
+        <template #content>
+            <sw-card-view>
+                <sw-card v-if="shop" :isLoading="isLoading">
+                    <sw-field v-model="shop.name" :label="$tc('shop-finder.detail.labelName')"></sw-field>
+                    <sw-field v-model="shop.street" :label="$tc('shop-finder.detail.labelStreet')"></sw-field>
+                    <sw-field v-model="shop.postCode" :label="$tc('shop-finder.detail.labelPostCode')"></sw-field>
+                    <sw-field v-model="shop.city" :label="$tc('shop-finder.detail.labelCity')"></sw-field>
+                    <sw-field v-model="shop.url" :label="$tc('shop-finder.detail.labelUrl')"></sw-field>
+                    <sw-field v-model="shop.telephone" :label="$tc('shop-finder.detail.labelTelephone')"></sw-field>
+                    <sw-text-editor v-model="shop.openTimes" :label="$tc('shop-finder.detail.labelOpenTimes')"></sw-text-editor>
+                </sw-card>
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

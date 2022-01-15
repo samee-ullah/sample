@@ -1,0 +1,10 @@
+<sw-condition-tree
+        class="neti-easy-coupon--condition-tree"
+        :initialConditions="model.conditions"
+        :conditionRepository="conditionRepository"
+        :conditionDataProviderService="easyCouponRuleConditionService"
+        associationField="couponId"
+        :associationValue="model.id"
+        :rootCondition="null"
+        @conditions-changed="conditionsChanged">
+</sw-condition-tree>

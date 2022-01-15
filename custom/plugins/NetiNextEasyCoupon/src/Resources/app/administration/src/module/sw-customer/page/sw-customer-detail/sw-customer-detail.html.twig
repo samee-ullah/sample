@@ -1,0 +1,11 @@
+{% block sw_customer_detail_content_tab_order %}
+    {% parent %}
+
+    <sw-tabs-item
+        class="sw-customer-detail__tab-neti-easy-coupon"
+        :route="ecCustomerVoucherRoute"
+        :title="$t('neti-easy-coupon.customer.tabTitle')"
+    >
+        {{ $t('neti-easy-coupon.customer.tabContent') }}
+    </sw-tabs-item>
+{% endblock %}

@@ -1,0 +1,26 @@
+.account-content {
+  .account-content-main {
+    @extend .col-xl-8;
+
+    @include media-breakpoint-up(lg) {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+}
+
+.account-welcome {
+  h1 {
+    @extend .h2;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: 5px;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+    .account-item-children {
+        margin: 0 30px 12px 136px;
+    }
+}

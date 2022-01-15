@@ -1,0 +1,45 @@
+.is-ctl-checkout,
+.is-act-checkoutregisterpage {
+  .footer-minimal {
+    .footer-vat {
+      text-align: center;
+    }
+
+    a {
+      color: $footer-color;
+    }
+
+    .footer-service-menu-list {
+      display: block;
+    }
+
+    .footer-service-menu-item::after {
+      border: none;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid $gray-400;
+    }
+
+    @include media-breakpoint-down(md) {
+      .footer-vat {
+        margin: 15px 0;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .footer-service-menu-item {
+        display: block;
+        text-align:left;
+      }
+
+      .footer-service-menu-link {
+        padding: 4px 0;
+      }
+
+      .footer-vat {
+        margin: 25px 0;
+      }
+    }
+  }
+}

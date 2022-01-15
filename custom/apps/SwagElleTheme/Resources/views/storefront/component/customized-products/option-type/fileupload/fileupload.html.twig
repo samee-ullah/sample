@@ -1,0 +1,43 @@
+{% sw_extends '@Storefront/storefront/component/customized-products/option-type/fileupload/fileupload.html.twig' %}
+
+{% block swag_customized_products_option_type_template_fileupload_dropzone_content %}
+    <div class="customized-products-upload-dropzone-col col-12">
+        {% block swag_customized_products_option_type_template_fileupload_dropzone_icon %}
+            <div class="customized-products-upload-dropzone-icon">
+
+                {% block swag_customized_products_option_type_template_fileupload_dropzone_icon_content %}
+                    {% sw_icon 'cloud-upload' %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block swag_customized_products_option_type_template_fileupload_dropzone_text %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block swag_customized_products_option_type_template_fileupload_dropzone_browse %}
+    <div class="customized-products-upload-dropzone-button col-12">
+
+        {% block swag_customized_products_option_type_template_fileupload_dropzone_browse_button %}
+            <button id="customized-products-browse-{{ optionId }}"
+                    class="btn btn-primary btn-sm">
+                {{ 'customizedProducts.optionTypes.upload.dropzoneBrowseButton'|trans }}
+            </button>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block swag_customized_products_option_type_template_fileupload_dropzone_restrictions %}{% endblock %}
+
+{% block swag_customized_products_option_type_template_fileupload_dropzone %}
+    {{ parent() }}
+
+    <span class="customized-products-upload-dropzone-text-restrictions small">
+        {{ 'customizedProducts.optionTypes.upload.dropzoneRestrictionsText'|trans({
+            '%maxCount%': option.typeProperties.maxCount,
+            '%maxFileSize%': option.typeProperties.maxFileSize
+        }) }}
+    </span>
+{% endblock %}

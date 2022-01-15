@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-price.html.twig' %}
+
+{% block page_product_detail_price_block_table %}
+    <table class="table product-block-prices-table">
+        {% block page_product_detail_price_block_table_head %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_product_detail_price_block_table_body %}
+            {{ parent() }}
+        {% endblock %}
+    </table>
+{% endblock %}
+
+{% block page_product_detail_was_price_badge %}{% endblock %}

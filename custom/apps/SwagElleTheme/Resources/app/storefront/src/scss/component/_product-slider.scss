@@ -1,0 +1,13 @@
+/*
+Product slider
+==============================================
+Styling for product slider component.
+Displays product-boxes in a reusable slider component.
+based on "base-slider" component and "tiny-slider" (https://github.com/ganlanyuan/tiny-slider)
+*/
+.product-slider-controls-prev,
+.product-slider-controls-next {
+  span.icon-feather svg {
+    color: $gray-400;
+  }
+}

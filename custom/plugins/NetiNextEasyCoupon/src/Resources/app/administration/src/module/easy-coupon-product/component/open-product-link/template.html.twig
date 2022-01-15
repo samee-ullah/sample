@@ -1,0 +1,17 @@
+<div
+        class="neti-easy-coupon-product-open-link"
+        v-if="product._isNew === false"
+>
+    <a
+            class="neti-easy-coupon-product--product-reference-link"
+            @click.prevent="onClick"
+    >
+        {{ $t('neti-easy-coupon-product.detail.open-product-link.linkLabel') }}
+        <sw-icon name="default-arrow-simple-right" small></sw-icon>
+    </a>
+
+    <neti-easy-coupon-discard-changes-modal
+        v-model="confirmOpen"
+        @confirm="openProduct"
+    ></neti-easy-coupon-discard-changes-modal>
+</div>

@@ -1,0 +1,48 @@
+.pagination {
+  margin-top: 10px;
+
+  @include media-breakpoint-down(sm) {
+    justify-content: center;
+    padding: 5px;
+  }
+
+  .page-item {
+    .page-link {
+      background: none;
+      border: none;
+      padding: 8px 5px;
+    }
+
+    &.disabled {
+      .page-link {
+        background: none;
+        border: none;
+
+        .icon-feather {
+          color: $gray-500;
+        }
+      }
+
+      a {
+        color: $gray-900;
+      }
+    }
+
+    &.active {
+      .page-link {
+        color: $gray-900;
+        vertical-align: middle;
+        line-height: 24px;
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        padding: 8px 30px;
+      }
+    }
+
+    &.not-active {
+      .page-link {
+        display: none;
+      }
+    }
+  }
+}

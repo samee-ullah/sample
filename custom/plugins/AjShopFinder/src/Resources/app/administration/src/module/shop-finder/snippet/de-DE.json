@@ -1,0 +1,33 @@
+{
+    "shop-finder": {
+        "general": {
+            "mainMenuItemGeneral": "Geschäft Finder",
+            "descriptionTextModule": "Shops mit großer Befreiung finden."
+        },
+        "list": {
+            "addButtonText": "Shop hinzufügen",
+            "columnName": "Name",
+            "columnStreet": "Straße",
+            "columnPostCode": "Postleitzahl",
+            "columnCity": "Stadt",
+            "columnUrl": "Url",
+            "columnTelephone": "Telefon",
+            "columnOpenTimes": "Offene Zeiten",
+            "columnCountry": "Land",
+            "mapUrlTooltip": "Shop-Karte ansehen"
+        },
+        "detail": {
+            "cancelButtonText": "Abbrechen",
+            "saveButtonText": "Speichern Sie",
+            "labelName": "Name",
+            "labelStreet": "Straße",
+            "labelPostCode": "Postleitzahl",
+            "labelCity": "Stadt",
+            "labelUrl": "Url",
+            "labelTelephone": "Telefon",
+            "labelOpenTimes": "Offene Zeiten",
+            "labelCountry": "Land",
+            "errorTitle": "Fehler beim Speichern des Shops"
+        }
+    }
+}

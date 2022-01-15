@@ -1,0 +1,23 @@
+.swag-customized-products {
+  .swag-customized-products-option-type-select-wrapper {
+    .custom-control-input:checked ~ .custom-control-label::before {
+      border-width: 1px;
+    }
+  }
+
+  .swag-customized-products__type-imageselect {
+    .swag-customized-products-option-type-select-checkboxes-label-property-image.swag-customized-products-image-zoom {
+      margin: 8px 30px 8px 0;
+    }
+
+    .swag-customized-products-option-type-select-checkboxes-label-property-bubble.no-selection {
+      display: none;
+    }
+  }
+
+  .swag-customized-products-option-type-select-checkboxes-label {
+    .swag-customized-products-option-type-select-checkboxes-label-surcharge-info {
+      text-align: right;
+    }
+  }
+}

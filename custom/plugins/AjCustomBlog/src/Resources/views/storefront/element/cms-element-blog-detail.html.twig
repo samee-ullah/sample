@@ -1,0 +1,95 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-blog-detail.html.twig' %}
+
+{% block sas_blog_detail_article_item_meta_published %}
+{% endblock %}
+
+{% block page_product_detail_review_item_info_date %}
+{% endblock %}
+
+{% block sas_blog_detail_article_meta %}
+    {% if element.fieldconfig.elements.showAuthor.value or element.fieldconfig.elements.showCategory.value %}
+        <div class="sas-blog-detail-article-meta">
+            {% block sas_blog_detail_article_meta_categories %}
+                {% if element.fieldconfig.elements.showCategory.value and element.data.blogCategories %}
+                    {% sw_include '@Storefront/storefront/component/blog/_partials/_block_category.html.twig' with {
+                        categories: element.data.blogCategories
+                    } %}
+                {% endif %}
+            {% endblock %}
+
+            {% block sas_blog_detail_article_meta_author %}
+                {% if element.fieldconfig.elements.showAuthor.value and element.data.author %}
+                    {% sw_include '@Storefront/storefront/component/blog/_partials/_block_author.html.twig' with {
+                        author: element.data.author
+                    } %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sas_blog_detail_article_blocks_content %}
+    {{ parent() }}
+
+    {% set customBlogSections = entry.customFields %}
+
+    {% set newsletter_block %}
+        <div class="cms-block aj-newsletter-block pos-5 cms-block-text">
+            <div class="cms-block-container">
+                <div class="cms-block-container-row row cms-row">
+                    <div class="col-12">
+                        {% sw_include '@Storefront/storefront/element/cms-element-newsletter.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endset %}
+
+    {% set product_block %}
+        {% set product = entry.extensions.product %}
+        {% set translated = product.translated %}
+        {% set productImg = product.media.elements|first.media.url %}
+
+        <div class="cms-block aj-product-block pos-5 cms-block-text">
+            <div class="cms-block-container">
+                <div class="cms-block-container-row row cms-row">
+                    <div class="col-md-12" class="custom-blog-product">
+                        <div class="col-md-4 img-section">
+                            <img src="{{ productImg }}" alt="">
+                        </div>
+                        <div class="col-md-8 detail-section">
+                            <h2>{{ translated.name }}</h2>
+                            <p>{{ translated.customFields.custom_product_fields_short_desc|raw }}</p>
+                            <div class="product-price-section">
+                                <p class="gross-price">
+                                    {{ product.price.elements|first.gross }} €*
+                                </p>
+                                <p class="tax-info">
+                                    *inkl. 19 % MwSt. zzgl. Versandkosten
+                                </p>
+                                <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}">
+                                    <button class="btn btn-primary btn-block btn-buy" title="In den Warenkorb"
+                                            aria-label="In den Warenkorb">
+                                        Produkt ansehen
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endset %}
+
+    <div class="custom_blog_sections">
+        {% for key, section in customBlogSections %}
+            {% if key starts with 'custom_blog_sections' %}
+                {% if key != 'custom_blog_sections_post_navigation_point' and key != 'custom_blog_sections_product' %}
+                    <div class="{{ key }}" id="{{ key }}">
+                        {{ section|raw|replace({'[newsletter]': newsletter_block, '[product]': product_block})|raw }}
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

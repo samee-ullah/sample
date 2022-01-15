@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget.html.twig' %}
+
+{% block page_product_detail_price %}
+    {% if
+        page.product.extensions is defined
+        and page.product.extensions.netiEasyCouponProduct is defined
+        and page.product.extensions.netiEasyCouponProduct.valueType is defined
+        and config('NetiNextEasyCoupon').config.active
+    %}
+        {% set value = page.product.extensions.netiEasyCouponProduct.value.getCurrencyPrice(context.currency.id, true, context.context) %}
+        {% set valueType = page.product.extensions.netiEasyCouponProduct.valueType %}
+        {% if (valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_SELECTION')) %}
+            {% sw_include '@Storefront/storefront/easy_coupon/product-detail/value_types/preselected.html.twig' %}
+        {% elseif (valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_FIXED')) %}
+            {# For voucher with type fixed you can set a price in product details. #}
+            {{ parent() }}
+        {% elseif (valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_RANGE')) %}
+            {% sw_include '@Storefront/storefront/easy_coupon/product-detail/value_types/range.html.twig' %}
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

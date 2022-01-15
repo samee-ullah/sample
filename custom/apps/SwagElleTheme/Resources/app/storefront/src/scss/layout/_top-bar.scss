@@ -1,0 +1,52 @@
+.top-bar {
+  background-color: $footer-bg-color;
+  color: $footer-color;
+
+  .dropdown.show {
+    .top-bar-nav-btn {
+      color: $footer-color;
+    }
+  }
+
+  .dropdown-toggle::after {
+    display: none;
+  }
+
+  .top-bar-nav-btn {
+    line-height: 26px;
+
+    &,
+    &:hover,
+    .icon-feather {
+      color: $footer-color;
+    }
+
+    .icon-feather {
+      & > svg {
+        top: 3px;
+      }
+    }
+  }
+
+  .top-bar-menu {
+    .icon-feather-help-circle {
+      margin-right: 5px;
+    }
+  }
+}
+
+.top-bar-nav {
+  display: block;
+
+  .col,
+  .col-auto {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.top-bar-language {
+  .top-bar-nav-text {
+    display: none;
+  }
+}

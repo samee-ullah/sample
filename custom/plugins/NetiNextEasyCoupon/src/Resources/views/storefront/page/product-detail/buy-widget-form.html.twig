@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+
+{% block page_product_detail_buy_product_buy_info %}
+    {{ parent() }}
+
+    {% if
+        product.extensions is defined
+        and product.extensions.netiEasyCouponProduct is defined
+        and product.extensions.netiEasyCouponProduct.valueType is defined
+        and config('NetiNextEasyCoupon').config.active
+    %}
+        {% set valueType = page.product.extensions.netiEasyCouponProduct.valueType %}
+        {% if (
+            valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_SELECTION')
+            or valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_RANGE')
+        ) %}
+            <input type="hidden" name="lineItems[{{ product.id }}][easyCoupon][voucherValue]" id="nec-value" value="">
+        {% elseif (valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_FIXED')) %}
+            <input type="hidden" name="lineItems[{{ product.id }}][easyCoupon][voucherValue]" value="-1">
+        {% endif %}
+    {% endif %}
+{% endblock %}

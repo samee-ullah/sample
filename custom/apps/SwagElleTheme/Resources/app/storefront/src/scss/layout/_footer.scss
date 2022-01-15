@@ -1,0 +1,244 @@
+$paypal-padding-sm: 9px;
+
+.footer-main {
+  border-top: none;
+  background-color: $footer-bg-color;
+
+  &, a, a:hover {
+    color: $footer-color;
+  }
+
+  div[data-swag-paypal-installment-banner="true"] {
+    @extend .col-12;
+
+    background-color: $white;
+    padding-top: 5px;
+    border-radius: 3px;
+    margin-top: 0 !important;
+
+    @include media-breakpoint-up(md) {
+      @include make-col(8);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(4);
+    }
+  }
+
+  .paypal-mark {
+    padding-top: $paypal-padding-sm;
+    padding-bottom: $paypal-padding-sm;
+    border: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-top: 60px;
+  }
+}
+
+.footer-columns {
+  border-bottom: none;
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 20px;
+  }
+}
+
+.footer-column {
+    @include media-breakpoint-down(sm) {
+      border-bottom: 1px solid $footer-border-color;
+    }
+}
+
+.footer-column-toggle {
+  .icon-feather {
+    color: $footer-color;
+  }
+}
+
+.footer-logo-row {
+  @include media-breakpoint-up(md) {
+    margin-bottom: 22px;
+  }
+}
+
+.footer-column-hotline {
+  text-align: right;
+
+  @include media-breakpoint-down(sm) {
+    text-align: left;
+  }
+
+  @include media-breakpoint-only(md) {
+    padding-left: 0;
+  }
+}
+
+.footer-contact-hotline {
+  margin-bottom: 0;
+
+  a {
+    font-size: 20px;
+    font-weight: $font-weight-bold;
+    margin-top: 0;
+
+    @include media-breakpoint-only(md) {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+.footer-contact-form {
+  a {
+    text-decoration: underline;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 26px;
+  }
+}
+
+.footer-column-headline {
+  color: $footer-color;
+  font-weight: $font-weight-semibold;
+  align-items: center;
+  @extend .pt-md-0;
+
+  .footer-newsletter &,
+  .footer-column-hotline & {
+    @extend .d-md-none;
+  }
+
+  .footer-newsletter & {
+    @include media-breakpoint-down(sm) {
+      display: flex;
+    }
+  }
+}
+
+.footer-column-newsletter {
+  @include media-breakpoint-only(md) {
+    padding-left: 0;
+  }
+}
+
+.footer-newsletter-form {
+  .input-group {
+    .form-control {
+      border-right: none;
+    }
+
+    .btn {
+      border-left: none;
+    }
+
+    .form-control,
+    .btn {
+      background: none;
+      border-color: $footer-color;
+
+      &, .icon-feather {
+        color: $footer-color;
+      }
+
+      @include hover-focus {
+        background: none;
+      }
+    }
+  }
+
+  .confirm-message {
+    font-size: $font-size-base;
+    font-weight: $font-weight-base;
+    text-align: left;
+  }
+
+  .confirm-message,
+  .confirm-alert {
+    padding: 0;
+  }
+}
+
+.footer-bottom {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: $footer-bg-color;
+
+  .footer-service-menu-list {
+    padding-top: $spacer-xs;
+  }
+
+  .footer-service-menu-item {
+    font-weight: $font-weight-normal;
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .footer-service-menu-item:not(:last-child) {
+    &:after {
+      content: '';
+      height: 12px;
+      width: 1px;
+      background-color: #fff;
+      display: inline-block;
+      margin-left: 1rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    border-top: 1px solid $footer-border-color;
+  }
+
+  .row.align-items-center {
+    margin: 0;
+  }
+}
+
+.footer-vat {
+  text-align: left;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.footer-copyright {
+  text-align: right;
+  display: none;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}
+
+.footer-vat,
+.footer-copyright {
+  font-size: $font-size-sm;
+  color: $footer-bottom-color;
+}
+
+.footer-logo {
+    &.is-payment {
+        padding: 8px;
+        background-color: white;
+        border-radius: 3px;
+    }
+
+    &-image {
+        max-width: 100%;
+    }
+}
+
+.footer-main div[data-swag-paypal-installment-banner=true] {
+    @extend .p-2;
+
+    padding: 8px;
+}
+
+.footer-newsletter-captcha-wrapper {
+    .form-control {
+        background-color: transparent;
+        border-color: $footer-color;
+        color: $footer-color;
+    }
+}

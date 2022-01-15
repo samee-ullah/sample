@@ -1,0 +1,25 @@
+{% block sw_data_grid_slot_action_modals %}
+    <sw-modal v-if="deleteId === item.id" @modal-close="closeModal" :title="$tc('global.default.warning')" variant="small">
+        <p class="sw-listing__confirm-delete-text">
+            <slot name="delete-confirm-text" v-bind="{ item }">
+                {{ $tc('global.entity-components.deleteMessage') }}
+            </slot>
+        </p>
+
+        <template #modal-footer>
+            <slot name="delete-modal-footer" v-bind="{ item }">
+                <slot name="delete-modal-cancel" v-bind="{ item }">
+                    <sw-button @click="closeModal" size="small">
+                        {{ $tc('global.default.cancel') }}
+                    </sw-button>
+                </slot>
+
+                <slot name="delete-modal-delete-item" v-bind="{ item }">
+                    <sw-button @click="deleteItem(item)" variant="danger" size="small">
+                        {{ $tc('global.default.delete') }}
+                    </sw-button>
+                </slot>
+            </slot>
+        </template>
+    </sw-modal>
+{% endblock %}

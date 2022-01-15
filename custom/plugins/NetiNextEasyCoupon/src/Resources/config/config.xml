@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Configuration</title>
+        <title lang="de-DE">Konfiguration</title>
+        <input-field type="bool">
+            <name>active</name>
+            <label>Active in this SalesChannel</label>
+            <label lang="de-DE">Aktiv in diesem Verkaufskanal</label>
+            <defaultValue>true</defaultValue>
+            <helpText>With this you basically activate the plugin for this sales channel.</helpText>
+            <helpText lang="de-DE">Hiermit aktivierst du grundsätzlich das Plugin für diesen Verkaufskanal.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>displayInAccount</name>
+            <label>Show vouchers in customers account</label>
+            <label lang="de-DE">Gutscheine im Kundenprofil anzeigen</label>
+            <defaultValue>true</defaultValue>
+            <helpText>With this configuration, your customers can see their purchased or assigned vouchers in their customer account.</helpText>
+            <helpText lang="de-DE">Mit dieser Konfiguration können deine Kunden in ihrem Kundenaccount gekaufte oder ihnen zugewiesene Gutscheine sehen.</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>defaultCodePattern</name>
+            <label>Default voucher code pattern</label>
+            <label lang="de-DE">Standard Gutschein-Code Format</label>
+            <defaultValue>%s%s%s%s-%s%s%s%s-%d%d</defaultValue>
+            <helpText><![CDATA[<p>Define the format of your voucher codes here. As soon as a voucher is generated without a manual code specification, this definition is used.<br>%s = letter <br>%d = number </p> <p>We recommend to enter at least 10 characters. <br> You can put any other character (e.g. "-", "_", "#", 1-9, AZ) between, in front of or after the variables (%s, %d). </p>]]></helpText>
+            <helpText lang="de-DE"><![CDATA[<p>Definiere hier das Format deiner Gutscheincodes. Sobald ein Gutschein ohne manuelle Code-Vorgabe erzeugt wird, wird diese Definition verwendet.<br>%s = Buchstabe<br>%d = Zahl</p><p>Wir empfehlen, mindestens 10 Zeichen zu verwenden.<br>Du kannst jedes andere Zeichen (z.B. "-", "_", "#", 1-9, A-Z) zwischen, vor oder nach den Variablen (%s, %d) platzieren.</p>]]></helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>allowCombineVouchers</name>
+            <label>Generally allow combining?</label>
+            <label lang="de-DE">Kombinieren generell erlauben?</label>
+            <defaultValue>true</defaultValue>
+            <helpText>Should it be possible to combine vouchers with each other?</helpText>
+            <helpText lang="de-DE">Sollen Gutscheine miteinander kombiniert werden können?</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showCodeAfterPayment</name>
+            <label>Show vouchers code only after payment</label>
+            <label lang="de-DE">Gutscheincode erst nach Bezahlung anzeigen</label>
+            <defaultValue>false</defaultValue>
+            <helpText>All information about the code is hidden until payment</helpText>
+            <helpText lang="de-DE">Information über den Gutschein-Code ist bis zur Bezahlung nicht sichtbar</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>cartProcessorPriority</name>
+            <label>When should EasyCoupon vouchers be redeemed?</label>
+            <label lang="de-DE">Wann sollen EasyCoupon Gutscheine eingelöst werden?</label>
+            <required>true</required>
+            <placeholder>Please choose a option...</placeholder>
+            <placeholder lang="de-DE">Bitte wählen Sie eine Option...</placeholder>
+            <defaultValue>beforeShopwarePromotions</defaultValue>
+            <options>
+                <option>
+                    <id>beforeShopwarePromotions</id>
+                    <name>Before Shopware promotions</name>
+                    <name lang="de-DE">Vor den Shopware Promotions</name>
+                </option>
+                <option>
+                    <id>afterShopwarePromotions</id>
+                    <name>After Shopware promotions</name>
+                    <name lang="de-DE">Nach den Shopware Promotions</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="neti-easy-coupon-payment-status-select">
+            <name>voucherActivatePaymentStatus</name>
+            <label>Allow redemption of the vouchers for following payment statuses</label>
+            <label lang="de-DE">Einlösung der Gutscheincodes erst bei folgenden Zahlungsstatus</label>
+            <helpText>Here you can determine the payment status from which the purchase voucher can be redeemed. The payment status refers to the order in which the voucher was purchased. At least one payment status must be selected.</helpText>
+            <helpText lang="de-DE"><![CDATA[Bestimme hier, ab welchem Zahlungsstatus der Kaufgutschein eingelöst werden kann. Der Zahlungsstatus bezieht sich auf die Bestellung, in dem der Gutschein erworben wurde.<br>Es <strong>muss</strong> mindestens ein Zahlungsstatus gewählt sein, ansonsten kann der Gutschein nicht eingelöst werden.]]></helpText>
+        </component>
+    </card>
+</config>

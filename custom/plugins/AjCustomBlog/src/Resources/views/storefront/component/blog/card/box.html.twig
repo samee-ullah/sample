@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/component/blog/card/box.html.twig' %}
+
+{% block sas_blog_card_title_date %}
+{% endblock %}
+
+{% block sas_blog_card_teaser %}
+{% endblock %}
+
+{% block sas_blog_card_footer %}
+    <div class="card-footer">
+        <a href="{{ seoUrl('sas.frontend.blog.detail', {'articleId': article.id}) }}"
+           class="zum-link">
+            <span>
+                Zum Ratgeber
+            </span>
+            <i></i>
+        </a>
+    </div>
+{% endblock %}

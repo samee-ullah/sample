@@ -1,0 +1,45 @@
+.is-act-confirmpage {
+  @include media-breakpoint-down(sm) {
+    .confirm-main-header {
+      font-size: $h2-font-size;
+    }
+  }
+
+  .checkout {
+    padding-top: 0;
+  }
+
+  .confirm-billing-address,
+  .confirm-shipping-address,
+  .confirm-payment,
+  .confirm-shipping {
+    @extend .col-xl-6;
+    @extend .col-12;
+  }
+
+  .confirm-address-billing,
+  .confirm-address-shipping,
+  .confirm-shipping {
+    margin-bottom: 20px;
+  }
+
+  .confirm-tos,
+  .confirm-payment {
+    margin-bottom: 40px;
+  }
+
+  @include media-breakpoint-down(lg) {
+    .confirm-billing-address {
+      margin-bottom: 40px;
+    }
+  }
+
+  .confirm-payment-current,
+  .confirm-shipping-current {
+    font-weight: $font-weight-semibold;
+
+    strong {
+      font-weight: normal;
+    }
+  }
+}

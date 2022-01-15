@@ -1,0 +1,18 @@
+.sw-page.has--easy-coupon--sidebar-menu {
+  .sw-page__main-content-inner {
+    display: grid;
+    grid-template-columns: min-content auto;
+    .neti-easy-coupon-sidebar-menu {
+      padding: 25px 50px 25px 25px;
+      border-right: 1px solid #ccc;
+      position: relative;
+      width: auto;
+      .sw-tabs__slider {
+        transition: none;
+      }
+    }
+    > div:not(.neti-easy-coupon-sidebar-menu) {
+      position: relative;
+    }
+  }
+}

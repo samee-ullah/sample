@@ -1,0 +1,12 @@
+<div class="neti-easy-coupon-cart-processor-priority-config">
+    <sw-container columns="1fr 1fr" gap="15px">
+        <sw-single-select
+                :label="$t('neti-easy-coupon.cart-processor.label')"
+                :placeholder="$t('neti-easy-coupon.cart-processor.placeholder')"
+                :helpText="$t('neti-easy-coupon.cart-processor.helpText')"
+                v-model="coupon.redemptionOrder"
+                :options="viewModeStore"
+        ></sw-single-select>
+
+    </sw-container>
+</div>

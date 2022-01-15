@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/block/cms-block-image-slider.html.twig' %}
+
+{% block block_image_slider_inner %}
+    {% if element.data.sliderItems %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

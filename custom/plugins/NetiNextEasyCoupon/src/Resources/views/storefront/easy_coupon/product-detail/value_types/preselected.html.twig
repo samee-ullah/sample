@@ -1,0 +1,24 @@
+<div class="is--neti-next-easycoupon is--nec-vouchertyp_preselected card">
+    <div class="card-body is--nec-value-selection">
+        <h3 class="card-title">
+            {{ "neti-easy-coupon.product-detail.vouchertyp_preselected.title"|trans|sw_sanitize }}
+        </h3>
+        <p class="card-text">
+            {{ "neti-easy-coupon.product-detail.vouchertyp_preselected.info"|trans|sw_sanitize }}
+        </p>
+        <div
+            class="is--nec-voucher-value-wrap"
+            neti-next-easy-coupon-select-field
+        >
+            {% for selectableValue in value.selectableValues %}
+                <div class="is--nec-voucher-value" data-rel="{{ selectableValue }}">
+                    {{ selectableValue|currency }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card-body is--nec-value-status error d-none">
+        {% sw_include "@Storefront/storefront/utilities/alert.html.twig" with { 'type': 'danger','content': "neti-easy-coupon.product-detail.error-value-selection"|trans} %}
+    </div>
+</div>

@@ -1,0 +1,80 @@
+{% sw_extends '@Storefront/storefront/page/checkout/checkout-item.html.twig' %}
+
+{% block page_checkout_item_info %}
+    <div class="col-12 col-md cart-item-info">
+        {% block page_checkout_item_info_inner %}
+            <div class="row cart-item-row">
+                {% block page_checkout_item_info_image %}
+                    {{ parent() }}
+                {% endblock %}
+
+                {% block page_checkout_item_info_details %}
+                    <div class="col-12 col-md cart-item-details">
+                        {% block page_checkout_item_info_details_inner %}
+                            <div class="cart-item-details-container">
+                                {% block page_checkout_item_info_label %}
+                                    {% if lineItem.type == 'product' %}
+                                        <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}"
+                                           class="cart-item-label"
+                                           title="{{ lineItem.label }}"
+                                                {% if controllerAction is same as('confirmPage') %}
+                                                    data-toggle="modal"
+                                                    data-modal-class="quickview-modal"
+                                                    data-url="{{ path('widgets.quickview.minimal',{ 'productId': lineItem.referencedId }) }}"
+                                                {% endif %}
+                                        >
+                                            {{ lineItem.label|u.truncate(60, '...') }}
+                                        </a>
+                                    {% else %}
+                                        <div class="cart-item-label">
+                                            {{ lineItem.label|u.truncate(60, '...') }}
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+
+                                {% block page_checkout_item_info_ordernumber %}
+                                    {{ parent() }}
+                                {% endblock %}
+
+                                {% if lineItem.type == 'product' and lineItem.price.referencePrice is not null %}
+                                    {% set price = lineItem.price %}
+                                    {{ "checkout.priceUnitName"|trans|sw_sanitize }}
+                                    <span class="price-unit-reference">
+                                        {{ price.referencePrice.purchaseUnit }} {{ price.referencePrice.unitName }}
+                                        ({{ price.referencePrice.price|currency }}{{ "general.star"|trans|sw_sanitize }} / {{ price.referencePrice.referenceUnit }} {{ price.referencePrice.unitName }})
+                                    </span>
+                                {% endif %}
+
+                                {% block page_checkout_item_delivery_date %}
+                                    {{ parent() }}
+                                {% endblock %}
+
+                                {% if config('core.cart.wishlistEnabled') and lineItem.type == 'product' %}
+                                    {{ block('page_checkout_item_wishlist') }}
+                                {% endif %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_checkout_item_remove %}
+    <div class="col-md-1 cart-item-remove">
+        {% block page_checkout_item_remove_form %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_checkout_item_remove_submit %}
+    <button type="submit"
+            title="{{ "checkout.removeLineItem"|trans|striptags }}"
+            data-product-id="{{ lineItem.id }}"
+            class="btn btn-light btn-sm btn-square cart-item-remove-button">
+        {% sw_icon 'x' style { 'pack': 'feather' } %}
+    </button>
+{% endblock %}
+

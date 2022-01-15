@@ -1,0 +1,57 @@
+{% sw_extends '@Storefront/storefront/component/quickview/buy-widget.html.twig' %}
+
+{% block page_product_detail_data %}
+    <div class="swag-cms-extensions-quickview-header-headline" itemprop="name">
+        {{ page.product.translated.name }}
+    </div>
+
+    {% block page_product_detail_data_rich_snippet_url %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% if page.product.manufacturer %}
+        <div class="product-detail-manufacturer">
+            <a href="{{ page.product.manufacturer.link }}"
+               class="product-detail-manufacturer-link"
+               title="{{ page.product.manufacturer.translated.name }}">
+                {% if page.product.manufacturer.media %}
+                    <img src="{{ page.product.manufacturer.media|sw_encode_media_url }}"
+                         class="product-detail-manufacturer-logo"
+                         alt="{{ page.product.manufacturer.translated.name }}"/>
+                {% else %}
+                    {{ page.product.manufacturer.translated.name }}
+                {% endif %}
+            </a>
+        </div>
+    {% endif %}
+
+    {# Put the position of reviews on here #}
+    {% block page_product_detail_reviews %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_data_rich_snippet_price_range %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_data_rich_snippet_price_currency %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_price %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_tax %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% set remoteClickOptions = {
+        selector: "#review-tab",
+        scrollToElement: true
+    } %}
+
+    {% block page_product_detail_delivery_informations %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,24 @@
+<div class="neti-easy-coupon-price-field" v-if="price">
+    <sw-field
+            :label="label"
+            type="number"
+            v-model="price.gross"
+            :helpText="helpText"
+    ></sw-field>
+
+    <template v-if="main">
+        <a
+                class="currency-modal-button"
+                @click.prevent="currencyModal = true"
+        >
+            {{ $t('neti-easy-coupon.price-field.currencyModalBtn') }}
+            <sw-icon name="default-arrow-simple-right" small></sw-icon>
+        </a>
+
+        <neti-easy-coupon-price-field-currency-modal
+                v-if="currencyModal"
+                :prices="prices"
+                @modal-close="onCurrencyModalClose"
+        ></neti-easy-coupon-price-field-currency-modal>
+    </template>
+</div>

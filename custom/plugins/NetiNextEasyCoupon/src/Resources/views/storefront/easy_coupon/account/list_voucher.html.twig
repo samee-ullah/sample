@@ -1,0 +1,145 @@
+{% sw_extends '@Storefront/storefront/page/account/_page.html.twig' %}
+
+{% block page_account_main_content %}
+    {% block neti_easy_coupon_account_voucher_list %}
+        {% block page_account_profile_personal_welcome %}
+            <div class="account-welcome">
+                {% block page_account_profile_personal_welcome_headline %}
+                    <h1>{{ "neti-easy-coupon.store-front.account.list-table.title"|trans|sw_sanitize }}</h1>
+                {% endblock %}
+
+                {% block page_account_profile_personal_welcome_intro %}
+                    <p>{{ "neti-easy-coupon.store-front.account.list-table.description"|trans|sw_sanitize }}</p>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block neti_easy_coupon_account_voucher_table %}
+            {% if not page.vouchers %}
+                {% block neti_easy_coupon_account_voucher_table_info_message %}
+                    {% sw_include "@Storefront/storefront/utilities/alert.html.twig" with { 'type': 'info',
+                        'content': "neti-easy-coupon.store-front.account.list-table.info-message-no-voucher"|trans} %}
+                {% endblock %}
+
+            {% else %}
+                <table class="table table-hover">
+                    {% block neti_easy_coupon_account_voucher_table_head %}
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.code"|trans|sw_sanitize }}</th>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.value"|trans|sw_sanitize }}</th>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.rest-value"|trans|sw_sanitize }}</th>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.paid"|trans|sw_sanitize }}</th>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.created-at"|trans|sw_sanitize }}</th>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.redeem"|trans|sw_sanitize }}</th>
+                                <th scope="col">{{ "neti-easy-coupon.store-front.account.list-table.transactions"|trans|sw_sanitize }}</th>
+                            </tr>
+                        </thead>
+                    {% endblock %}
+                    {% block neti_easy_coupon_account_voucher_table_body %}
+                        <tbody>
+                            {% for voucher in page.vouchers %}
+                                <tr>
+                                <th scope="row">
+                                    {% if not(voucher.active) and config('NetiNextEasyCoupon').config.showCodeAfterPayment %}
+                                        {{ "neti-easy-coupon.store-front.account.list-table.showAfterPayment"|trans|sw_sanitize }}
+                                    {% else %}
+                                        <strong>{{ voucher.code }}</strong>
+                                    {% endif %}
+                                </th>
+                                    <td>
+                                        {% if 10020 == voucher.valueType %}
+                                            {{ voucher.value | number_format(2) }} %
+                                        {% else %}
+                                            {{ (voucher.value * voucher.currencyFactor) | number_format(voucher.currency.decimalPrecision) }} {{ voucher.currency.symbol }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                            {% for key, restValues in page.restValues %}
+                                                {% if voucher.id is same as(key) %}
+                                                        {{ (restValues * voucher.currencyFactor) | number_format(voucher.currency.decimalPrecision) }} {{ voucher.currency.symbol }}
+                                                {% endif %}
+                                            {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% if voucher.active %}
+                                            {% sw_icon 'checkmark' %}
+                                        {% else %}
+                                            {% sw_icon 'x' %}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ voucher.createdAt | date }}
+                                    </td>
+                                    <td>
+                                        {% block neti_easy_coupon_account_voucher_table_redeem_button %}
+                                        {% for key, showRedeemButton in page.showRedeemButton %}
+                                            {% if voucher.id is same as(key) and showRedeemButton %}
+                                                {% if 'empty-cart' in showRedeemButton %}
+                                                    {{ "neti-easy-coupon.store-front.account.list-table.cart-empty"|trans|sw_sanitize }}
+                                                {% else %}
+                                                    <form
+                                                        action="{{ path('frontend.checkout.promotion.add') }}"
+                                                        class="cart-add-promotion"
+                                                        data-form-csrf-handler="true"
+                                                        method="post"
+                                                    >
+                                                        {% block page_checkout_cart_add_promotion_csrf %}
+                                                            {{ sw_csrf('frontend.checkout.promotion.add') }}
+                                                        {% endblock %}
+                                                        <input
+                                                            type="hidden" name="code" class="form-control"
+                                                            id="addPromotionInput" value="{{ voucher.code }}"
+                                                        />
+                                                        <input
+                                                            type="hidden"
+                                                            name="forwardTo"
+                                                            value="frontend.checkout.cart.page"
+                                                        >
+                                                        <button
+                                                            class="btn btn-primary btn-lg active"
+                                                            type="submit"
+                                                            aria-pressed="true"
+                                                        >
+                                                            {{ "neti-easy-coupon.store-front.account.list-table.redeem"|trans|sw_sanitize }}
+                                                        </button>
+                                                    </form>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% endblock %}
+                                    </td>
+                                    <td>
+                                        {% block neti_easy_coupon_account_voucher_table_toggle_button %}
+                                            <button
+                                                class="btn btn-light btn-sm order-hide-btn collapsed"
+                                                type="submit"
+                                                data-toggle="collapse"
+                                                data-target="#voucher{{ voucher.id }}"
+                                                aria-expanded="false"
+                                                aria-controls="collapseExample"
+                                            >
+
+                                                {% block neti_easy_coupon_account_voucher_table_body_cell_toggle_details_button_text %}
+                                                    <span class="order-hide-btn-text">{{ "neti-easy-coupon.store-front.account.list-table.transactions"|trans|sw_sanitize }}</span>
+                                                    <span class="order-view-btn-text">{{ "neti-easy-coupon.store-front.account.list-table.transactions"|trans|sw_sanitize }}</span>
+                                                {% endblock %}
+                                            </button>
+                                        {% endblock %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">
+                                        {% block neti_easy_coupon_account_transaction_detail_include %}
+                                            {% sw_include '@NetiNextEasyCoupon/storefront/easy_coupon/account/transaction-detail.html.twig' %}
+                                        {% endblock %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% endblock %}
+                </table>
+            {% endif %}
+        {% endblock %}
+    {% endblock %}
+{% endblock %}

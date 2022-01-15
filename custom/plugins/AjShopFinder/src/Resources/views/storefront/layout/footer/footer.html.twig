@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_navigation_columns %}
+    {% if page.footer.extensions.aj_shop_finder %}
+        {% sw_include '@AjShopFinder/storefront/layout/footer/shop-finder-footer.html.twig' with {
+            'aj_shop_finder': page.footer.extensions.aj_shop_finder
+        } %}
+    {% endif %}
+{% endblock %}

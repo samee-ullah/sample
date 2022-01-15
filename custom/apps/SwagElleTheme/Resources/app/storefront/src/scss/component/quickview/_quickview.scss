@@ -1,0 +1,67 @@
+.swag-cms-extensions-quickview-container {
+  .swag-cms-extensions-quickview-product-buy-form {
+      margin-bottom: 1rem;
+  }
+
+  .swag-cms-extensions-quickview-header {
+    justify-content: end;
+  }
+
+  .swag-cms-extensions-quickview-header-manufacturer {
+    @extend .col-md-12;
+  }
+
+  .product-detail-manufacturer-link,
+  .swag-cms-extensions-quickview-header-headline {
+    color: $gray-900;
+  }
+
+  .swag-cms-extensions-quickview-header-headline {
+    font-size: $h3-font-size;
+  }
+
+  .base-slider-dots {
+    .base-slider-dot {
+      display: unset;
+    }
+  }
+
+  .product-detail-buy {
+    .product-detail-manufacturer {
+      text-align: left;
+      margin-top: 0;
+      margin-bottom: $spacer-sm;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .product-detail-buy {
+      .product-detail-manufacturer {
+        display: none;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .swag-cms-extensions-quickview-header {
+      .swag-cms-extensions-quickview-header-manufacturer {
+        display: none;
+      }
+    }
+  }
+}
+
+#swag-cms-extensions-quickview-carousel {
+  .carousel-control-next,
+  .carousel-control-prev {
+    background: none;
+  }
+}
+
+.swag-cms-extensions-quickview-modal {
+  .modal-content {
+    .quickview-loading-indicator .loader {
+      @extend .icon-xs;
+    }
+  }
+}

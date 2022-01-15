@@ -1,0 +1,104 @@
+{
+    "neti-easy-coupon": {
+        "product-detail": {
+            "error-value-selection": "Please choose a voucher value.",
+            "error-value-input": "Please enter a voucher value between minValue and maxValue.",
+            "vouchertyp_range": {
+                "info": "Please enter a voucher value between minValue and maxValue."
+            },
+            "vouchertyp_preselected": {
+                "title": "Voucher value",
+                "info": "Please select a voucher value."
+            }
+        },
+        "messages": {
+            "purchase-voucher": {
+                "currency-change": "The purchase voucher  \"name\" was removed from cart."
+            },
+            "link-voucher":{
+                "added-later": "The voucher will be added after you add something to your shopping cart.",
+                "added-now": "The voucher has been added to your shopping cart.",
+                "voucher-not-found": "The voucher with the code \"voucherCode\" could not be found.",
+                "voucher-not-active": "The voucher is invalid and cannot be used."
+            }
+        },
+        "store-front": {
+            "account": {
+                "meta": {
+                    "title": "EasyCoupon | My vouchers"
+                },
+                "side-bar": {
+                    "title": "My vouchers"
+                },
+                "list-table": {
+                    "code": "Code",
+                    "value": "Value",
+                    "rest-value": "Remaining",
+                    "paid": "Paid",
+                    "created-at": "Purchased",
+                    "redeem": "Redeem",
+                    "cart-empty": "Please add a product to your cart",
+                    "title": "My vouchers",
+                    "description": "Overview of vouchers and transactions",
+                    "transactions": "Transactions",
+                    "info-message-no-voucher": "There are no vouchers.",
+                    "showAfterPayment": "Visible after payment"
+                },
+                "transactions-table": {
+                    "customer": "Active customer",
+                    "redeem-value": "Redeemed value",
+                    "caused-by": "Caused by",
+                    "shop": "Shop",
+                    "date": "Date",
+                    "order": "Order",
+                    "import": "Import",
+                    "admin": "Shop operator"
+                }
+            },
+            "warning": {
+                "login-needed": "Log in to see your vouchers.",
+                "deactivated": "This option has been deactivated by the shop operator."
+            },
+            "checkout": {
+                "finish": {
+                    "purchase-voucher": {
+                        "headline-singular": "Information about the purchased voucher:",
+                        "headline-plural": "Information about the purchased vouchers:",
+                        "title": "Coupon",
+                        "info-message-singular": "The voucher can only be redeemed after the order has been paid.<br>Your vouchers can also be found in your <a href=\"%accountVoucherLink%\" title=\"To your account\">account</a>",
+                        "info-message-plural": "The vouchers can only be redeemed after the order has been paid.<br>Your vouchers can also be found in your <a href=\"%accountVoucherLink%\" title=\"To your account\">account</a>",
+                        "table-header": {
+                            "article-name": "Article",
+                            "voucher-code": "Code",
+                            "voucher-value": "Value"
+                        },
+                        "showAfterPayment": "Visible after payment"
+                    },
+                    "multipleRestValues": "The following vouchers were used. If the remaining value is greater than 0 you can redeem these with your next order.",
+                    "singleRestValue": "The voucher with the code <strong>%code%</strong> still has a remaining credit of <strong>%restValue%</strong>. You can redeem this with your next order.",
+                    "noSingleRestValue": "The voucher with the code <strong>%code%</strong> has no remaining credit."
+                }
+            }
+        }
+    },
+    "checkout": {
+        "easy-coupon-product-price-out-of-range": "The purchase voucher %name% in the shopping cart has an invalid value.",
+        "easy-coupon-purchase-voucher-deleted": "The purchase voucher %name% was removed from cart because you changed the currency.",
+        "easy-coupon-purchase-voucher-without-value": "The product %name% can only be added to the shopping cart via the detail page.",
+        "easy-coupon-payment-activation-state-error": "The voucher %id% has not yet been paid for. Therefore it cannot be redeemed yet.",
+        "easy-coupon-conditions-error": "The voucher %id% could not be redeemed because at least one condition does not apply.",
+        "easy-coupon-empty-cart-error": "The voucher(s) has/have been removed from the shopping cart because the shopping cart is empty.",
+        "easy-coupon-credit-error": "The credit of the voucher %id% is insufficient and can therefore not be redeemed.",
+        "easy-coupon-not-active-or-deleted-error": "The voucher %id% is not active or has been deleted.",
+        "easy-coupon-already-redeemed-error": "The voucher %id% has already been redeemed.",
+        "easy-coupon-individual-percental-redeemed": "The individual, percentage voucher has already been redeemed.",
+        "easy-coupon-not-combine-error": "The voucher %id% is not allowed to be combined with another vouchers.",
+        "easy-coupon-not-valid-error": "The voucher %id% is no longer valid.",
+        "easy-coupon-error": "Something went wrong."
+    },
+    "error": {
+        "easy-coupon-product-price-out-of-range": "The purchase voucher in the shopping cart has an invalid value. Please remove it to complete your order.",
+        "easy-coupon-purchase-voucher-deleted": "The purchase voucher was removed from cart because you changed the currency.",
+        "easy-coupon-conditions-error": "The voucher was removed from the shopping cart because at least one of the conditions does not apply."
+    }
+}

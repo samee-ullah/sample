@@ -1,0 +1,14 @@
+.main-navigation-menu {
+  font-size: $font-size-base;
+}
+
+.main-navigation-link {
+  @include media-breakpoint-up(md) {
+    padding-right: 30px;
+  }
+
+  .main-navigation-link-text {
+    border: none;
+    padding: 0;
+  }
+}

@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/layout/header/blog-suggest-tab-content.html.twig' %}
+
+{% block layout_search_suggest_result_blog_category %}
+    <div class="col-auto search-suggest-product-price">
+        <span>{{ blog.translated.content|striptags|u.truncate(200, '...', false) }}</span>
+    </div>
+{% endblock %}
+
+{% block layout_search_suggest_blog_no_result %}{% endblock %}
+{% block layout_search_suggest_result_total_blog %}{% endblock %}

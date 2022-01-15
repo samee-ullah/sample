@@ -1,0 +1,27 @@
+<sw-tabs
+        class="sw-settings__tabs neti-easy-coupon-sidebar-menu"
+        :isVertical="true"
+        :small="false"
+>
+    <template #default="{ active }">
+        <neti-easy-coupon-tabs-item
+                :route="{ name: 'neti.easy_coupon.overview' }"
+                :title="$t('neti-easy-coupon.main.tabs.coupons')"
+                :activeRoutePrefix="[ 'neti.easy_coupon.create', 'neti.easy_coupon.detail' ]"
+        >
+            {{ $t('neti-easy-coupon.main.tabs.coupons') }}
+        </neti-easy-coupon-tabs-item>
+        <neti-easy-coupon-tabs-item
+                :route="{ name: 'neti.easy_coupon_product.overview' }"
+                :title="$t('neti-easy-coupon.main.tabs.couponProducts')"
+                :activeRoutePrefix="[ 'neti.easy_coupon_product.create', 'neti.easy_coupon_product.detail' ]"
+        >
+            {{ $t('neti-easy-coupon.main.tabs.couponProducts') }}
+        </neti-easy-coupon-tabs-item>
+        {% block neti_easy_coupon_sidebar_menu_items %}{% endblock %}
+    </template>
+
+    <template #content="{ active }">
+        <slot></slot>
+    </template>
+</sw-tabs>

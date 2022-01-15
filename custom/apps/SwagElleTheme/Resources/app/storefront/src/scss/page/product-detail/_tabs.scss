@@ -1,0 +1,73 @@
+.product-detail-tabs {
+  background: $gray-100;
+  padding-top: 40px;
+
+  &.no-cross-selling {
+    padding-bottom: 100px;
+  }
+
+  &.product-detail-cross-selling {
+    padding-bottom: 100px;
+
+    .product-box {
+      margin-top: 0;
+    }
+  }
+}
+
+.product-detail-tabs-content {
+  display: none;
+}
+
+.product-detail-description-text {
+  margin-bottom: $spacer-lg;
+}
+
+.product-detail-cross-selling .card-tabs .product-detail-tabs-content.card-body {
+  padding: 5px;
+
+  @include media-breakpoint-up(sm) {
+    padding: 40px 30px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .product-detail-tab-preview-more {
+    display: none;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .product-detail-tabs-content {
+    display: block;
+  }
+
+  .product-detail-tabs .offcanvas-close,
+  .product-detail-tab-navigation-icon,
+  .product-detail-tab-preview {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .product-detail-tab-preview {
+    flex-basis: 100%;
+  }
+
+  .nav-tabs {
+    border-bottom: none;
+  }
+
+  .product-detail-tabs.product-detail-information {
+    margin-bottom: 0;
+  }
+
+  .product-detail-tabs {
+    padding-top: 10px;
+
+    .nav-item:last-child {
+      border-bottom: 1px solid $gray-400;
+    }
+  }
+}
+

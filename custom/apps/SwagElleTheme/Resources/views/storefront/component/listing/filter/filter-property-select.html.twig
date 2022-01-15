@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter/filter-property-select.html.twig' %}
+
+{% block component_filter_property_select_preview_checkmark %}
+    <span class="filter-property-select-preview-checkmark">
+        {% block component_filter_property_select_preview_checkmark_icon %}
+            {% sw_icon 'check' style {'pack': 'feather', 'size': 'xs'} %}
+        {% endblock %}
+    </span>
+{% endblock %}

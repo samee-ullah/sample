@@ -1,0 +1,73 @@
+{% block sw_customer_detail_easy_coupon_vouchers_card %}
+    <sw-card class="neti-easy-coupon-customer-voucher-list">
+        <sw-alert v-if="isError" variant="error" appearance="notification" :showIcon="true" :closable="true">
+            {{ $t('neti-easy-coupon.customer.fetchingError') }}
+        </sw-alert>
+
+        <template v-if="data">
+            <sw-entity-listing
+                    :items="data"
+                    :columns="columns"
+                    :repository="repository"
+                    :fullPage="false"
+                    :isLoading="isLoading"
+                    :showSelection="false"
+                    @update-records="onUpdateRecords"
+            >
+                <template #column-active="{ item, compact }">
+                    <sw-icon
+                            v-if="isVoucherPaid(item.id)"
+                            name="small-default-checkmark-line-medium"
+                            small
+                            class="is--active"
+                    ></sw-icon>
+                    <sw-icon v-else name="small-default-x-line-medium" small class="is--inactive"></sw-icon>
+                </template>
+
+                <template #column-title="{ item, compact }">
+                    <router-link :to="{ name: 'neti.easy_coupon.detail', params: { id: item.id } }">
+                        {{ placeholder(item, 'title') }}
+                    </router-link>
+                </template>
+
+                <template #column-value="{ item }">
+                    {{ renderColumnValue(item, 'value') }}
+                </template>
+
+                <template #column-cashedValue="{ item }">
+                    {{ renderColumnValue(item, 'cashedValue') }}
+                </template>
+
+                <template #column-restValue="{ item }">
+                    {{ renderColumnValue(item, 'restValue') }}
+                </template>
+
+                <template #actions="{ item }">
+                    <sw-context-menu-item :routerLink="{ name: 'neti.easy_coupon.detail', params: { id: item.id }}">
+                        {{ $t('neti-easy-coupon.list.contextMenuEdit') }}
+                    </sw-context-menu-item>
+                </template>
+
+                <template #pagination>
+                    <sw-pagination
+                            :page="page"
+                            :limit="limit"
+                            :total="total"
+                            :total-visible="7"
+                            @page-change="onPageChange"
+                    ></sw-pagination>
+                </template>
+            </sw-entity-listing>
+
+        </template>
+
+        <template v-else>
+            <sw-alert variant="info" appearance="notification" :showIcon="true" :closable="false">
+                {{ $t('neti-easy-coupon.customer.noVouchersMessage') }}
+            </sw-alert>
+        </template>
+
+        <neti-config-icon pluginName="NetiNextEasyCoupon" />
+        <neti-easy-coupon-powered-by pluginName="EasyCoupon" />
+    </sw-card>
+{% endblock %}

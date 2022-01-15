@@ -1,0 +1,36 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget.html.twig' %}
+
+{% block page_product_detail_data %}
+    {% block page_product_detail_data_rich_snippet_url %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_data_rich_snippet_price_range %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_data_rich_snippet_price_currency %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_price %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_tax %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% set remoteClickOptions = {
+        selector: "#review-tab",
+        scrollToElement: true
+    } %}
+
+    {% block page_product_detail_reviews %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block page_product_detail_delivery_informations %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

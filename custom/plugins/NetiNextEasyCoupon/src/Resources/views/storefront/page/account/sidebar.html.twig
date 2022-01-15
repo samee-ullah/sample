@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/page/account/sidebar.html.twig' %}
+
+{% block page_account_sidebar_menu_inner %}
+    {{ parent() }}
+
+    {% block page_account_sidebar_easy_coupon %}
+        {% if config('NetiNextEasyCoupon').config.displayInAccount and config('NetiNextEasyCoupon').config.active %}
+            <a
+                href="{{ path('frontend.easy_coupon.list') }}"
+                title="{{ "neti-easy-coupon.store-front.account.side-bar.title"|trans|striptags }}"
+                class="list-group-item list-group-item-action account-aside-item{% if controllerName is same as('AccountVoucherListing') and controllerAction is same as('listAction') %} is-active{% endif %}"
+            >
+                {{ "neti-easy-coupon.store-front.account.side-bar.title"|trans|sw_sanitize }}
+            </a>
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}

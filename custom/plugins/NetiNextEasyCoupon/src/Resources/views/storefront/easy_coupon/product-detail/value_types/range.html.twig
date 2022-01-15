@@ -1,0 +1,29 @@
+<div class="is--neti-next-easycoupon is--nec-vouchertyp_range card">
+    <div class="card-body is--nec-value-selection">
+        <p class="card-text">
+            {{ "neti-easy-coupon.product-detail.vouchertyp_range.info"|trans({minValue: value.from|format_currency(context.currency.isoCode), maxValue: value.to|format_currency(context.currency.isoCode)})|sw_sanitize }}
+        </p>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{ context.currency.symbol }}</span>
+            </div>
+
+            <input
+                type="number"
+                name="nec-value-input-field"
+                class="form-control"
+                step="1"
+                min="{{ value.from }}"
+                max="{{ value.to }}"
+                value="{{ value.from }}"
+                neti-next-easy-coupon-range-field
+                data-neti-next-easy-coupon-range-field-options='{ "from": {{ value.from }}, "to": {{ value.to }} }'
+            >
+        </div>
+    </div>
+
+    <div class="card-body is--nec-value-status error d-none">
+        {% sw_include "@Storefront/storefront/utilities/alert.html.twig" with { 'type': 'danger','content': "neti-easy-coupon.product-detail.error-value-input"|trans({minValue: value.from|format_currency(context.currency.isoCode), maxValue: value.to|format_currency(context.currency.isoCode)})} %}
+    </div>
+</div>

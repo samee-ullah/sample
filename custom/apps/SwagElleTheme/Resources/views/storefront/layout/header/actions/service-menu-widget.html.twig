@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/service-menu-widget.html.twig' %}
+
+{% block layout_header_actions_service_menu_list %}
+    <button class="btn dropdown-toggle top-bar-nav-btn"
+            type="button"
+            id="serviceMenuDropdown-{{ position }}"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+        {% sw_icon 'help-circle' style { 'pack': 'feather', 'size': 'xs' } %}
+        <span class="top-bar-nav-text">{{ "header.indexLinkService"|trans|sw_sanitize }}</span>
+        {% sw_icon 'chevron-down' style { 'pack': 'feather', 'size': 'xs' } %}
+    </button>
+    {% block layout_header_actions_service_menu_items %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

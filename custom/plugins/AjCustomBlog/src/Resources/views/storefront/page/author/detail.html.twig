@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_content %}
+    {% set details = author.translated.customFields %}
+    {% set articles = author.blogs %}
+    <div class="col-12 mt-4 author-detail-page">
+        <div class="author-info">
+            <div class="img-wrapper">
+                <img src="{{ author.media.url }}" alt="avatar">
+            </div>
+            <div class="info">
+                <p>{{ author.firstName ~ ' ' ~ author.lastName }}</p>
+                <p>{{ details.custom_blog_author_sections_specialist }}</p>
+            </div>
+        </div>
+        <div class="details">
+            <div class="faq-item">
+                <h3 class="ptitle">Vita</h3>
+                <div class="pcontents">
+                    {{ details.custom_blog_author_sections_vita|raw }}
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="ptitle">Publications</h3>
+                <div class="pcontents">
+                    {{ details.custom_blog_author_sections_publications|raw }}
+                </div>
+            </div>
+        </div>
+        <div class="blog-posts">
+            {% for key, article in articles %}
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        {% sw_include '@Storefront/storefront/component/blog/card/box.html.twig' %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

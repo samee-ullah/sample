@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "name": "elle-e2e",
+    "version": "1.0.0",
+    "description": "E2E Test suite for the elle Theme",
+    "scripts": {
+        "cypress": "./node_modules/.bin/cypress",
+        "open": "node_modules/cypress/bin/cypress open",
+        "open:cli": "./node_modules/.bin/cypress run",
+        "cy:run:chrome": "cypress run --browser chrome",
+        "cy:run:firefox": "cypress run --browser firefox"
+    },
+    "keywords": [],
+    "author": "nhulongctk10",
+    "license": "MIT",
+    "dependencies": {
+        "@babel/core": "^7.7.7",
+        "@babel/register": "^7.14.5",
+        "@percy/cli": "^1.0.0-beta.60",
+        "@percy/cypress": "^3.1.0",
+        "@shopware-ag/e2e-testsuite-platform": "^2.0.2",
+        "cypress": "^7.6.0",
+        "cypress-multi-reporters": "^1.5.0",
+        "cypress-select-tests": "^1.7.1",
+        "mocha": "^9.0.2",
+        "mocha-junit-reporter": "^2.0.0",
+        "mochawesome": "^6.2.2",
+        "mochawesome-merge": "^4.2.0",
+        "mochawesome-report-generator": "^5.2.0",
+        "uuid": "^3.4.0"
+    }
+}

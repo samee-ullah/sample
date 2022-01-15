@@ -1,0 +1,7 @@
+{{ customer.salutation.letterName }} {{customer.firstName}} {{ customer.lastName }},
+
+following voucher(s) was/were activated:
+
+{% for voucher in vouchers %}
+{{ voucher.title }} {{ voucher.code }}  {{ (voucher.value * voucher.currencyFactor) | number_format(voucher.currency.decimalPrecision) }} {{ voucher.currency.symbol }}
+{% endfor %}

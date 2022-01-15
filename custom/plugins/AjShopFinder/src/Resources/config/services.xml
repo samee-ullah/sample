@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="AjShopFinder\Core\Content\ShopFinder\ShopFinderDefinition">
+            <tag name="shopware.entity.definition" entity="aj_shop_finder"/>
+        </service>
+
+        <service id="AjShopFinder\Core\Api\DemoDataController" public="true">
+            <argument id="country.repository" type="service"/>
+            <argument id="aj_shop_finder.repository" type="service"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="AjShopFinder\Storefront\Subscriber\FooterSubscriber">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+            <argument id="aj_shop_finder.repository" type="service"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!--        Send Mail Controller-->
+        <service id="AjShopFinder\Storefront\Controller\MailController" public="true">
+            <argument id="Shopware\Storefront\Page\GenericPageLoader" type="service"/>
+            <argument id="AjShopFinder\Service\EmailService" type="service"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!--        Send Mail Service-->
+        <service id="AjShopFinder\Service\EmailService">
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailService"/>
+            <argument type="service" id="mail_template.repository"/>
+            <argument type="service" id="AjShopFinder\Service\SalesChannelService"/>
+        </service>
+
+        <service id="AjShopFinder\Service\SalesChannelService">
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+        </service>
+
+        <service id="AjShopFinder\Resources\snippet\en_GB\SnippetFile_en_GB">
+            <tag name="shopware.snippet.file"/>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,30 @@
+{
+    "name": "aj/custom-easy-coupon",
+    "description": "Aj EasyCoupon",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AjCustomEasyCoupon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "April&June"
+        }
+    ],
+    "require": {
+        "shopware/core": "6.4.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "AjCustomEasyCoupon\\AjCustomEasyCoupon",
+        "label": {
+            "de-DE": "Aj EasyCoupon",
+            "en-GB": "Aj EasyCoupon"
+        },
+        "description": {
+            "de-DE": "Dieses Plugin enthält benutzerdefinierten Code, um die NetNextEasyCoupon-Erweiterung um eine E-Mail-Empfängerfunktion zu erweitern.",
+            "en-GB": "This plugin holds custom code to add email recipient feature to NetNextEasyCoupon extension."
+        }
+    }
+}

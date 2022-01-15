@@ -1,0 +1,33 @@
+{
+    "shop-finder": {
+        "general": {
+            "mainMenuItemGeneral": "Shop Finder",
+            "descriptionTextModule": "Find Shops with great liberation."
+        },
+        "list": {
+            "addButtonText": "Add Shop",
+            "columnName": "Name",
+            "columnStreet": "Street",
+            "columnPostCode": "Post Code",
+            "columnCity": "City",
+            "columnUrl": "Url",
+            "columnTelephone": "Telephone",
+            "columnOpenTimes": "Open Times",
+            "columnCountry": "Country",
+            "mapUrlTooltip": "View shop map"
+        },
+        "detail": {
+            "cancelButtonText": "Cancel",
+            "saveButtonText": "Save",
+            "labelName": "Name",
+            "labelStreet": "Street",
+            "labelPostCode": "Post Code",
+            "labelCity": "City",
+            "labelUrl": "Url",
+            "labelTelephone": "Telephone",
+            "labelOpenTimes": "Open Times",
+            "labelCountry": "Land",
+            "errorTitle": "Error saving the shop"
+        }
+    }
+}

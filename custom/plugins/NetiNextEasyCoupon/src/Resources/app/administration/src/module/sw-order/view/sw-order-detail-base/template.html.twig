@@ -1,0 +1,21 @@
+{% block sw_order_detail_base__user_card %}
+    <sw-alert
+            v-if="hasEasyCouponVouchers"
+            class="neti-easy-coupon--order-has-vouchers"
+    >
+        {{ $t('neti-easy-coupon.order-detail.hasVouchersAlert') }}
+    </sw-alert>
+
+    {% parent %}
+{% endblock %}
+
+{% block sw_order_detail_base_line_items_card %}
+    <neti-easy-coupon-order-detail-vouchers
+        v-if="hasEasyCouponVouchers"
+        :order="order"
+        :data="easyCouponVouchers"
+        :is-loading="isLoading"
+    ></neti-easy-coupon-order-detail-vouchers>
+
+    {% parent %}
+{% endblock %}

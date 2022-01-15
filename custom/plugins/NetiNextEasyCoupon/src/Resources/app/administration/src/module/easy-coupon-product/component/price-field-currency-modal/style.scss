@@ -1,0 +1,32 @@
+.neti-easy-coupon-product-price-field-currency-modal {
+    .currency-list {
+        .currency-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            &:first-child {
+                .neti-easy-coupon-product-price-field {
+                    .sw-field {
+                        .sw-field__label {
+                            display: block !important;
+                        }
+                    }
+                }
+            }
+            .item-name {
+                width: 150px;
+            }
+            .item-field {
+                flex: 1;
+                .neti-easy-coupon-product-price-field {
+                    margin-bottom: 0;
+                    .sw-field {
+                        .sw-field__label {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

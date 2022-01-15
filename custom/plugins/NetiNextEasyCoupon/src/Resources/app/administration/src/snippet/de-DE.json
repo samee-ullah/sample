@@ -1,0 +1,128 @@
+{
+    "neti-easy-coupon": {
+        "main": {
+            "tabs": {
+                "coupons": "Gutscheine",
+                "couponProducts": "Kaufgutscheine"
+            }
+        },
+        "cart-processor": {
+            "label": "Wann sollen EasyCoupon Gutscheine eingelöst werden?",
+            "helpText": "Bestimmen Sie hier, wie die Reihenfolge der Einlösung ist.",
+            "placeholder": "Bitte wählen Sie eine Option..."
+        },
+        "viewMode": {
+            "cartProcessor":{
+                "default": "Einstellung aus Plugin-Konfiguration",
+                "before": "Vor den Shopware Promotions",
+                "after": "Nach den Shopware Promotions"
+            }
+        },
+        "value-types": {
+            "10010": "Absolut",
+            "10020": "Prozentual"
+        },
+        "voucher-types": {
+            "40010": "Allgemein",
+            "40020": "Individuell"
+        },
+        "product-value-types": {
+            "20010": "Fester Wert",
+            "20020": "Individueller Wert",
+            "20030": "Vordefinierte Werte"
+        },
+        "product-value-type-select": {
+            "label": "Gutschein Typ",
+            "helpText": ""
+        },
+        "value-type-select": {
+            "label": "Abzug",
+            "helpText": "Wähle den Abzug."
+        },
+        "voucher-type-select": {
+            "label": "Modus",
+            "helpText": "",
+            "helpTexts": {
+                "40010": "Modus: <strong>Allgemein</strong><br /><p>Der Gutschein kann von jedem Kunden &uuml;ber den vollen Wert eingel&ouml;st werden. <br /><strong>Tipp:</strong> Verwende die Bedingung <strong>Maximale Einlösungen</strong>, um die Anzahl der Einlösungen je Kunde zu beschränken.</p>",
+                "40020": "Modus: <strong>Individuell</strong><br /><p>Der Gutschein kann einmalig von Kunden &uuml;ber den vollen Wert eingel&ouml;st werden. Wird der Gutscheincode weitergegeben, wird der Restwert ber&uuml;cksichtigt. <br /><strong>Tipp:</strong> Verwende für prozentuale Gutscheine die Bedingung <strong>Maximale Einlösungen</strong>, um die Anzahl der Einlösungen zu beschränken.</p>"
+            }
+        },
+        "open-easy-coupon-product-link": {
+            "content": "Diesem Produkt ist ein Kaufgutschein zugewiesen. Klicken Sie auf \"Kaufgutschein öffnen\" um den Kaufgutschein zu bearbeiten.",
+            "linkText": "Kaufgutschein öffnen"
+        },
+        "discard-changes-modal": {
+            "title": "Nicht gespeicherte Änderungen",
+            "content": "Wenn du fortfährst, werden deine Änderungen verworfen.",
+            "confirmButton": "Fortfahren",
+            "cancelButton": "Abbrechen"
+        },
+        "customer": {
+            "tabTitle": "Gutscheine",
+            "tabContent": "Gutscheine des Kunden",
+            "fetchingError": "Es gab einen Fehler beim Laden der Gutscheine.",
+            "noVouchersMessage": "Der Kunde besitzt keine Gutscheine.",
+            "column": {
+                "paid": "Bezahlt",
+                "title": "Titel",
+                "code": "Code",
+                "value": "Wert",
+                "cashedValue": "Eingelöster Betrag",
+                "restValue": "Restwert"
+            }
+        },
+        "order-detail": {
+            "hasVouchersAlert": "Bei dieser Bestellung wurden Gutscheine gekauft oder eingelöst. Siehe unten für weitere Informationen.",
+            "vouchersTitle": "Gekaufte oder eingelöste Gutscheine (von EasyCoupon)",
+            "voucherList": {
+                "actionOpenVoucher": "Gutschein öffnen",
+                "unresolvedCode": "Unbekannt",
+                "unresolvedCodeHelpText": "Der Code ist ungelöst, da dieses Feld nur für neue Bestellungen seit Plugin-Version 4.5.0 verfügbar ist.",
+                "column": {
+                    "type": "Typ",
+                    "name": "Name",
+                    "code": "Code",
+                    "value": "Wert"
+                },
+                "type": {
+                    "voucher": "Eingelöster Gutschein",
+                    "purchasableVoucher": "Kaufgutschein",
+                    "invalid": "Unbekannter Typ"
+                }
+            }
+        }
+    },
+    "global": {
+        "error-codes": {
+            "neti-easy-coupon": {
+                "productNumberAlreadyInUse": "Diese Nummer ist bereits vergeben.",
+                "codeNotAvailable": "Dieser Code ist bereits vergeben. Bitte wähle einen anderen."
+            }
+        },
+        "entities": {
+            "neti_easy_coupon": "EC Gutschein",
+            "neti_easy_coupon_product": "EC Kaufgutschein"
+        },
+        "sw-condition": {
+            "condition": {
+                "netiEasyCouponUsesPerCustomerRule": "Maximale Einlösungen (pro Kunde)",
+                "netiEasyCouponCustomerRule": "Kunden",
+                "netiEasyCouponTotalUsesRule": "Maximale Einlösungen (global)",
+                "netiEasyCouponMailAddressRule": "E-Mail Adresse"
+            }
+        },
+        "businessEvents": {
+            "neti_easy_coupon_coupon_activate": "EasyCoupon: Kaufgutschein wurde bezahlt"
+        }
+    },
+    "sw-order": {
+        "createBase": {
+            "textPromotionDescription": {
+                "netiEasyCoupon": {
+                    "10010": "Absoluter Gutschein",
+                    "10020": "Prozentualer Gutschein"
+                }
+            }
+        }
+    }
+}

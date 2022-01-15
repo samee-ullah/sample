@@ -1,0 +1,13 @@
+<div class="neti-easy-coupon-value-type-select">
+    <sw-select-field
+            :value="currentValue"
+            @change="onChange"
+            :label="$t('neti-easy-coupon.value-type-select.label')"
+            :disabled="disabled"
+            :helpText="$t('neti-easy-coupon.value-type-select.helpText')"
+    >
+        <option v-for="type in options" :value="type">
+            {{ $t('neti-easy-coupon.value-types.' + type) }}
+        </option>
+    </sw-select-field>
+</div>

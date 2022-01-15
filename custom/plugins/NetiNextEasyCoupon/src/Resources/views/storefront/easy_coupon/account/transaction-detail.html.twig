@@ -1,0 +1,53 @@
+{% block easy_coupon_account_transaction_detail %}
+    <div class="order-item-detail">
+        <div
+            class="collapse"
+            id="voucher{{ voucher.id }}"
+        >
+            <div class="order-detail-content">
+                {% block easy_coupon_item_detail_table_header %}
+                    <div class="order-detail-content-header">
+                        <div class="row">
+                            {% block easy_coupon_item_detail_table_header_customer %}
+                                <div class="col-4 order-detail-content-header-cell order-header-name">
+                                    {{ "neti-easy-coupon.store-front.account.transactions-table.customer"|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+
+                            {% block easy_coupon_item_detail_table_header_value %}
+                                <div class="col-2 order-detail-content-header-cell order-header-name">
+                                    {{ "neti-easy-coupon.store-front.account.transactions-table.redeem-value"|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+
+                            {% block easy_coupon_item_detail_table_header_penis %}
+                                <div class="col-2 order-detail-content-header-cell order-header-name">
+                                    {{ "neti-easy-coupon.store-front.account.transactions-table.caused-by"|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+
+                            {% block easy_coupon_item_detail_table_header_shop %}
+                                <div class="col-2 order-detail-content-header-cell order-header-name">
+                                    {{ "neti-easy-coupon.store-front.account.transactions-table.shop"|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+
+                            {% block easy_coupon_item_detail_table_header_date %}
+                                <div class="col-2 order-detail-content-header-cell order-header-name">
+                                    {{ "neti-easy-coupon.store-front.account.transactions-table.date"|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+                        </div>
+                        <div class="order-detail-content-body">
+                            {% for transaction in page.transactions %}
+                                {% block easy_coupon_item_detail_transactions_list_include %}
+                                    {% sw_include '@NetiNextEasyCoupon/storefront/easy_coupon/account/item-detail-transactions-list.html.twig' %}
+                                {% endblock %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

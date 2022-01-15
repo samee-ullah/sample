@@ -1,0 +1,15 @@
+{% block sw_product_detail_base_basic_info_card %}
+    <neti-easy-coupon-open-easy-coupon-product-link
+        :product="product"
+    ></neti-easy-coupon-open-easy-coupon-product-link>
+
+    {% parent %}
+{% endblock %}
+
+{% block sw_product_detail_base_price_form %}
+    <sw-alert variant="info" v-if="product && product.extensions && product.extensions.netiEasyCouponProduct">
+        {{ $t('neti-easy-coupon-product.detail.product.priceInformation') }}
+    </sw-alert>
+
+    {% parent %}
+{% endblock %}

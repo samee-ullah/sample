@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-default.html.twig' %}
+
+{% block page_content_section_default %}
+    {% if activeRoute == 'frontend.navigation.page' %}
+        {% set navigation = page.header.navigation.active.translated %}
+        {% set applicationArea = navigation.customFields.custom_blog_listing_section_application_area %}
+        {% set zubehorArea = navigation.customFields.custom_blog_listing_section_zubehor_area %}
+        {% set layout = section.sizingMode ? section.sizingMode|replace({"_": "-"}) : "container" %}
+        <div class="cms-section-default {{ layout }}">
+            {% for block in section.blocks %}
+                {% if applicationArea == false and block.name == 'Application' %}
+                    {% set blocks = [] %}
+                {% elseif zubehorArea == false and block.name == 'Zubehor' %}
+                    {% set block = [] %}
+                {% else %}
+                    {% block section_default_content_block %}
+                        {% sw_include "@Storefront/storefront/section/cms-section-block-container.html.twig" %}
+                    {% endblock %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

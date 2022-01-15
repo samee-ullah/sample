@@ -1,0 +1,113 @@
+.product-detail-configurator-option-input {
+    // disabled variant styles
+    + .product-detail-configurator-option-label {
+        border: 1px dashed $gray-400;
+        color: $gray-500;
+        background: $gray-100;
+        font-weight: $font-weight-bold;
+        opacity: 1;
+
+        &.is-display-color {
+            padding: 2px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: inset 0 0 0 4px $gray-100;
+            background: $gray-300;
+            filter: saturate(0);
+            opacity: 0.4;
+            border: 1px dashed $gray-500;
+        }
+
+        &.is-display-media {
+            padding: 2px;
+            height: 40px;
+            min-width: 40px;
+            width: 40px;
+            object-fit: cover;
+            font-family: 'object-fit: cover;'; // IE polyfill
+
+            img {
+                opacity: 0.23;
+            }
+        }
+
+        &.is-display-text {
+            padding: 10px 10px 7px 10px;
+            min-width: 40px;
+        }
+    }
+
+    // available variant styles
+    &.is-combinable + .product-detail-configurator-option-label {
+        border: 1px solid $gray-400;
+        color: $gray-900;
+        background: $white;
+
+        &.is-display-color {
+            filter: none;
+            box-shadow: inset 0 0 0 4px white;
+            opacity: 1;
+        }
+
+        &.is-display-media {
+            img {
+                opacity: 1;
+            }
+        }
+    }
+
+    // checked variant styles
+    &:checked + .product-detail-configurator-option-label {
+        border: 1px solid $gray-900;
+
+        &.is-display-color {
+            filter: none;
+            box-shadow: inset 0 0 0 4px white;
+        }
+
+        &.is-display-media {
+            img {
+                opacity: 1;
+            }
+        }
+
+        &.is-display-text {
+            background: $white;
+            font-weight: $font-weight-bold;
+            color: $gray-900;
+        }
+    }
+
+    // variant hover styles
+    &.is-combinable + .product-detail-configurator-option-label {
+        &:hover,
+        &:active,
+        &:focus {
+            border: 1px solid $gray-900;
+            color: $gray-900;
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    // Disable the hover effect on disabled variants
+    + .product-detail-configurator-option-label {
+        &:hover,
+        &:active,
+        &:focus {
+            border: 1px dashed $gray-400;
+            color: $gray-500;
+            background: $gray-100;
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
+.product-detail-configurator-option-image {
+    height: 34px;
+    width: 34px;
+    padding: 2px;
+    object-fit: cover;
+    font-family: 'object-fit: cover;'; // IE polyfill
+}

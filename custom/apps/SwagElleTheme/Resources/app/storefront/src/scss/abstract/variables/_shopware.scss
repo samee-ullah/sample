@@ -1,0 +1,12 @@
+// contains variable overrides for shopware storefront variables located under
+// shopRoot/src/vendor/shopware/storefront/Resources/app/storefront/src/scss/abstract/variables/_custom.scss
+// shopRoot/src/vendor/shopware/storefront/Resources/app/storefront/src/scss/skin/shopware/abstract/variables/_custom.scss
+
+$icon-base-color: $gray-900 !default;
+$disabled-btn-bg: $gray-200 !default;
+$disabled-btn-border-color: $gray-200 !default;
+$icon-review-color: #ffbd5d !default;
+$icon-base-size: 24px !default;
+
+// Error heading
+$error-heading: 28px;

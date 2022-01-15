@@ -1,0 +1,31 @@
+{% sw_extends '@Storefront/storefront/component/address/address-personal.html.twig' %}
+
+{% block component_address_personal_fields_salutation %}
+    <div class="form-group col-sm-6">
+        {% block component_address_personal_fields_salutation_label %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block component_address_form_salutation_select %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block component_address_form_salutation_select_error %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block component_address_personal_fields_title %}
+    {% if config('core.loginRegistration.showTitleField') %}
+        <div class="form-group col-sm-6">
+            {% block component_address_personal_fields_title_label %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block component_address_personal_fields_title_input %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

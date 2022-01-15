@@ -1,0 +1,8 @@
+{% block sw_cms_element_newsletter %}
+    <div class="sw-cms-el-newsletter">
+        <strong>Newsletter status: </strong>
+        <span v-if="isNewsletterActive"> <sw-icon name="small-default-checkmark-line-small" color="#1abc9c"></sw-icon> Enabled</span>
+        <span v-else> <sw-icon name="small-default-x-line-small" color="#c0392b"></sw-icon> Disabled</span>
+    </div>
+{% endblock %}
+

@@ -1,9 +1,12 @@
 custom/*
+!custom/plugins/
+!custom/apps/
 !custom/plugins/.gitkeep
 !custom/static-plugins/
 
 /vendor/
 /bin/vendor/
+!/vendor/.htaccess
 
 /.idea
 /docker-compose.override.yml

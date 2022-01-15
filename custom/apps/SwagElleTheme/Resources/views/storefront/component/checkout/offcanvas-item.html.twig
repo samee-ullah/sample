@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-item.html.twig' %}
+
+{% block component_offcanvas_product_label %}
+    <div class="cart-item-details">
+        {% if type == 'product' %}
+            <a href="{{ seoUrl('frontend.detail.page', {'productId': referencedId}) }}"
+               class="cart-item-label"
+               title="{{ label }}">
+                {{ quantity }}{{ "checkout.quantityTimes"|trans|sw_sanitize }} {{ label|u.truncate(60, '...') }}
+            </a>
+        {% else %}
+            <div class="cart-item-label">
+                {{ label|u.truncate(60, '...') }}
+            </div>
+        {% endif  %}
+    </div>
+{% endblock %}

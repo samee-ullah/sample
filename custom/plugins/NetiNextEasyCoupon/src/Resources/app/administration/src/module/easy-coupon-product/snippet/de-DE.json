@@ -1,0 +1,119 @@
+{
+    "neti-easy-coupon-product": {
+        "general": {
+            "mainMenuItemGeneral": "Kaufgutscheine",
+            "descriptionTextModule": "Hier kannst Du Kaufgutscheine pflegen."
+        },
+        "list": {
+            "title": "Kaufgutscheine",
+            "buttonCreate": "Hinzufügen",
+            "buttonCancel": "Abbrechen",
+            "buttonDelete": "Löschen",
+            "contextMenuEdit": "Bearbeiten",
+            "contextMenuDelete": "Löschen",
+            "modalTitleDelete": "Kaufgutschein löschen",
+            "textDeleteConfirm": "Bist Du sicher, dass Du den Kaufgutschein löschen möchtest? Bei Löschung des Kaufgutschein wird auch das dazugehörige Produkt gelöscht.",
+            "messageEmpty": "Keine Kaufgutscheine vorhanden",
+            "column": {
+                "id": "ID",
+                "active": "Aktiv",
+                "title": "Titel",
+                "code": "Code",
+                "createdAt": "Hinzugefügt",
+                "updatedAt": "Bearbeitet",
+                "valueType": "Gutscheintyp"
+            },
+            "deleteMessage": "Soll der Eintrag wirklich gelöscht werden? Das dazugehörige Produkt wird ebenfalls gelöscht. | Sollen diese {count} Einträge wirklich gelöscht werden? Die dazugehörigen Produkte werden ebenfalls gelöscht."
+        },
+        "detail": {
+            "title": "Kaufgutschein",
+            "buttonCancel": "Abbrechen",
+            "buttonSave": "Speichern",
+            "titleLabel": "Gutschein Titel bei Einlösung",
+            "titlePlaceholder": "Titel",
+            "discardRemainingLabel": "Restwert verfällt",
+            "orderPositionNumberLabel": "Bestellnummer bei Einlösung",
+            "errorTitle": "Fehler",
+            "errorMessage": "Der Kaufgutschein konnte nicht gespeichert werden.",
+            "successTitle": "Erfolg",
+            "successMessage": "Der Kaufgutschein wurde erfolgreich gespeichert.",
+            "titleHelpText": "Wird bei der Einlösung im Warenkorb angezeigt.",
+            "discardRemainingHelpText": "",
+            "orderPositionNumberHelpText": "",
+            "conditionInfo": "Die hier angegebenen Bedingungen werden später auf den erstellen Gutschein übertragen und haben keinen Einfluss auf den Bestellprozess des Kaufgutscheins.",
+            "combineVouchersLabel": "Kombinierbar mit weiteren Gutscheinen?",
+            "combineVouchersHelpText": "Können die durch den Kaufgutschein erstellten Gutscheinen mit weiteren EasyCoupon Gutscheinen kombinierbar werden?",
+            "validityTimeLabel": "Gültigkeit (optional)",
+            "validityTimeHelpText": "Definiert die Gültigkeitsdauer des Gutscheins, der später erstellt wird.",
+            "validityByEndOfYearLabel": "Gültig bis Ende des Jahres",
+            "validityByEndOfYearHelpText": "Wenn aktiviert, wird die Gültigkeitsdauer ab Ende des aktuellen Jahres anstelle des Kaufdatums berechnet.",
+            "validityTimeValues": {
+                "0": "Keine Begrenzung",
+                "30": "30 Tage",
+                "90": "90 Tage",
+                "180": "6 Monate (180 Tage)",
+                "365": "1 Jahr",
+                "730": "2 Jahre",
+                "1095": "3 Jahre"
+            },
+            "tab": {
+                "base": "Details"
+            },
+            "cardTitle": {
+                "base": "Stammdaten",
+                "conditions": "Einlösebedingungen",
+                "product": "Produktkonfiguration"
+            },
+            "product": {
+                "saveInfo": "Die Produkt-Konfiguration wird hier angezeigt, sobald der Kaufgutschein gespeichert wurde.",
+                "nameLabel": "Name",
+                "descriptionLabel": "Beschreibung",
+                "taxLabel": "Steuer-Konfiguration",
+                "isCloseoutLabel": "Abverkauf",
+                "shippingFreeLabel": "Produkt ist versandkostenfrei",
+                "categoriesLabel": "Produktkategorien",
+                "categoriesPlaceholder": "Produktkategorien",
+                "visibilitiesLabel": "Verkaufskanäle",
+                "visibilitiesPlaceholder": "Verkaufskanäle",
+                "tagsLabel": "Tags",
+                "tagsPlaceholder": "Tags",
+                "numberLabel": "Produkt-Nummer",
+                "stockLabel": "Bestand",
+                "priceHelpText": "",
+                "nameHelpText": "",
+                "numberHelpText": "",
+                "descriptionHelpText": "",
+                "taxHelpText": "",
+                "stockHelpText": "",
+                "isCloseoutHelpText": "",
+                "shippingFreeHelpText": "",
+                "categoriesHelpText": "",
+                "visibilitiesHelptext": "",
+                "tagsHelpText": "",
+                "priceInformation": "Bei Kaufgutscheinen des Typs \"Definierte Werte und Individuelle Werte\" ergibt sich der Preis aus der Gutscheinkonfiguration. Bei einem Gutschein des Typs \"fester Wert\" kannst du hier den Preis des Gutscheins ändern - der definierte Wert des Gutscheins wird dabei nicht angepasst."
+            },
+            "open-product-link": {
+                "linkLabel": "Produkt öffnen"
+            }
+        },
+        "price-field": {
+            "valueLabel": "Wert",
+            "fromValueLabel": "Von",
+            "toValueLabel": "Bis",
+            "valuesLabel": "Werte",
+            "currencyModalBtn": "Währungsabhängige Werte",
+            "currency-modal": {
+                "title": "Währungen pflegen",
+                "closeBtn": "Schließen"
+            },
+            "values-field": {
+                "validMessage": "Wert hinzufügen",
+                "invalidMessage": "Bitte gebe einen numerischen Wert an"
+            },
+            "fromValueHelpText": "",
+            "toValueHelpText": "",
+            "valuesHelpText": "",
+            "valueHelpText": ""
+        }
+    }
+}

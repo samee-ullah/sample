@@ -1,0 +1,22 @@
+.checkout-aside-summary {
+  background-color: $gray-200;
+  padding: 25px;
+
+  &-list {
+    margin-bottom: 0;
+  }
+
+  &-value {
+    padding-left: 0;
+  }
+
+  &-total {
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.checkout-aside-add-code {
+  .icon-feather {
+    color: $gray-100;
+  }
+}

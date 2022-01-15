@@ -1,0 +1,45 @@
+{
+  "header": {
+    "searchPlaceholder": "Was suchen Sie?",
+    "supportInfo": "<b>Haben Sie Fragen zu Ihrer Bestellung?<br /><a href=\"tel:+49123456798\">+49 1234-56798</a></b> <small>Täglich von 7:30 bis 22:00 Uhr</small>"
+  },
+  "footer": {
+    "newsletterHeadline": "Newsletter",
+    "newsletterInfo": "Abonnieren Sie den kostenlosen Newsletter, um keine Angebote von %shopname% mehr zu verpassen. ",
+    "serviceHotline": "<a href=\"tel:+49180000000\">0180 - 000000</a> Mon-Fr, 9 - 17 Uhr",
+    "serviceContactLink": "<a data-toggle=\"modal\" data-url=\"%url%\"  href=\"%url%\" title=\"contact form\">Oder über unser Kontaktformular</a>."
+  },
+  "account": {
+    "orRegisterLink": "Registrierung",
+    "colonCharacter": ":",
+    "loginHeader": "Anmeldung",
+    "loginMailLabel": "E-Mail-Adresse",
+    "loginPasswordLabel": "Passwort",
+    "loginPasswordRecover": "Haben Sie Ihr Passwort vergessen?",
+    "personalMailLabel": "E-Mail-Adresse",
+    "personalPasswordDescription": "Das Passwort muss aus mindestens %minLength% Zeichen bestehen."
+  },
+  "address": {
+    "streetLabel": "Straße und Hausnummer",
+    "zipcodeLabel": "Postleitzahl"
+  },
+  "general": {
+    "paginationNumber": "Seite %current_page% von %total_page%",
+    "requiredFields": "Mit einem * markierte Felder sind Pflichtfelder.",
+    "privacyNotice": "<a data-toggle=\"modal\"  data-url=\"%url%\" href=\"%url%\"  title=\"Datenschutzvereinbarung\">Ich habe die Informationen zur Datenschutzvereinbarung gelesen.</a>."
+  },
+  "checkout": {
+    "finishButtonBackToShop": "Zurück zum Shop",
+    "addPromotionPlaceholder": "Geschenkkarte oder Rabatt-Code ...",
+    "shippingCosts": "Versandkosten konfigurieren",
+    "finishHeader": "Danke für Ihre Bestellung bei %shop%!",
+    "addressAlreadyHaveAccount": "Haben Sie schon einen Account?",
+    "addressLoginToggle": "Klicken Sie hier, um sich anzumelden."
+  },
+  "wishlist": {
+    "headline": "Ihr Merkzettel"
+  },
+  "captcha": {
+    "basicCaptchaInputPlaceholder": "Zeichen eingeben..."
+  }
+}

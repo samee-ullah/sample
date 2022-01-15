@@ -1,0 +1,25 @@
+.offcanvas {
+  .offcanvas-close {
+    background-color: $gray-200;
+    border: none;
+    color: $gray-900;
+
+    .icon-feather {
+      & > svg {
+        top: 0;
+      }
+    }
+  }
+
+  &.is-right {
+    .offcanvas-close {
+      display: flex;
+
+      .icon-feather {
+        & > svg {
+          top: -2px;
+        }
+      }
+    }
+  }
+}

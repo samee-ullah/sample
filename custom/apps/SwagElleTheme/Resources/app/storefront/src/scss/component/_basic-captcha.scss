@@ -1,0 +1,61 @@
+$captcha-image-height: 46px;
+
+.basic-captcha-content-refresh-icon {
+    height: $captcha-image-height;
+    margin-left: $spacer;
+}
+
+.basic-captcha-content-image {
+    max-height: $captcha-image-height;
+
+    > img {
+        height: 100%
+    }
+}
+
+.basic-captcha-content {
+    &-code {
+        margin-right: 0;
+    }
+
+    &.col-md-4 {
+        @extend .col-12;
+    }
+
+    @include media-breakpoint-down(md) {
+        &-code {
+            max-width: 100%;
+        }
+
+        &.col-md-12 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+.captcha-google-re-captcha-v2 {
+    padding-bottom: 20px;
+}
+
+.basic-captcha-content,
+.captcha-google-re-captcha-v2,
+.captcha-google-re-captcha-v3 {
+    padding-top: 20px;
+}
+
+.footer-newsletter-captcha-wrapper {
+    .icon-arrow-switch {
+        height: 18px;
+        width: 18px;
+    }
+    // Refresh icon hover state
+    .basic-captcha-content-refresh-icon:hover .icon-arrow-switch > svg {
+        color: #000;
+    }
+    .icon-arrow-switch > svg {
+        color: #fff;
+        height: 18px;
+        width: 18px;
+    }
+}

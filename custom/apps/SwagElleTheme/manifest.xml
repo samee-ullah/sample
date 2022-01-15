@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.1.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        <name>SwagElleTheme</name>
+        <label>Elle Theme</label>
+        <label lang="de-DE">Elle Theme</label>
+        <description>The Elle Theme from Shopware makes the standard design fresh and light. It can be used in any branch, offers additional functions and can be extended by apps.</description>
+        <description lang="de-DE">Das Elle Theme von Shopware lässt das Standard Design frisch und leicht aufleben. Es ist in jeder Branche einsetzbar, bietet zusätzliche Funktionen und kann durch Apps erweitert werden.</description>
+        <author>shopware AG</author>
+        <copyright>(c) by shopware AG</copyright>
+        <version>1.1.5</version>
+        <icon>icon.png</icon>
+        <license>MIT</license>
+    </meta>
+</manifest>

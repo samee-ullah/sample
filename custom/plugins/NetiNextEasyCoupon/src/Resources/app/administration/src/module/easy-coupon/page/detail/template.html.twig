@@ -1,0 +1,69 @@
+<sw-page class="neti-easy-coupon-detail has--easy-coupon--sidebar-menu">
+    <template #smart-bar-header>
+        <h2>
+            {{ $t('neti-easy-coupon.detail.title') }}
+        </h2>
+    </template>
+
+    <template #language-switch>
+        <sw-language-switch
+                :disabled="isCreateMode"
+                :saveChangesFunction="saveOnLanguageChange"
+                :abortChangeFunction="abortOnLanguageChange"
+                @on-change="onChangeLanguage"
+        >
+        </sw-language-switch>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button :disabled="isLoading" @click="onAbortButtonClick">
+            {{ $t('neti-easy-coupon.detail.buttonCancel') }}
+        </sw-button>
+
+        <sw-button-process
+                :isLoading="isLoading"
+                :processSuccess="isSaveSuccessful"
+                :disabled="isLoading"
+                variant="primary"
+                @process-finish="onSaveFinish"
+                @click.prevent="onSave"
+        >
+            {{ $t('neti-easy-coupon.detail.buttonSave') }}
+        </sw-button-process>
+    </template>
+
+    <template #content>
+        <neti-easy-coupon-sidebar-menu></neti-easy-coupon-sidebar-menu>
+
+        <sw-card-view>
+
+            <sw-language-info
+                    :entityDescription="placeholder(model, 'title')"
+            ></sw-language-info>
+
+            <sw-tabs>
+                <sw-tabs-item
+                        route="base"
+                        :title="$t('neti-easy-coupon.detail.tab.base')"
+                >
+                    {{ $t('neti-easy-coupon.detail.tab.base') }}
+                </sw-tabs-item>
+                <sw-tabs-item
+                        route="transactions"
+                        :title="$t('neti-easy-coupon.detail.tab.transactions')"
+                        :disabled="isCreateMode"
+                >
+                    {{ $t('neti-easy-coupon.detail.tab.transactions') }}
+                </sw-tabs-item>
+            </sw-tabs>
+
+            <router-view
+                    v-if="model"
+                    :model="model"
+                    :isCreateMode="isCreateMode"
+                    @refresh="onRefresh"
+            ></router-view>
+            <sw-loader v-else></sw-loader>
+        </sw-card-view>
+    </template>
+</sw-page>

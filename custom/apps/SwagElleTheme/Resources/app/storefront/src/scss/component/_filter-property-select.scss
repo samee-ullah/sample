@@ -1,0 +1,12 @@
+.filter-property-select-preview-checkmark {
+    background-color: $gray-400;
+
+    .icon-feather {
+        width: 14px;
+        height: 14px;
+
+        & > svg {
+            top: 0;
+        }
+    }
+}

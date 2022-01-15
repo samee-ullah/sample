@@ -1,0 +1,27 @@
+<div class="neti-easy-coupon-product--product-price-field">
+    <sw-price-field
+            v-if="taxRate && currency"
+            :taxRate="taxRate"
+            :price="value"
+            :defaultPrice="defaultPrice"
+            :currency="currency"
+            :disabled="disabled"
+    ></sw-price-field>
+
+    <a
+            @click.prevent="displayMaintainCurrencies = true"
+            v-if="value && !disabled"
+            class="currency-modal-button"
+    >
+        {{ $t('sw-product.detailBase.linkMaintainCurrencyPrices') }} <sw-icon name="default-arrow-simple-right" small></sw-icon>
+    </a>
+
+    <sw-maintain-currencies-modal
+            v-if="displayMaintainCurrencies"
+            :currencies="currencies"
+            :prices="value"
+            :defaultPrice="defaultPrice"
+            :taxRate="taxRate"
+            @modal-close="onCloseCurrenciesModal"
+    ></sw-maintain-currencies-modal>
+</div>

@@ -1,0 +1,128 @@
+{
+    "neti-easy-coupon": {
+        "main": {
+            "tabs": {
+                "coupons": "Vouchers",
+                "couponProducts": "Purchaseable vouchers"
+            }
+        },
+        "cart-processor": {
+            "label": "When should EasyCoupon vouchers be redeemed?",
+            "helpText": "Determine here how the order of the redemption is.",
+            "placeholder": "Please choose a option..."
+        },
+        "viewMode": {
+            "cartProcessor": {
+                "default": "Setting from plugin configuration",
+                "before": "Before Shopware promotions",
+                "after": "After Shopware promotions"
+            }
+        },
+        "value-types": {
+            "10010": "absolute",
+            "10020": "percentage"
+        },
+        "voucher-types": {
+            "40010": "universal",
+            "40020": "individual"
+        },
+        "product-value-types": {
+            "20010": "Fixed value",
+            "20020": "Individual value",
+            "20030": "Predefined values"
+        },
+        "product-value-type-select": {
+            "label": "Voucher type",
+            "helpText": ""
+        },
+        "value-type-select": {
+            "label": "Deduction",
+            "helpText": "Choose type of deduction."
+        },
+        "voucher-type-select": {
+            "label": "Mode",
+            "helpText": "",
+            "helpTexts": {
+                "40010": "Mode: <strong>Universal</strong><p>The voucher can be redeemed by any customer for the full value. <br/> Use the Maximum redemptions condition to limit the number of redemptions.</p>",
+                "40020": "Mode: <strong>Individual</strong><p>The voucher can be redeemed once by customers for the full value. If the voucher code is passed on, the remaining value will be taken into account.</p>"
+            }
+        },
+        "open-easy-coupon-product-link": {
+            "content": "A purchasable voucher is assigned to this product. Click on \"Open purchasable voucher\" to edit the purchase voucher.",
+            "linkText": "Open purchasable voucher"
+        },
+        "discard-changes-modal": {
+            "title": "Unsaved changes",
+            "content": "If you continue, your changes will be discarded.",
+            "confirmButton": "Continue",
+            "cancelButton": "Abort"
+        },
+        "customer": {
+            "tabTitle": "Vouchers",
+            "tabContent": "Customer vouchers",
+            "fetchingError": "There was an error loading vouchers.",
+            "noVouchersMessage": "This customer has no vouchers.",
+            "column": {
+                "paid": "Paid",
+                "title": "Title",
+                "code": "Code",
+                "value": "Value",
+                "cashedValue": "Cashed value",
+                "restValue": "Rest value"
+            }
+        },
+        "order-detail": {
+            "hasVouchersAlert": "This order has purchased or redeemed vouchers. See below for more information.",
+            "vouchersTitle": "Bought or redeemed vouchers (from EasyCoupon)",
+            "voucherList": {
+                "actionOpenVoucher": "Open voucher",
+                "unresolvedCode": "Unresolved",
+                "unresolvedCodeHelpText": "The code is unresolved because this field is only available for new orders since plugin version 4.5.0",
+                "column": {
+                    "type": "Type",
+                    "name": "Name",
+                    "code": "Code",
+                    "value": "Value"
+                },
+                "type": {
+                    "voucher": "Redeemed voucher",
+                    "purchasableVoucher": "Bought voucher",
+                    "invalid": "Invalid type"
+                }
+            }
+        }
+    },
+    "global": {
+        "error-codes": {
+            "neti-easy-coupon": {
+                "productNumberAlreadyInUse": "This product number is already taken.",
+                "codeNotAvailable": "This voucher code is already taken. Please choose another one."
+            }
+        },
+        "entities": {
+            "neti_easy_coupon": "EC vouchers",
+            "neti_easy_coupon_product": "EC purchasable vouchers"
+        },
+        "sw-condition": {
+            "condition": {
+                "netiEasyCouponUsesPerCustomerRule": "Maximum redemptions (per customer)",
+                "netiEasyCouponCustomerRule": "Customers",
+                "netiEasyCouponTotalUsesRule": "Maximum redemptions (global)",
+                "netiEasyCouponMailAddressRule": "eMail address"
+            }
+        },
+        "businessEvents": {
+            "neti_easy_coupon_coupon_activate": "EasyCoupon: Purchase voucher is paid"
+        }
+    },
+    "sw-order": {
+        "createBase": {
+            "textPromotionDescription": {
+                "netiEasyCoupon": {
+                    "10010": "Absolute voucher",
+                    "10020": "Percentage voucher"
+                }
+            }
+        }
+    }
+}

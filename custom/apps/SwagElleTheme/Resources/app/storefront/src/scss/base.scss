@@ -1,0 +1,99 @@
+/*
+SwagElleTheme theme styles
+==================================================
+Contains the imports to all theme styles.
+
+The file organization follows the 7-1 pattern architecture
+https://sass-guidelin.es/#the-7-1-pattern
+*/
+/*
+ * Variables, Mixins, Functions
+ * ---------------------------- */
+@import 'abstract/variables/custom';
+/*
+ * Vendors
+ * ------- */
+/*
+ * Base stuff
+ * ---------- */
+@import 'base/font';
+@import 'base/typography';
+@import 'base/icons';
+/*
+ * Components
+ * ---------- */
+@import 'component/button';
+@import 'component/base-slider';
+@import 'component/breadcrumb';
+@import 'component/card';
+@import 'component/custom-control';
+@import 'component/icon';
+@import 'component/button';
+@import 'component/forms';
+@import 'component/privacy-notice';
+@import 'component/input-group';
+@import 'component/offcanvas';
+@import 'component/modal';
+@import 'component/table';
+@import 'component/product-slider';
+@import 'component/tab-menu';
+@import 'component/pagination';
+@import 'component/payment-method';
+@import 'component/filter-panel';
+@import 'component/filter-boolean';
+@import 'component/category-navigation';
+@import 'component/filter-property-select';
+@import 'component/gallery-slider';
+@import 'component/product-box';
+@import 'component/customized-product/option-type/select';
+@import 'component/customized-product/option-type/upload';
+@import 'component/cms-block';
+@import 'component/alert';
+@import 'component/quickview/quickview';
+@import 'component/basic-captcha';
+@import 'component/cms-form-confirmation';
+
+/*
+ * Layout-related sections
+ * ----------------------- */
+@import 'layout/container';
+@import 'layout/header';
+@import 'layout/header-minimal';
+@import 'layout/search-suggest';
+@import 'layout/footer';
+@import 'layout/footer-minimal';
+@import 'layout/main-navigation';
+@import 'layout/top-bar';
+@import 'layout/navigation-offcanvas';
+@import 'layout/navigation-flyout';
+@import 'layout/account-menu';
+@import 'layout/offcanvas-cart';
+
+/*
+ * Page-specific styles
+ * -------------------- */
+@import 'page/product-detail/product-detail';
+@import 'page/product-detail/tabs';
+@import 'page/product-detail/review';
+@import 'page/product-detail/configurator';
+@import 'page/product-detail/customized-product';
+@import 'page/product-detail/customized-product-step-by-step';
+@import 'page/product-detail/price-display';
+@import 'page/account/account';
+@import 'page/account/overview';
+@import 'page/account/aside';
+@import 'page/account/profile';
+@import 'page/account/order-detail';
+@import 'page/account/login';
+@import 'page/account/register';
+@import 'page/checkout/cart';
+@import 'page/checkout/cart-item';
+@import 'page/checkout/aside';
+@import 'page/checkout/confirm';
+@import 'page/checkout/finish';
+@import 'page/checkout/register';
+@import 'page/checkout/cart-item-children';
+@import 'page/checkout/customized-product-cart';
+@import 'page/error/404';
+@import 'page/error/maintenance';
+@import 'page/wishlist/wishlist';

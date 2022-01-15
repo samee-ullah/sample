@@ -1,0 +1,126 @@
+{% sw_extends '@Storefront/storefront/page/account/profile/index.html.twig' %}
+
+{% block page_account_profile_credentials_container %}
+    <div class="form-row align-items-center">
+        {% block page_account_profile_credentials_current_mail %}
+            <div class="form-group col-sm-6">
+                {% block page_account_profile_credentials_current_mail_label %}
+                    <label class="form-label">
+                        {{ "account.profileCurrentMail"|trans|sw_sanitize }}
+                    </label>
+                    <span class="account-profile-mail">{{ context.customer.email }}</span>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block page_account_profile_credentials_change_mail %}
+            <div class="form-group col-6 col-sm-3">
+                <a class="account-profile-change{% if not emailFormViolation %} collapsed{% endif %} btn btn-light btn-sm"
+                   data-toggle="collapse"
+                   href="#profile-email-form"
+                   role="button"
+                   aria-expanded="{% if emailFormViolation %}true{% else %}false{% endif %}"
+                   aria-controls="profile-email-form">
+                    {{ "account.profileChangeEmail"|trans|sw_sanitize }}
+                </a>
+            </div>
+        {% endblock %}
+
+        {% block page_account_profile_credentials_change_password %}
+            <div class="form-group col-6 col-sm-3">
+                <a class="account-profile-change{% if not emailFormViolation %} collapsed{% endif %} btn btn-light btn-sm"
+                   data-toggle="collapse"
+                   href="#profile-password-form"
+                   role="button"
+                   aria-expanded="{% if passwordFormViolation %}true{% else %}false{% endif %}"
+                   aria-controls="profile-password-form">
+                    {{ "account.profileChangePassword"|trans|sw_sanitize }}
+                </a>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_account_profile_mail %}
+    <div class="form-group col-sm-6">
+        {% block page_account_profile_mail_label %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_profile_mail_input %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_profile_mail_input_error %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_account_profile_mail_password %}
+    <div class="form-row">
+        <div class="form-group col-sm-6">
+            {% block page_account_profile_mail_password_label %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_account_profile_mail_password_input %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_account_profile_mail_password_input_error %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_account_profile_new_password %}
+    <div class="form-group col-sm-6">
+        {% block page_account_profile_new_password_label %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_profile_new_password_input %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_profile_new_password_input_error %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_account_profile_new_password_confirmation %}
+    <div class="form-group col-sm-6">
+        {% block page_account_profile_new_password_confirmation_label %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_profile_new_password_confirmation_input %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_account_profile_new_password_confirmation_error %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_account_profile_current_password %}
+    <div class="form-row">
+        <div class="form-group col-sm-6">
+            {% block page_account_profile_current_password_label %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_account_profile_current_password_input %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_account_profile_current_password_input_error %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,132 @@
+{
+    "neti-easy-coupon": {
+        "navigation": {
+            "mainMenuItemEasyCoupon": "EasyCoupon"
+        },
+        "general": {
+            "mainMenuItemGeneral": "EasyCoupon",
+            "descriptionTextModule": "Manage your EasyCoupon vouchers."
+        },
+        "list": {
+            "title": "Vouchers",
+            "buttonCreate": "create",
+            "messageEmpty": "No vouchers available",
+            "titleSidebarItemRefresh": "reload",
+            "contextMenuEdit": "edit",
+            "contextMenuDelete": "delete",
+            "modalTitleDelete": "delete voucher",
+            "textDeleteConfirm": "Are you sure you want to delete the voucher?",
+            "buttonCancel": "cancel",
+            "buttonDelete": "delete",
+            "column": {
+                "active": "active",
+                "title": "Title",
+                "code": "Code",
+                "value": "Value",
+                "createdAt": "created",
+                "updatedAt": "changed"
+            }
+        },
+        "detail": {
+            "activeLabel": "active",
+            "activeHelpText": "Activates the voucher. Only active vouchers can be redeemed.",
+            "buttonCancel": "cancel",
+            "buttonSave": "save",
+            "codeLabel": "Code",
+            "codeHelpText": "Enter the voucher code here or generate a voucher code.",
+            "commentLabel": "Comment",
+            "commentHelpText": "Space for internal comments.",
+            "currencyLabel": "currency",
+            "currencyHelpText": "Choose the currency in which the voucher is managed.",
+            "discardRemainingLabel": "Residual value expires",
+            "discardRemainingHelpText": "Any remaining value of the voucher expires as soon as the voucher has been redeemed for the first time.",
+            "errorMessage": "The voucher could not be saved.",
+            "errorTitle": "Error",
+            "generateCodeBtn": "Generate",
+            "copyCodeBtn": "Copy to clipboard",
+            "maxRedemptionValueLabel": "Maximum redemption value per customer",
+            "maxRedemptionValueHelpText": "<p>Defines the absolute limit for a percentage deduction:</p><p>Example:</p><ul><li>10% voucher</li><li>max. Redemption value = 20 &euro;</li><li>Cart value 500 &euro;</li></ul><p>Usually your customer will get a deduction of 50 &euro;. Due to the max. redemption value, the deduction will be capped at 20 &euro;.</p>",
+            "orderPositionNumberLabel": "Product number on redemption",
+            "orderPositionNumberHelpText": "When the voucher is redeemed, this number is stored as a product number in the shopping cart position of the voucher.",
+            "successMessage": "The voucher was saved successfully.",
+            "successTitle": "Success",
+            "tagLabel": "Tag",
+            "tagHelpText": "Optionally, allocate a day for the voucher.",
+            "title": "Voucher",
+            "titleLabel": "Title",
+            "titleHelpText": "Choose a title for the voucher.",
+            "titlePlaceholder": "Voucher title",
+            "valueLabel": "Value",
+            "valueHelpText": "Add a value",
+            "combineVouchersLabel": "Combine voucher?",
+            "combineVouchersHelpText": "Decide here whether the voucher can be redeemed with other vouchers.",
+            "validUntilLabel": "Valid until (optional)",
+            "validUntilHelpText": "The voucher can be redeemed until the given date.",
+            "cardTitle": {
+                "base": "Base data",
+                "conditions": "Conditions",
+                "conditionHelpText": "Define the conditions from when a voucher can be redeemed. If no conditions have been selected, the voucher can always be redeemed.",
+                "misc": "Others"
+            },
+            "tab": {
+                "base": "Details",
+                "transactions": "Transactions"
+            },
+            "generateCode": {
+                "errorTitle": "Error",
+                "errorMessage": "Unfortunately no code could be generated. Please try again."
+            },
+            "status": {
+                "redemptionCount": "The coupon has already been redeemed {count} times.",
+                "absolute": {
+                    "general": "This <strong>general</strong> coupon has an <strong>absolute</strong> value of <strong>{value}</strong>.",
+                    "individual": "This <strong>individual</strong> coupon has an <strong>absolute</strong> value of <strong>{value}</strong>.",
+                    "redemptionValue": "Of these, <strong>{value}</strong> have already been redeemed.",
+                    "remainingValue": "The residual value is <strong>{value}</strong>."
+                },
+                "percentage": {
+                    "general": "This <strong>general</strong> coupon has a <strong>percentage</strong> value of {percentage} percent.",
+                    "individual": "This <strong>individual</strong> coupon has a <strong>percentage</strong> value of {percentage} percent."
+                }
+            },
+            "copyCode": {
+                "successTitle": "Success",
+                "successMessage": "The voucher code was successfully copied to the clipboard.",
+                "errorTitle": "Error",
+                "errorMessage": "The voucher code could not be copied to the clipboard."
+            }
+        },
+        "transaction-list": {
+            "buttonCreate": "New transaction",
+            "create-transaction": {
+                "title": "New transaction",
+                "valueLabel": "Value",
+                "currencyLabel": "Currency",
+                "internCommentLabel": "Internal comment",
+                "buttonCreate": "Save",
+                "buttonCancel": "Cancel",
+                "successTitle": "Success",
+                "successMessage": "The transaction was saved successfully.",
+                "errorTitle": "Error",
+                "errorMessage": "The transaction could not be created."
+            },
+            "column": {
+                "createdAt": "Date",
+                "id": "ID",
+                "value": "value",
+                "currency": "Currency",
+                "internComment": "Comment",
+                "orderNumber": "Order",
+                "username": "User",
+                "customer": "Customer"
+            }
+        },
+        "price-field": {
+            "currencyModalBtn": "Currency dependent prices",
+            "currency-modal": {
+                "title": "edit currency",
+                "closeBtn": "close"
+            }
+        }
+    }
+}

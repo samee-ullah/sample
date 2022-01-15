@@ -1,0 +1,54 @@
+<div class="neti-easy-coupon-product-price-field" v-if="price">
+    <template v-if="valueType === 20020">
+        <sw-container columns="1fr 1fr" gap="15px">
+            <sw-field
+                    :label="$t('neti-easy-coupon-product.price-field.fromValueLabel')"
+                    type="number"
+                    v-model="price.from"
+                    :helpText="$t('neti-easy-coupon-product.price-field.fromValueHelpText')"
+            ></sw-field>
+
+            <sw-field
+                    :label="$t('neti-easy-coupon-product.price-field.toValueLabel')"
+                    type="number"
+                    v-model="price.to"
+                    :helpText="$t('neti-easy-coupon-product.price-field.toValueHelpText')"
+            ></sw-field>
+        </sw-container>
+    </template>
+    <template v-else-if="valueType === 20030">
+        <sw-multi-tag-select
+                :label="$t('neti-easy-coupon-product.price-field.valuesLabel')"
+                v-model="price.selectableValues"
+                :validMessage="$t('neti-easy-coupon-product.price-field.values-field.validMessage')"
+                :invalidMessage="$t('neti-easy-coupon-product.price-field.values-field.invalidMessage')"
+                :validate="onValidateValue"
+                :helpText="$t('neti-easy-coupon-product.price-field.valuesHelpText')"
+        ></sw-multi-tag-select>
+    </template>
+    <template v-else>
+        <sw-field
+                :label="$t('neti-easy-coupon-product.price-field.valueLabel')"
+                type="number"
+                v-model="price.gross"
+                :helpText="$t('neti-easy-coupon-product.price-field.valueHelpText')"
+        ></sw-field>
+    </template>
+
+    <template v-if="main">
+        <a
+                class="currency-modal-button"
+                @click.prevent="currencyModal = true"
+        >
+            {{ $t('neti-easy-coupon-product.price-field.currencyModalBtn') }}
+            <sw-icon name="default-arrow-simple-right" small></sw-icon>
+        </a>
+
+        <neti-easy-coupon-product-price-field-currency-modal
+                v-if="currencyModal"
+                :prices="prices"
+                :valueType="valueType"
+                @modal-close="onCurrencyModalClose"
+        ></neti-easy-coupon-product-price-field-currency-modal>
+    </template>
+</div>

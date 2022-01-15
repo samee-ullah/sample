@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block component_product_box_action_buy %}
+    {% if
+        product.extensions is defined
+        and product.extensions.netiEasyCouponProduct is defined
+        and product.extensions.netiEasyCouponProduct.valueType is defined
+        and shopware.config.NetiNextEasyCoupon.config.active
+        and (
+            product.extensions.netiEasyCouponProduct.valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_SELECTION')
+            or product.extensions.netiEasyCouponProduct.valueType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Product\\Aggregate\\EasyCouponProductEntity::VALUE_TYPE_RANGE')
+        )
+    %}
+        {%  block component_product_box_action_detail %}
+            {{ parent() }}
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% block easy_coupon_item_detail_transactions_list %}
+    {% if
+        voucher.id is same as(transaction.easyCouponId)
+        and (
+            context.customer.id is same as(transaction.customerId)
+            or transaction.transactionType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Transaction\\TransactionEntity::TYPE_CREATED_BY_ADMIN')
+        )
+    %}
+        {% block easy_coupon_item_detail_transactions_list_table %}
+            <div class="order-item-detail-list-item order-detail-item-product">
+                <div class="row order-detail-content-row">
+                    {% block easy_coupon_item_detail_transactions_list_customer %}
+                        <div class="col-12 col-md-4 order-item">
+                            {{ transaction.customer.firstName }} {{ transaction.customer.lastName }}
+                        </div>
+                    {% endblock %}
+
+                    {% block easy_coupon_item_detail_transactions_list_value %}
+                        <div class="col-12 col-md-2 order-item">
+                            {{ (transaction.value * transaction.currencyFactor) | number_format(transaction.currency.decimalPrecision) }} {{ transaction.currency.symbol }}
+                        </div>
+                    {% endblock %}
+
+                    {% block easy_coupon_item_detail_transactions_list_user %}
+                        <div class="col-12 col-md-2 order-item">
+                            {% if transaction.userId %}
+                                {{ transaction.user.lastName }}
+                            {% elseif transaction.transactionType == 30030 %}
+                                {{ "neti-easy-coupon.store-front.account.transactions-table.import"|trans|sw_sanitize }}
+                            {% elseif transaction.transactionType is constant('NetInventors\\NetiNextEasyCoupon\\Core\\Content\\Transaction\\TransactionEntity::TYPE_CREATED_BY_ADMIN') %}
+                                {{ "neti-easy-coupon.store-front.account.transactions-table.admin"|trans|sw_sanitize }}
+                            {% else %}
+                                {{ "neti-easy-coupon.store-front.account.transactions-table.order"|trans|sw_sanitize }} {{ transaction.order.orderNumber }}
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+
+                    {% block easy_coupon_item_detail_transactions_list_sales_channel %}
+                        <div class="col-12 col-md-2 order-item">
+                            {{ transaction.salesChannel.translated.name }}
+                        </div>
+                    {% endblock %}
+
+                    {% block easy_coupon_item_detail_transactions_list_date %}
+                        <div class="col-12 col-md-2 order-item">
+                            {{ transaction.createdAt|date() }}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}

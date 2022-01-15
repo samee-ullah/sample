@@ -1,0 +1,70 @@
+.swag-customized-products {
+  .swag-customized-products-cart__title-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .swag-customized-products__boolean {
+    border: none;
+
+    .form-control {
+      border: none;
+    }
+  }
+
+  .swag-customized-products-option {
+    margin-bottom: 0;
+
+    .collapse {
+      margin-bottom: $spacer-lg;
+    }
+  }
+
+  .swag-customized-products-option__required-field-label {
+    font-size: $h6-font-size;
+    padding: 20px 0;
+  }
+
+  .swag-customized-products__title-link-container {
+    padding: 10px 0;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    border-color: $border-color;
+  }
+
+  .swag-customized-products__type-textarea {
+    textarea {
+      min-height: 115px;
+    }
+  }
+
+  .swag-customized-products-configuration__description {
+    margin-bottom: 0;
+  }
+
+  .swag-customized-products__description {
+    margin-bottom: 30px;
+  }
+
+  .no-selection {
+    label {
+      color: $gray-500;
+    }
+
+    .swag-customized-products-option-type-select-checkboxes-label-property {
+      text-align: center;
+    }
+
+    .swag-customized-products-option-type-select-checkboxes-label-surcharge-info,
+    div.swag-customized-products-option-type-select-checkboxes-label-property,
+    .swag-customized-products-option-type-select-checkboxes-label-property-bubble {
+      display: none;
+    }
+  }
+}

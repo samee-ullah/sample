@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/component/blog/_partials/_block_category.html.twig' %}
+
+{% block sas_block_partials_category %}
+    {% set categoriesName = [] %}
+    {% for category in categories %}
+        {% set categoriesName = categoriesName|merge([category.translated.name]) %}
+    {% endfor %}
+    <figure class="sas-category figure">
+        <figcaption class="figure-caption">{% sw_icon 'folder-thumbnail' style { 'size': 'sm' } %}
+            <span data-toggle="tooltip" title="{{ "sas-blog.detail.meta.category"|trans|striptags }}">
+                <a href="{{ seoUrl('frontend.navigation.page', {'navigationId': entry.customFields.custom_blog_sections_post_navigation_point}) }}">{{ categoriesName|join(', ') }}</a>
+            </span>
+        </figcaption>
+    </figure>
+{% endblock %}

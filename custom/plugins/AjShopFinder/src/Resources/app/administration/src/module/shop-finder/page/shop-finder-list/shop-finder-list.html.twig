@@ -1,0 +1,84 @@
+{% block shop_finder_list %}
+    <sw-page class="sf-list">
+        {% block shop_finder_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                <sw-button variant="primary" :routerLink="{ name: 'shop.finder.create' }">
+                    {{ $tc('shop-finder.list.addButtonText') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+
+        <template #content>
+            {% block shop_finder_list_content %}
+                <sw-entity-listing
+                    v-if="shops"
+                    :items="shops"
+                    :repository="repository"
+                    :showSelection="true"
+                    :columns="columns"
+                    detailRoute="shop.finder.detail"
+                    class="sf-entity-listing">
+                    {# START (Template for Custom Columns) #}
+                    <template #column-name="{ item, isInlineEdit }">
+                        <sw-button
+                            v-if="item.url"
+                            v-tooltip="{ message: $tc('shop-finder.list.mapUrlTooltip') }"
+                            class="sf-map-view"
+                            size="x-small"
+                            @click="openMapModal(item)"
+                        >
+                            <sw-icon
+                                name="default-location-map"
+                                size="14px"
+                            />
+                        </sw-button>
+
+                        <sw-text-field
+                            v-if="isInlineEdit"
+                            v-model="item.name"
+                            size="small"/>
+                        <router-link class="sf-detail-link" :to="{ name: 'shop.finder.detail', params: { id: item.id } }">
+                            {{ item.translated ? item.translated.name : item.name }}
+                        </router-link>
+                    </template>
+
+                    {% block sf_grid_columns_active %}
+                        <template #column-active="{ item, isInlineEdit }">
+                            {% block sf_grid_columns_active_inline_edit %}
+                                <template v-if="isInlineEdit">
+                                    <sw-checkbox-field v-model="item.active" />
+                                </template>
+                            {% endblock %}
+
+                            {% block sf_grid_columns_active_content %}
+                                <template v-else>
+                                    <sw-icon
+                                        v-if="item.active"
+                                        name="small-default-checkmark-line-medium"
+                                        small
+                                        class="is--active"
+                                    />
+                                    <sw-icon
+                                        v-else
+                                        name="small-default-x-line-medium"
+                                        small
+                                        class="is--inactive"
+                                    />
+                                </template>
+                            {% endblock %}
+                        </template>
+                    {% endblock %}
+                    {# END (Template for Custom Columns) #}
+                </sw-entity-listing>
+            {% endblock %}
+
+            {% block sf_shop_products_modal %}
+                <sf-shop-products-modal
+                    v-if="showShopProductsModal"
+                    :product-entity="shopEntityProductsModal"
+                    @modal-close="closeShopProductsModal"
+                />
+            {% endblock %}
+        </template>
+    </sw-page>
+{% endblock %}

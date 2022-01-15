@@ -1,0 +1,23 @@
+@import "~scss/variables";
+
+$sf-color-error: $color-crimson-500;
+$sf-color-success: $color-emerald-500;
+
+.sf-entity-listing {
+    .sf-map-view {
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
+
+    .sf-detail-link {
+        text-decoration: none;
+    }
+
+    .is--inactive {
+        color: $sf-color-error;
+    }
+
+    .is--active {
+        color: $sf-color-success;
+    }
+}

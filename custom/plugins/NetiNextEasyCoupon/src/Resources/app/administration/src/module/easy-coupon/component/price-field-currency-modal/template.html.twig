@@ -1,0 +1,33 @@
+<sw-modal
+        class="neti-easy-coupon-price-field-currency-modal"
+        :title="$t('neti-easy-coupon.price-field.currency-modal.title')"
+        @modal-close="onClose"
+>
+    <div class="currency-list">
+        <div
+                class="currency-item"
+                v-for="(currency, key) in currencies"
+                :key="key"
+        >
+            <div class="item-name">
+                {{ currency.translated.name || currency.name }}
+            </div>
+            <div class="item-field">
+                <neti-easy-coupon-price-field
+                        :prices="prices"
+                        :main="false"
+                        :currencyId="currency.id"
+                ></neti-easy-coupon-price-field>
+            </div>
+        </div>
+    </div>
+    <template #modal-footer>
+        <sw-button
+                variant="primary"
+                size="small"
+                @click="onClose"
+        >
+            {{ $t('neti-easy-coupon.price-field.currency-modal.closeBtn') }}
+        </sw-button>
+    </template>
+</sw-modal>

@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/wishlist/wishlist-pagelet.html.twig' %}
+
+{% block block_wishlist_listing %}
+    {% if searchResult.total > 0 %}
+        {% block block_wishlist_listing_header %}
+            <div class="wishlist-headline-wrap">
+                {{ parent() }}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {% block block_wishlist_listing_inner %}
+        <div class="container">
+            {{ parent() }}
+        </div>
+    {% endblock %}
+{% endblock %}

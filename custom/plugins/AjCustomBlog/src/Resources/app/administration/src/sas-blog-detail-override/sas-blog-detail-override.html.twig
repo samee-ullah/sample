@@ -1,0 +1,24 @@
+{% block sas_blog_detail_card_editor %}
+    {% parent() %}
+    {% block sw_settings_salutation_detail_custom_field_sets %}
+        <sw-card
+            v-if="showCustomFields"
+            :title="$tc('sw-settings-custom-field.general.mainMenuItemGeneral')"
+            :is-loading="isLoading"
+        >
+            <sw-custom-field-set-renderer
+                :entity="blog"
+                :sets="customFieldSets"
+            />
+        </sw-card>
+    {% endblock %}
+{% endblock %}
+{% block sas_blog_detail_field_slug %}
+    <sw-text-field
+        v-model="blog.slug"
+        placeholder="Undefined"
+        required
+        :error="blogSlugError"
+        :label="$tc('sas-blog.detail.slugLable')">
+    </sw-text-field>
+{% endblock %}

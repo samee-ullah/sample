@@ -1,0 +1,55 @@
+.breadcrumb {
+  // remove spacing from container because it could be empty if no breadcrumb is available
+  margin-bottom: 0;
+  padding: 0;
+  white-space: nowrap;
+
+    .breadcrumb-container {
+        margin-top: 20px;
+    }
+
+    a {
+        font-size: $font-size-base;
+
+        &.is-active {
+            font-weight: $font-weight-semibold;
+        }
+    }
+
+  @include media-breakpoint-down(sm) {
+    flex-wrap: wrap;
+    padding: 0 20px;
+
+    a {
+      font-size: $font-size-sm;
+    }
+
+    .breadcrumb-container:last-child {
+      margin: 20px 0 10px 0;
+      min-width: 0;
+
+      a {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .breadcrumb-placeholder {
+    .icon-feather {
+      & > svg {
+        top: 1px;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin: 0 4px;
+
+      .icon-feather {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

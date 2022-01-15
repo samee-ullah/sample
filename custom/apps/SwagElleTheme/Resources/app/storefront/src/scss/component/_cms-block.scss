@@ -1,0 +1,28 @@
+@include media-breakpoint-down(md) {
+    .cms-block-container {
+        .cms-block-container-row.has--sidebar {
+            .cms-element-category-navigation {
+                display: none;
+            }
+        }
+    }
+}
+
+.cms-element-image-gallery {
+    .gallery-slider-single-image {
+        @extend .text-center;
+
+        @include media-breakpoint-down(sm) {
+            min-height: 225px!important;
+        }
+    }
+}
+
+.cms-breadcrumb {
+    @extend .mb-3;
+}
+
+.full-width .cms-block-container,
+.full-width .cms-block-container .cms-block-container-row {
+    max-width: 100%;
+}

@@ -1,0 +1,170 @@
+.product-detail-headline {
+  margin-top: 60px;
+  margin-bottom: 10px;
+}
+
+.product-detail-name {
+  font-weight: $font-weight-base;
+  font-size: $product-detail-name;
+}
+
+.product-detail-price-container {
+  .product-detail-price {
+    font-size: $product-detail-price;
+    font-weight: $font-weight-semibold;
+    line-height: 1;
+  }
+}
+
+.product-detail-tax {
+  .product-detail-tax-link {
+    text-decoration: underline;
+  }
+}
+
+.product-detail-description-title {
+  font-weight: $font-weight-semibold;
+}
+
+.product-detail-manufacturer {
+  text-align: right;
+  margin-top: -60px;
+}
+
+.product-detail-ordernumber-container {
+  margin-top: 28px;
+}
+
+.product-detail-delivery-information {
+  p {
+    font-size: $font-size-sm;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .product-detail-headline {
+    margin-top: 0;
+  }
+
+  .product-detail-manufacturer {
+    margin-top: 10px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .product-detail-content {
+    padding: 0;
+    margin: 0 auto;
+
+    .product-breadcrumb {
+      margin: $spacer 0 $spacer $spacer;
+    }
+  }
+
+  .product-detail-main {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .product-detail-media {
+    padding: 0;
+  }
+
+  .product-detail-name {
+    margin-bottom: 0;
+  }
+
+  .product-detail-manufacturer {
+    text-align: left;
+    margin: 0;
+  }
+}
+
+// Tablet stripped for graduated price
+.product-block-prices-table {
+  .product-block-prices-head {
+    background: $gray-100;
+  }
+
+  thead th {
+    border-right: 1px solid $white;
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  th {
+    font-weight: $font-weight-base;
+  }
+}
+
+.product-block-prices-table th,
+.product-block-prices-table td {
+  border-top: 0;
+  border-bottom: 0.0625rem solid $gray-400;
+  padding: 10px 20px;
+  vertical-align: middle;
+}
+
+.product-block-prices-body {
+  td {
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.product-detail-form-container {
+    div[data-amazon-pay-button-product-detail="true"] .col-8,
+    div[data-swag-paypal-installment-banner="true"] {
+        @include make-col(12);
+
+        @include media-breakpoint-up(md) {
+            @include make-col(4);
+            @include make-col-offset(3);
+
+            margin-right: auto;
+        }
+
+        @include media-breakpoint-up(lg) {
+            @include make-col(6);
+        }
+    }
+}
+
+
+.swag-cms-extensions-quickview-product-buy-form {
+    div[data-swag-paypal-express-button="true"],
+    div[data-swag-paypal-installment-banner="true"] {
+        @include media-breakpoint-up(md) {
+            @include make-col(8);
+            @include make-col-offset(4);
+        }
+    }
+}
+
+.product-detail-content {
+  .breadcrumb {
+    @extend .mb-3;
+  }
+}
+
+.cms-section-default .boxed {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.cms-block-container {
+  @extend .container, .px-0;
+  
+  .cms-block-container-row {
+    @extend .container, .px-0;
+  }
+}
+
+.cms-block-cross-selling,
+.cms-block-product-description-reviews {
+  background: $gray-100;
+}
+
+.cms-block-cross-selling {
+  padding-bottom: 80px;
+}

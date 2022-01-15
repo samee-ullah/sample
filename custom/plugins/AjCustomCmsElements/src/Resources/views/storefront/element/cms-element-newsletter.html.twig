@@ -1,0 +1,77 @@
+{% block cms_element_navigation_newsletter_content %}
+    <div id="collapseCmsElementNewsletter"
+         class="cms-column-content js-newsletter-column-content cms-column-newsletter"
+         aria-labelledby="cmsElementNewsletterTitle">
+        <div class="cms-column-content-inner">
+            {% block cms_element_navigation_newsletter_form %}
+                <div class="cms-newsletter-form">
+                    {% block cms_element_navigation_newsletter_header %}
+                        <h2>Newsletter abonnieren und <span>10% Rabatt</span> sichern</h2>
+                        <p>Wir arbeiten aber mit Hochdruck an der Fertigstellung unseres Onlineshops. Gerne informieren wir Sie, sobald es los geht:</p>
+                    {% endblock %}
+
+                    {# cms classes are needed for js #}
+                    <div class="cms-block">
+                        <div class="cms-element-form">
+                            {% block cms_element_navigation_newsletter_form_element %}
+                                <form action="{{ path('frontend.form.newsletter.register.handle') }}"
+                                      method="post"
+                                      data-form-csrf-handler="true"
+                                      data-form-validation="true">
+                                    {% block cms_element_navigation_newsletter_form_content %}
+                                        <div class="form-content">
+                                            {% block cms_element_navigation_newsletter_form_email %}
+                                                <div class="input-group">
+                                                    <input name="email"
+                                                           type="email"
+                                                           class="form-control"
+                                                           placeholder="{{ 'newsletter.placeholderMail'|trans }}"
+                                                           aria-label="{{ 'newsletter.placeholderMail'|trans }}"
+                                                           aria-describedby="cmsNewsletterBtnAddon">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-light"
+                                                                type="button"
+                                                                title="{{ 'newsletter.formSubmit'|trans|striptags }}"
+                                                                id="cmsNewsletterBtnAddon">
+                                                            Abonnieren
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label" for="termsandconditions">
+                                                        <input type="checkbox" required class="form-check-input" value="" name="termsandconditions" id="termsandconditions" />
+                                                        <a href="#"> Hiermit akzeptieren Sie unsere Datenschutzerklärung.</a>
+                                                    </label>
+                                                </div>
+                                            {% endblock %}
+
+                                            <div class="cms-newsletter-captcha-wrapper">
+                                                {% sw_include '@Storefront/storefront/component/captcha/base.html.twig'
+                                                    with {
+                                                    'captchas': config('core.basicInformation.activeCaptchasV2'),
+                                                    'additionalClass' : 'col-md-4',
+                                                    'formId': 'newsletter-form'
+                                                }
+                                                %}
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+
+                                    {% block cms_element_navigation_newsletter_form_hidden_fields %}
+                                        <div class="form-hidden-fields">
+                                            <input type="hidden"
+                                                   value="{{ constant('Shopware\\Storefront\\Controller\\FormController::SUBSCRIBE') }}"
+                                                   name="option">
+                                            {{ sw_csrf('frontend.form.newsletter.register.handle') }}
+                                            <input type="submit" class="submit--hidden d-none"/>
+                                        </div>
+                                    {% endblock %}
+                                </form>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

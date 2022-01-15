@@ -1,0 +1,20 @@
+<p>{{ customer.salutation.letterName }} {{customer.firstName}} {{ customer.lastName }},<br /><br />
+    following voucher(s) was/were activated:</p>
+<table>
+    <thead>
+        <tr>
+            <td><strong>Voucher</strong></td>
+            <td><strong>Code</strong></td>
+            <td><strong>Value</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for voucher in vouchers %}
+            <tr>
+                <td>{{ voucher.title }}</td>
+                <td>{{ voucher.code }}</td>
+                <td>{{ (voucher.value * voucher.currencyFactor) | number_format(voucher.currency.decimalPrecision) }} {{ voucher.currency.symbol }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

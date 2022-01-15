@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/wishlist/index.html.twig' %}
+
+{% block base_main_inner %}
+    <div class="container">
+        {% block base_main_container %}
+            <div class="container-main">
+                {% block base_breadcrumb %}
+                    {{ parent() }}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+
+    {% block base_content %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

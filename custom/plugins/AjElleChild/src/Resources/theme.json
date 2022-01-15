@@ -1,0 +1,151 @@
+{
+    "name": "AjElleChild",
+    "author": "Shopware AG",
+    "views": [
+        "@Storefront",
+        "@SwagElleTheme",
+        "@AjElleChild",
+        "@Plugins"
+    ],
+    "style": [
+        "app/storefront/src/scss/overrides.scss",
+        "@SwagElleTheme",
+        "app/storefront/src/scss/base.scss"
+    ],
+    "script": [
+        "@SwagElleTheme",
+        "app/storefront/dist/storefront/js/aj-elle-child.js"
+    ],
+    "asset": [
+        "@SwagElleTheme",
+        "app/storefront/src/assets"
+    ],
+    "config": {
+        "blocks": {
+            "footer": {
+                "label": {
+                    "en-GB": "Footer / Topbar",
+                    "de-DE": "Footer / Topbar"
+                }
+            },
+            "sticky": {
+                "label": {
+                    "en-GB": "Sticky Header",
+                    "de-DE": "Sticky Header"
+                }
+            }
+        },
+        "fields": {
+            "activateStickyHeader": {
+                "label": {
+                    "en-GB": "Use Sticky Header",
+                    "de-DE": "Use Sticky Header"
+                },
+                "type": "switch",
+                "custom": {
+                    "bordered": true
+                },
+                "value": false,
+                "editable": true,
+                "block": "sticky"
+            },
+            "showOnScrollPosition": {
+                "label": {
+                    "en-GB": "Sticky Header Show Scroll Position",
+                    "de-DE": "Sticky Header Show Scroll Position"
+                },
+                "type": "init",
+                "value": "500",
+                "editable": true,
+                "block": "sticky"
+            },
+            "sw-color-brand-primary": {
+                "value": "#231645"
+            },
+            "sw-color-brand-secondary": {
+                "value": "#242523"
+            },
+            "sw-border-color": {
+                "value": "#ced4da"
+            },
+            "sw-color-success": {
+                "value": "#3cc261"
+            },
+            "sw-color-info": {
+                "value": "#26b6cf"
+            },
+            "sw-color-warning": {
+                "value": "#ffbd5d"
+            },
+            "sw-color-danger": {
+                "value": "#e52427"
+            },
+            "sw-font-family-base": {
+                "value": "'Spartan', sans-serif"
+            },
+            "sw-text-color": {
+                "value": "#161616"
+            },
+            "sw-font-family-headline": {
+                "value": "'Spartan', sans-serif"
+            },
+            "sw-headline-color": {
+                "value": "#161616"
+            },
+            "sw-color-price": {
+                "value": "#161616"
+            },
+            "sw-color-buy-button": {
+                "value": "#3cc261"
+            },
+            "sw-color-buy-button-text": {
+                "value": "#ffffff"
+            },
+            "sw-logo-desktop": {
+                "type": "media",
+                "value": "app/storefront/src/assets/logo/elle-logo.svg"
+            },
+            "sw-logo-tablet": {
+                "type": "media",
+                "value": "app/storefront/src/assets/logo/elle-logo.svg"
+            },
+            "sw-logo-mobile": {
+                "type": "media",
+                "value": "app/storefront/src/assets/logo/elle-logo-mobile.svg"
+            },
+            "sw-footer-bg-color": {
+                "label": {
+                    "en-GB": "Background colour",
+                    "de-DE": "Hintergrundfarbe"
+                },
+                "type": "color",
+                "value": "#161616",
+                "editable": true,
+                "block": "footer",
+                "order": 100
+            },
+            "sw-footer-text-color": {
+                "label": {
+                    "en-GB": "Text colour",
+                    "de-DE": "Textfarbe"
+                },
+                "type": "color",
+                "value": "#fdfdfd",
+                "editable": true,
+                "block": "footer",
+                "order": 200
+            },
+            "sw-footer-logo": {
+                "label": {
+                    "en-GB": "Footer logo",
+                    "de-DE": "Footer Logo"
+                },
+                "type": "media",
+                "value": "app/storefront/src/assets/logo/elle-logo-white.svg",
+                "editable": true,
+                "block": "media",
+                "order": 300
+            }
+        }
+    }
+}

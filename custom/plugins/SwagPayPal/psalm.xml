@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<psalm
+    cacheDirectory="var/cache/psalm"
+    autoloader="bin/static-analyze-autoloader.php"
+    findUnusedVariablesAndParams="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src"/>
+        <directory name="tests"/>
+        <ignoreFiles>
+            <directory name="../../../platform"/> <!-- would otherwise inspect Shopware -->
+            <directory name="../../../vendor"/> <!-- would otherwise inspect vendor -->
+        </ignoreFiles>
+    </projectFiles>
+
+    <forbiddenFunctions>
+        <function name="dump"/>
+        <function name="dd"/>
+        <function name="var_dump"/>
+        <function name="error_log"/>
+    </forbiddenFunctions>
+
+    <issueHandlers>
+        <MoreSpecificImplementedParamType>
+            <errorLevel type="info">
+                <file name="src/Webhook/Handler/*.php"/>
+                <file name="src/Pos/Sync/Product/Util/ProductGroupingCollection.php"/>
+                <file name="src/Pos/DataAbstractionLayer/Entity/*Collection.php"/>
+                <file name="src/Pos/MessageQueue/Handler/*Handler.php"/>
+                <file name="src/Pos/MessageQueue/Handler/Sync/*Handler.php"/>
+                <file name="src/Pos/Webhook/Handler/*Handler.php"/>
+            </errorLevel>
+        </MoreSpecificImplementedParamType>
+
+        <InvalidReturnType>
+            <errorLevel type="info">
+                <directory name="tests/Mock"/>
+                <directory name="tests/Pos/Mock"/>
+            </errorLevel>
+        </InvalidReturnType>
+
+        <InternalMethod>
+            <errorLevel type="info">
+                <file name="src/Pos/Command/*Command.php"/>
+                <file name="src/Pos/Schedule/*Handler.php"/>
+                <file name="src/Checkout/Payment/ScheduledTask/CancelTransactionsTaskHandler.php"/>
+                <!-- is only used on webhook registration, no caching issues -->
+                <referencedMethod name="Shopware\Core\System\SystemConfig\SystemConfigService::getDomain"/>
+                <directory name="tests"/>
+            </errorLevel>
+        </InternalMethod>
+
+        <DeprecatedMethod>
+            <errorLevel type="info">
+                <!-- <deprecated> tag:v5.0.0 - remove with Shopware 6.5 compatibility -->
+                <referencedMethod name="Shopware\Core\Framework\Struct\Collection::getIterator"/>
+                <referencedMethod name="Shopware\Core\System\SalesChannel\SalesChannelContext::getFallbackCustomerGroup"/>
+                <referencedMethod name="Doctrine\DBAL\Connection::executeUpdate"/>
+            </errorLevel>
+        </DeprecatedMethod>
+
+        <DeprecatedConstant>
+            <errorLevel type="info">
+                <!-- <deprecated> tag:v5.0.0 - remove with Shopware 6.5 compatibility due to usage of Defaults::SALES_CHANNEL -->
+                <directory name="tests"/>
+                <file name="src/Checkout/Payment/PayPalPaymentHandler.php"/>
+                <file name="src/Util/PaymentStatusUtilV2.php"/>
+                <file name="tests/Checkout/Payment/ScheduledTask/CancelTransactionsTaskHandlerTest.php"/>
+                <file name="tests/Checkout/Payment/PayPalPaymentHandlerTest.php"/>
+                <file name="tests/Util/PaymentStatusUtilV2Test.php"/>
+
+
+            </errorLevel>
+        </DeprecatedConstant>
+
+        <DeprecatedClass>
+            <errorLevel type="info">
+                <!-- will be removed with PPI-388-->
+                <referencedClass name="Shopware\Core\Framework\MessageQueue\MessageQueueStatsDefinition"/>
+                <referencedClass name="Shopware\Core\Framework\MessageQueue\MessageQueueStatsEntity"/>
+            </errorLevel>
+        </DeprecatedClass>
+
+        <PossiblyInvalidArgument>
+            <errorLevel type="info">
+                <file name="tests/Pos/Sync/Product/*Test.php"/>
+                <file name="tests/Pos/Sync/Inventory/StockSubscriberTest.php"/>
+            </errorLevel>
+        </PossiblyInvalidArgument>
+
+        <PossiblyUndefinedMethod>
+            <errorLevel type="info">
+                <file name="tests/Pos/Sync/Product/*Test.php"/>
+                <file name="tests/Pos/Sync/Inventory/StockSubscriberTest.php"/>
+            </errorLevel>
+        </PossiblyUndefinedMethod>
+
+        <UnresolvableInclude>
+            <errorLevel type="info">
+                <file name="tests/TestBootstrap.php"/>
+            </errorLevel>
+        </UnresolvableInclude>
+
+        <UndefinedClass>
+            <errorLevel type="info">
+                <!-- Can be removed when min-Version is 6.4.2.0 -->
+                <referencedClass name="Shopware\Storefront\Event\SwitchBuyBoxVariantEvent"/>
+            </errorLevel>
+        </UndefinedClass>
+
+        <UndefinedConstant>
+            <errorLevel type="info">
+                <file name="tests/Checkout/Payment/PayPalPaymentHandlerTest.php"/>
+                <file name="tests/Checkout/Payment/PayPalPuiPaymentHandlerTest.php"/>
+            </errorLevel>
+        </UndefinedConstant>
+
+        <UnsafeInstantiation>
+            <errorLevel type="info">
+                <file name="tests/Pos/Mock/Repositories/AbstractRepoMock.php"/>
+            </errorLevel>
+        </UnsafeInstantiation>
+
+        <NonInvariantDocblockPropertyType>
+            <errorLevel type="info">
+                <file name="src/Checkout/TokenResponse.php"/>
+            </errorLevel>
+        </NonInvariantDocblockPropertyType>
+
+        <InvalidStringClass>
+            <errorLevel type="info">
+                <!-- Could be removed once the min version is at least Shopware 6.4.2.0 -->
+                <file name="tests/Pos/Mock/Repositories/AbstractRepoMock.php"/>
+            </errorLevel>
+        </InvalidStringClass>
+
+        <ArgumentTypeCoercion>
+            <errorLevel type="info">
+                <!-- Could be removed once the min version is at least Shopware 6.4.2.0 -->
+                <file name="tests/Pos/Mock/Repositories/AbstractRepoMock.php"/>
+            </errorLevel>
+        </ArgumentTypeCoercion>
+
+        <PropertyTypeCoercion>
+            <errorLevel type="info">
+                <!-- Could be removed once the min version is at least Shopware 6.4.2.0 -->
+                <file name="tests/Pos/Mock/Repositories/AbstractRepoMock.php"/>
+            </errorLevel>
+        </PropertyTypeCoercion>
+
+        <UnnecessaryVarAnnotation>
+            <errorLevel type="info">
+                <!-- Could be removed once the min version is at least Shopware 6.4.2.0 -->
+                <!-- And with it the annotations Psalm complains about in this file -->
+                <file name="tests/Pos/Mock/Repositories/AbstractRepoMock.php"/>
+            </errorLevel>
+        </UnnecessaryVarAnnotation>
+
+        <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
+        <PropertyNotSetInConstructor errorLevel="info"/>
+        <MissingConstructor errorLevel="info"/>
+    </issueHandlers>
+</psalm>

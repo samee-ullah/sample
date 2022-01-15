@@ -1,0 +1,18 @@
+{
+  "name": "swag/plugin-skeleton",
+  "description": "Aj Cms Elements",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "AjCustomCmsElements\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "AjCustomCmsElements\\AjCustomCmsElements",
+    "label": {
+      "de-DE": "Aj Cms Elements",
+      "en-GB": "Aj Cms Elements"
+    }
+  }
+}

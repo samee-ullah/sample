@@ -1,0 +1,7 @@
+// Zebra-striping
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+.table-striped {
+  tbody tr:nth-of-type(#{$table-striped-order}) {
+    background-color: $gray-300;
+  }
+}

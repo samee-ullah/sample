@@ -1,0 +1,64 @@
+<div class="neti-easy-coupon-detail-transaction-list">
+    <neti-easy-coupon-create-transaction-modal
+            :model="model"
+            :active="createTransactionModal"
+            @close="createTransactionModal = false"
+            @refresh="onRefresh"
+    ></neti-easy-coupon-create-transaction-modal>
+
+    <sw-card>
+        <div class="grid-actions">
+            <sw-button
+                    variant="primary"
+                    @click="onCreateTransactionButtonClicked"
+                    size="small"
+            >
+                {{ $t('neti-easy-coupon.transaction-list.buttonCreate') }}
+            </sw-button>
+        </div>
+
+        <template #grid>
+            <sw-entity-listing
+                    :items="data"
+                    :columns="columns"
+                    :repository="repository"
+                    :isLoading="isLoading"
+                    :fullPage="false"
+                    :showSettings="false"
+                    :showSelection="false"
+                    :allowDelete="false"
+            >
+
+                <template #column-createdAt="{ item }">
+                    {{ item.createdAt | date({hour: '2-digit', minute: '2-digit'}) }}
+                </template>
+
+                <template #column-customer="{ item }">
+                    <router-link v-if="item.customer" :to="{ name: 'sw.customer.detail', params: { id: item.customer.id } }">
+                        {{ item.customer.firstName }} {{ item.customer.lastName }}
+                    </router-link>
+                </template>
+
+                <template #column-value="{ item }">
+                    {{ getValue(item) }}
+                </template>
+
+                <template #column-order="{ item }">
+                    <router-link v-if="item.order" :to="{ name: 'sw.order.detail', params: { id: item.order.id } }">
+                        {{ item.order.orderNumber }}
+                    </router-link>
+                </template>
+
+                <template #pagination>
+                    <sw-pagination
+                            :page="page"
+                            :limit="limit"
+                            :total="total"
+                            :total-visible="7"
+                            @page-change="onPageChange"
+                    ></sw-pagination>
+                </template>
+            </sw-entity-listing>
+        </template>
+    </sw-card>
+</div>

@@ -1,0 +1,53 @@
+{% sw_extends '@Storefront/storefront/page/checkout/cart/index.html.twig' %}
+
+{% block page_checkout_cart_add_product_submit %}
+    <div class="input-group-append">
+        <button class="btn btn-secondary  btn-square"
+                type="submit"
+                id="addProductButton">
+            {% sw_icon 'check' style {'pack': 'feather'} %}
+        </button>
+    </div>
+{% endblock %}
+
+{% block page_checkout_cart_shipping_costs %}
+    <div class="col-md-6 cart-shipping-costs-container">
+        <form name="precalc"
+              method="post"
+              action="{{ path('frontend.checkout.configure') }}"
+              data-form-auto-submit="true">
+
+            {% block page_checkout_cart_shipping_costs_csrf %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block page_checkout_cart_shipping_costs_trigger %}
+                <a class="btn btn-light cart-shipping-costs-btn"
+                   data-toggle="collapse"
+                   href="#collapseShippingCost"
+                   role="button"
+                   aria-expanded="false"
+                   aria-controls="collapseExample">
+                    {{ "checkout.shippingCosts"|trans|sw_sanitize }}
+                    {% block page_checkout_cart_shipping_costs_trigger_icon %}
+                        {# Removed the icon #}
+                    {% endblock %}
+                </a>
+            {% endblock %}
+
+            {% block page_checkout_cart_shipping_costs_form_group %}
+                {{ parent() }}
+            {% endblock %}
+        </form>
+    </div>
+{% endblock %}
+
+{% block page_checkout_cart_add_promotion_submit %}
+    <div class="input-group-append">
+        <button class="btn btn-secondary btn-square"
+                type="submit"
+                id="addPromotion">
+            {% sw_icon 'check' style {'pack': 'feather'} %}
+        </button>
+    </div>
+{% endblock %}

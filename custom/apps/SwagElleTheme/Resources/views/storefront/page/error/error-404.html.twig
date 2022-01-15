@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/page/error/error-404.html.twig' %}
+
+{% block not_found_error_content %}
+    <div class="container justify-content-center container-404 mt-5 align-middle d-flex h-100">
+        <div class="row justify-content-center align-self-center w-100">
+                <div class="text-center col-12">
+                    <img src="{{ asset('bundles/storefront/assets/illustration/404_error.svg', 'theme') }}"
+                         alt="{{ "general.404ErrorPageHeader"|trans|striptags }}"
+                         class="rounded mx-auto d-block img-fluid" />
+                </div>
+                <div class="col-12 col-md-12 col-xs-auto">
+                    <h1 class="mt-5 text-center error-heading">{{ "general.404ErrorPageHeader"|trans|sw_sanitize }}</h1>
+                </div>
+                <div class="col-12 col-md-4 col-xs-auto">
+                    <p class="text-center w-60-l">{{ "general.404ErrorDescription"|trans|sw_sanitize }}</p>
+                </div>
+                <div class="col-12 col-md-12 col-xs-auto">
+                    {% block not_found_error_return %}
+                        {{ parent() }}
+                    {% endblock %}
+                </div>
+        </div>
+    </div>
+{% endblock %}

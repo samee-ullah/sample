@@ -1,0 +1,41 @@
+{% sw_extends '@Storefront/storefront/component/pagination.html.twig' %}
+
+{% block component_pagination_first_link %}
+        {% sw_icon 'chevrons-left' style { 'size': 'xs', 'pack': 'feather'} %}
+{% endblock %}
+
+{% block component_pagination_prev_icon %}
+        {% sw_icon 'chevron-left' style { 'size': 'xs', 'pack': 'feather'} %}
+{% endblock %}
+
+{% block component_pagination_item %}
+        <li class="page-item{% if isActive %} active{% else %} not-active{% endif %}">
+                {% block component_pagination_item_input %}
+                        {{ parent() }}
+                {% endblock %}
+
+                {% block component_pagination_item_label %}
+                        <label class="page-link"
+                               for="p{{ page }}">
+                                {% block component_pagination_item_link %}
+                                        {% block component_pagination_item_text %}
+                                            {{ "general.paginationNumber"|trans({
+                                                '%current_page%': page,
+                                                '%total_page%': totalPages
+                                            })|sw_sanitize }}
+                                        {% endblock %}
+                                {% endblock %}
+                        </label>
+                {% endblock %}
+        </li>
+{% endblock %}
+
+{% block component_pagination_next_icon %}
+        {% sw_icon 'chevron-right' style { 'size': 'xs', 'pack': 'feather'} %}
+{% endblock %}
+
+{% block component_pagination_last_icon %}
+        {% sw_icon 'chevrons-right' style { 'size': 'xs', 'pack': 'feather'} %}
+{% endblock %}
+
+

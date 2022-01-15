@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/review/review.html.twig' %}
+
+{% block page_product_detail_review_tab_pane %}
+    <div class="row product-detail-review-content js-review-container">
+        {% block page_product_detail_review_aside %}
+            <div class="col-sm-auto col-md-5 col-lg-3">
+                {% block page_product_detail_review_widget_container %}
+                    {% sw_include '@Storefront/storefront/page/product-detail/review/review-widget.html.twig' %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block page_product_detail_review_main %}
+            <div class="col product-detail-review-main js-review-content">
+                {% block page_product_detail_review_alert %}
+                    {{ parent() }}
+                {% endblock %}
+
+                {% block page_product_detail_review_form_container %}
+                    {{ parent() }}
+                {% endblock %}
+
+                {% block page_product_detail_review_list_container %}
+                    {{ parent() }}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- decorations -->
+        <service decorates="NetInventors\NetiNextEasyCoupon\Subscriber\OrderSubscriber"
+                 id="AjCustomEasyCoupon\Subscriber\OrderSubscriber" public="true">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\OrderVoucherService"/>
+        </service>
+
+        <service decorates="NetInventors\NetiNextEasyCoupon\Service\OrderVoucherService"
+                 id="AjCustomEasyCoupon\Service\OrderVoucherService" public="true">
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\VoucherService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherProductRepository"/>
+            <argument type="service" id="neti_easy_coupon.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\PluginConfig"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherRepository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+            <argument type="service"
+                      id="NetInventors\NetiNextEasyCoupon\Service\VoucherRedemption\Validator\PaymentActivationStateValidator"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\Account\VoucherTransactionsService"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\ConditionService"/>
+            <argument type="service" id="order_line_item.repository"/>
+            <argument type="service" id="NetInventors\NetiNextEasyCoupon\Service\CurrencyService"/>
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+
+        <service id="NetInventors\NetiNextEasyCoupon\Events\BusinessEvent\CouponActivationEvent"
+                 class="AjCustomEasyCoupon\Events\BusinessEvent\CouponActivationEvent" public="true">
+        </service>
+
+        <service decorates="NetInventors\NetiNextEasyCoupon\Service\Repository\VoucherRepository"
+                 id="AjCustomEasyCoupon\Service\Repository\VoucherRepository" public="true">
+            <argument type="service" id="neti_easy_coupon.repository"/>
+            <argument type="service" id="neti_easy_coupon_transaction.repository"/>
+        </service>
+
+        <!-- Subscribers -->
+        <service id="AjCustomEasyCoupon\Storefront\Event\BeforeLineItemAddedSubscriber">
+            <argument type="service" id="request_stack"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

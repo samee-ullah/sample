@@ -1,0 +1,90 @@
+{
+    "id": "50b23791a36246298ebf05e226ab8d3c",
+    "name": "Price Detail Product Name",
+    "stock": 10,
+    "isCloseout": false,
+    "purchaseSteps": 1,
+    "minPurchase": 1,
+    "shippingFree": false,
+    "restockTime": 3,
+    "productNumber": "SEG-1234",
+    "description": "Product description",
+    "taxName": "Standard rate",
+    "price": [
+        {
+            "currencyId": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+            "net": 8.4,
+            "linked": true,
+            "gross": 10
+        }
+    ],
+    "url": "/price-detail-product-name.html",
+    "swagCustomizedProductsTemplate": {
+        "id": "a3c0adaeb36f39f676a9f16e052b5d29",
+        "productId": "50b23791a36246298ebf05e226ab8d3c",
+        "internalName": "E2E Template",
+        "displayName": "E2E Template",
+        "active": true,
+        "stepByStep": false,
+        "confirmInput": true,
+        "optionsAutoCollapse": true,
+        "options": [
+            {
+                "type": "checkbox",
+                "displayName": "Example Checkbox",
+                "typeProperties": {},
+                "required": false,
+                "oneTimeSurcharge": true,
+                "relativeSurcharge": false,
+                "advancedSurcharge": false,
+                "position": 1,
+                "price": [
+                    {
+                        "currencyId": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                        "net": 8.4,
+                        "gross": 10,
+                        "linked": true
+                    }
+                ]
+            },
+            {
+                "type": "fileupload",
+                "displayName": "Example file upload",
+                "typeProperties": {},
+                "maxCount": 3,
+                "required": false,
+                "oneTimeSurcharge": true,
+                "relativeSurcharge": false,
+                "advancedSurcharge": false,
+                "position": 2,
+                "price": [
+                    {
+                        "currencyId": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                        "net": 8.4,
+                        "gross": 10,
+                        "linked": true
+                    }
+                ]
+            },
+            {
+                "type": "imageupload",
+                "displayName": "Example image upload",
+                "typeProperties": {},
+                "maxCount": 3,
+                "required": false,
+                "oneTimeSurcharge": true,
+                "relativeSurcharge": false,
+                "advancedSurcharge": false,
+                "position": 3,
+                "price": [
+                    {
+                        "currencyId": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
+                        "net": 8.4,
+                        "gross": 10,
+                        "linked": true
+                    }
+                ]
+            }
+        ]
+    }
+}

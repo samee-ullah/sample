@@ -1,0 +1,62 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+
+{% block page_product_detail_buy_quantity_container %}
+    <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+        {% block page_product_detail_buy_quantity %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_product_detail_buy_button_container %}
+    <div class="col-8 col-sm-8 col-md-4 col-lg-6">
+        {% block page_product_detail_buy_button %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% set hasRequiredField = false %}
+{% block swag_customized_products_option_type_template %}
+    {{ parent() }}
+
+    {% if option.required == true %}
+        {% set hasRequiredField = true %}
+    {% endif %}
+
+    {% set lastOption = customizedProductsTemplate.options|last %}
+
+    {% if lastOption.id == option.id and hasRequiredField == true %}
+        <div class="form-row swag-customized-products-option swag-customized-products__item">
+            <span class="swag-customized-products-option__required-field-label">
+                {{ "customizedProducts.requiredField"|trans|sw_sanitize }}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_buy_container_paypal %}
+    {% set buyable = product.available and product.childCount <= 0 and product.calculatedMaxPurchase > 0 %}
+
+    {% if buyable %}
+        {# @var \Swag\PayPal\Checkout\ExpressCheckout\ExpressCheckoutButtonData expressSettings #}
+        {% set expressSettings = page.extensions[constant('Swag\\PayPal\\Checkout\\ExpressCheckout\\ExpressCheckoutSubscriber::PAYPAL_EXPRESS_CHECKOUT_BUTTON_DATA_EXTENSION_ID')] %}
+
+        {% if expressSettings.productDetailEnabled %}
+            <div class="form-row mt-3 justify-content-start">
+                {% sw_include '@SwagPayPal/storefront/component/ecs-spb-checkout/ecs-button.html.twig' ignore missing with {button_class: 'col-12 col-sm-12 col-md-4 col-lg-6 offset-md-3'} %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {# @var \Swag\PayPal\Installment\Banner\BannerData installmentBanner #}
+    {% set installmentBanner = page.extensions[constant('Swag\\PayPal\\Installment\\Banner\\InstallmentBannerSubscriber::PAYPAL_INSTALLMENT_BANNER_DATA_EXTENSION_ID')] %}
+
+    {% if installmentBanner is not null %}
+        <div class="form-row mt-3 mb-4 justify-content-end">
+            <div class="{{ buyable ? 'col-8' : 'col-12' }}" data-swag-paypal-installment-banner="true"
+                 data-swag-pay-pal-installment-banner-options="{{ installmentBanner|json_encode }}">
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

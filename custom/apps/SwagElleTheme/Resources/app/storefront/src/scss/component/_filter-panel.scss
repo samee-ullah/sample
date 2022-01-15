@@ -1,0 +1,52 @@
+.is--sidebar {
+    .filter-panel-item-toggle {
+        &.btn {
+            .icon-feather > svg {
+                // overwrite from the _button.scss to make it in middle align
+                top: 0;
+            }
+        }
+
+        &[aria-expanded='true'] {
+            font-weight: $font-weight-semibold;
+        }
+    }
+
+    .filter-panel-item-toggle:not(.collapsed) {
+        border-bottom: 1px solid $gray-400;
+    }
+
+    .filter-panel-item-dropdown {
+        border-radius: 0;
+    }
+
+    .filter-multi-select-list {
+        padding: 10px 0;
+    }
+
+    .filter-panel-items-container {
+        border-bottom: 1px solid $gray-400;
+        padding-bottom: 10px;
+    }
+
+    .filter-panel-active-container {
+        padding-top: 10px;
+    }
+}
+
+.btn.filter-panel-wrapper-toggle {
+    @extend .btn-light;
+    border: none;
+
+    .icon-feather.icon-xs > svg {
+        top: 3px;
+    }
+}
+
+.filter-panel-item {
+    background-color: $white;
+}
+
+
+
+

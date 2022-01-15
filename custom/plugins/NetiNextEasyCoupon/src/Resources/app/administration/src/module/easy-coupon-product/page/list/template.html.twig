@@ -1,0 +1,123 @@
+<sw-page class="neti-easy-coupon-product-list has--easy-coupon--sidebar-menu">
+    <template #search-bar>
+        <sw-search-bar
+                initialSearchType="neti_easy_coupon_product"
+                :initialSearch="term"
+                @search="onSearch"
+        >
+        </sw-search-bar>
+    </template>
+
+    <template #smart-bar-header>
+        <h2>
+            {{ $t('neti-easy-coupon-product.list.title') }}
+
+            <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                ({{ total }})
+            </span>
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button variant="primary" :routerLink="{ name: 'neti.easy_coupon_product.create' }">
+            {{ $t('neti-easy-coupon-product.list.buttonCreate') }}
+        </sw-button>
+    </template>
+
+    <template #language-switch>
+        <sw-language-switch @on-change="getList"></sw-language-switch>
+    </template>
+
+    <template #content>
+        <neti-easy-coupon-sidebar-menu></neti-easy-coupon-sidebar-menu>
+
+        <div class="neti-easy-coupon-product-list__content">
+            <neti-easy-coupon-product-entity-listing
+                    v-if="data"
+                    :items="data"
+                    :columns="columns"
+                    :repository="repository"
+                    :showSelection="true"
+                    :isLoading="isLoading"
+                    @update-records="onUpdateRecords"
+            >
+                <template #column-title="{ item, compact }">
+                    <router-link :to="{ name: 'neti.easy_coupon_product.detail', params: { id: item.id } }">
+                        {{ placeholder(item, 'title') }}
+                    </router-link>
+                </template>
+
+                <template #column-valueType="{ item }">
+                    {{ $t('neti-easy-coupon.product-value-types.' + item.valueType) }}
+                </template>
+
+                <template #column-createdAt="{ item }">
+                    {{ item.createdAt | date({ hour: '2-digit', minute: '2-digit' }) }}
+                </template>
+
+                <template #column-updatedAt="{ item }">
+                    {{ item.updatedAt | date({ hour: '2-digit', minute: '2-digit' }) }}
+                </template>
+
+                <template #actions="{ item }">
+                    <sw-context-menu-item :routerLink="{ name: 'neti.easy_coupon_product.detail', params: { id: item.id }}">
+                        {{ $t('neti-easy-coupon-product.list.contextMenuEdit') }}
+                    </sw-context-menu-item>
+
+                    <sw-context-menu-item variant="danger" @click="onDelete(item.id)">
+                        {{ $t('neti-easy-coupon-product.list.contextMenuDelete') }}
+                    </sw-context-menu-item>
+                </template>
+
+                <template #action-modals="{ item }">
+                    <sw-modal
+                            v-if="showDeleteModal === item.id"
+                            @modal-close="onCloseDeleteModal"
+                            :title="$t('neti-easy-coupon-product.list.modalTitleDelete')"
+                            variant="small"
+                    >
+                        <p class="neti-easy-coupon-product-list__confirm-delete-text">
+                            {{ $t('neti-easy-coupon-product.list.textDeleteConfirm', 0, { name: item.label }) }}
+                        </p>
+
+                        <template #modal-footer>
+                            <sw-button @click="onCloseDeleteModal" size="small">
+                                {{ $t('neti-easy-coupon-product.list.buttonCancel') }}
+                            </sw-button>
+
+                            <sw-button @click="onConfirmDelete(item)" variant="primary" size="small">
+                                {{ $t('neti-easy-coupon-product.list.buttonDelete') }}
+                            </sw-button>
+                        </template>
+                    </sw-modal>
+                </template>
+
+                <template #pagination>
+                    <sw-pagination
+                            :page="page"
+                            :limit="limit"
+                            :total="total"
+                            :total-visible="7"
+                            @page-change="onPageChange"
+                    >
+                    </sw-pagination>
+                </template>
+            </neti-easy-coupon-product-entity-listing>
+
+            <sw-empty-state
+                    v-if="!isLoading && !total"
+                    :title="$t('neti-easy-coupon-product.list.messageEmpty')"
+            ></sw-empty-state>
+        </div>
+    </template>
+
+    <template #sidebar>
+        <sw-sidebar>
+            <sw-sidebar-item
+                    icon="default-arrow-360-left"
+                    :title="$t('neti-easy-coupon-product.list.titleSidebarItemRefresh')"
+                    @click="onRefresh"
+            ></sw-sidebar-item>
+        </sw-sidebar>
+    </template>
+</sw-page>

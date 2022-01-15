@@ -1,0 +1,26 @@
+<sw-modal
+        v-if="value"
+        :title="$t('neti-easy-coupon.discard-changes-modal.title')"
+        @modal-close="onClose"
+>
+    <p>
+        {{ $t('neti-easy-coupon.discard-changes-modal.content') }}
+    </p>
+
+    <template #modal-footer>
+        <sw-button
+                size="small"
+                @click="onClose"
+        >
+            {{ $t('neti-easy-coupon.discard-changes-modal.cancelButton') }}
+        </sw-button>
+
+        <sw-button
+                variant="primary"
+                size="small"
+                @click="onConfirm"
+        >
+            {{ $t('neti-easy-coupon.discard-changes-modal.confirmButton') }}
+        </sw-button>
+    </template>
+</sw-modal>

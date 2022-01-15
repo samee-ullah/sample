@@ -1,0 +1,124 @@
+variables:
+    DEV_IMAGE: shopware/development:7.4-composer-2
+    COMPOSER_PROCESS_TIMEOUT: 7200 # 60s * 60 * 2 = 2 hours
+    MYSQL_ROOT_PASSWORD: app
+    WEB_DOCUMENT_ROOT: $CI_PROJECT_DIR/platform/public
+    PROJECT_ROOT: $CI_PROJECT_DIR/platform
+    LOG_STDOUT: $CI_PROJECT_DIR/stdout.log
+    PLATFORM_BRANCH: "6.4.3.0"
+    THEME_NAME: "SwagElleTheme"
+    CUSTOM_PRODUCT_EXTENSIONS_BRANCH: "master"
+    CUSTOM_PRODUCT_EXTENSIONS_NAME: "SwagCustomizedProducts"
+    APP_ENV: e2e
+    CYPRESS_baseUrl: 'http://localhost:8000'
+    CYPRESS_localUsage: 1
+    CYPRESS_shopwareRoot: $CI_PROJECT_DIR/platform
+    SHOPWARE_HTTP_CACHE_ENABLED: 0
+    E2E_PROJECT_PATH: $CI_PROJECT_DIR/platform/custom/apps/$THEME_NAME/Resources/app/storefront/test/e2e/
+    CYPRESS_screenshotsFolder: $CI_PROJECT_DIR/platform/var/log/screenshots
+
+stages:
+    - Static analyze
+    - E2E
+    - Visual Testing
+
+default:
+    image: $DEV_IMAGE
+    services:
+        -   name: mariadb:10.4
+            alias: database
+    before_script:
+        - zip -rq custom-theme.zip .
+        - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.shopware.com/shopware/6/product/platform.git platform --branch $PLATFORM_BRANCH
+        - mkdir -p platform/custom/apps || true
+        - unzip -q custom-theme.zip -d platform/custom/apps/$THEME_NAME
+        - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.shopware.com/shopware/6/services/customized-product.git platform/custom/plugins/SwagCustomizedProducts --branch $CUSTOM_PRODUCT_EXTENSIONS_BRANCH
+        - cd platform
+        - composer run setup
+        - chown -R application:application .
+        - bin/console plugin:refresh
+        - bin/console plugin:install --activate $CUSTOM_PRODUCT_EXTENSIONS_NAME
+        - bin/console cache:clear
+        - bin/console app:install --activate $THEME_NAME
+        - bin/console theme:change $THEME_NAME --all
+        - composer run build:js
+        - /entrypoint supervisord > /dev/null 2>&1 &
+
+Check built JS files:
+    stage: Static analyze
+    allow_failure: true
+    script:
+        - cd $CI_PROJECT_DIR/platform/custom/apps/$THEME_NAME
+        - >
+            if ! git diff --quiet --ignore-submodules HEAD --; then
+                echo "Built Javascript files differ. Update the dependencies and execute 'administration:build' and 'storefront:build' again";
+                git status;
+                exit 1;
+            else
+                echo "Everything ok"
+                exit 0;
+            fi
+
+
+Validate snippets:
+    stage: Static analyze
+    script:
+        - php bin/console snippets:validate
+
+.generate_mochawesome_reports:
+    after_script: &mochawesome_report_definition
+        - mkdir $CI_PROJECT_DIR/platform/var/log/e2e
+        - cd $E2E_PROJECT_PATH
+        - npx mochawesome-merge cypress/results/mocha/*.json > cypress/mochareports/report.json
+        - npx marge cypress/mochareports/*.json -f report -o mochareports"
+        - mv cypress/results/single-reports/*.xml $CI_PROJECT_DIR/platform/var/log/e2e/ || true
+        - mv mochareports/ $CI_PROJECT_DIR/platform/var/log/e2e/ || true
+
+.E2E:
+    stage: E2E
+    timeout: 2h 00m
+    script:
+        - composer run e2e:prepare
+        - cd custom/apps/$THEME_NAME/Resources/app/storefront/test/e2e/
+        - npm clean-install
+        - ./node_modules/.bin/cypress run
+            --browser $BROWSER
+            --headless
+            --env grepTags=@workflow
+    after_script: *mochawesome_report_definition
+    artifacts:
+        when: always
+        paths:
+            - platform/build/artifacts/e2e/
+            - platform/var/log/*
+            - $CI_PROJECT_DIR/stdout.log
+        reports:
+            junit: platform/build/artifacts/e2e/*.xml
+
+Storefront Cypress E2E:
+    extends: .E2E
+    dependencies: []
+    variables:
+        CYPRESS_VERSION: '7.6.0'
+        BROWSER: 'chrome'
+
+Storefront Percy.io:
+    extends: .E2E
+    stage: Visual Testing
+    dependencies: []
+    variables:
+        PERCY_TARGET_BRANCH: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+        PERCY_TARGET_COMMIT: $CI_MERGE_REQUEST_DIFF_BASE_SHA
+        PERCY_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+        PERCY_COMMIT: $CI_COMMIT_SHA
+        PERCY_TOKEN: $PERCY_TOKEN
+        CYPRESS_usePercy: 'true'
+        CYPRESS_numTestsKeptInMemory: 0
+    script:
+        - composer run e2e:prepare
+        - cd custom/apps/$THEME_NAME/Resources/app/storefront/test/e2e/
+        - npm clean-install
+        - ./node_modules/.bin/percy exec -- ./node_modules/.bin/cypress run
+            --browser chrome
+            --spec "cypress/**/*.visual.spec.js"
+            --headless

@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+{% block page_checkout_finish_action_back %}
+    <div class="finish-back-to-shop-button">
+        <a href="{{ path('frontend.home.page') }}"
+           class="btn btn-primary"
+           title="{{ "checkout.finishButtonBackToShop"|trans|striptags }}">
+            {{ "checkout.finishButtonBackToShop"|trans|striptags }}
+        </a>
+    </div>
+{% endblock %}

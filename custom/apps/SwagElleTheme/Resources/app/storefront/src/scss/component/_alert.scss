@@ -1,0 +1,16 @@
+/*
+Alert
+==============================================
+Custom styling for bootstrap alert component.
+
+https://getbootstrap.com/docs/4.3/components/alerts/
+*/
+
+.alert-has-icon {
+    .alert-content-container {
+        .alert-content {
+            line-height: 24px;
+            padding-top: 3px;
+        }
+    }
+}

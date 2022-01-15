@@ -1,0 +1,27 @@
+.form-group {
+  .form-text {
+    color: $gray-700;
+  }
+}
+
+.form-label {
+  margin-bottom: 2px;
+}
+
+.form-control {
+  &:disabled,
+  &[readonly] {
+    border-color: $gray-200;
+    color: $gray-500;
+  }
+
+  &::placeholder {
+    color: $gray-500;
+  }
+}
+
+input[type="text"].form-control,
+input[type="password"].form-control,
+input[type="email"].form-control{
+  padding: 12px 16px 9px;
+}

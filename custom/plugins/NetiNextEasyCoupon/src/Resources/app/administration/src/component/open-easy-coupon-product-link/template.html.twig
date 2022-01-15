@@ -1,0 +1,23 @@
+<div
+        class="neti--easy-coupon-product--product-detail"
+        v-if="visible"
+>
+    <sw-alert>
+        <p>
+            {{ $t('neti-easy-coupon.open-easy-coupon-product-link.content') }}
+        </p>
+
+        <a
+                class="neti-easy-coupon-product--product-reference-link"
+                @click="onClick"
+        >
+            {{ $t('neti-easy-coupon.open-easy-coupon-product-link.linkText') }}
+            <sw-icon name="default-arrow-simple-right" small></sw-icon>
+        </a>
+    </sw-alert>
+
+    <neti-easy-coupon-discard-changes-modal
+            v-model="confirmOpen"
+            @confirm="openCoupon"
+    ></neti-easy-coupon-discard-changes-modal>
+</div>

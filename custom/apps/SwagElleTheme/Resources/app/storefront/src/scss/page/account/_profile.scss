@@ -1,0 +1,13 @@
+.account-profile {
+  &-mail {
+    display: block;
+    font-weight: $font-weight-bold;
+  }
+
+  &-required-info,
+  .text-muted {
+    font-size: smaller;
+    color: $gray-700 !important;
+  }
+}
+

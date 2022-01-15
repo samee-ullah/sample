@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/page/account/order-history/order-item.html.twig' %}
+
+{% block page_account_order_item_order_number %}
+    <span class="order-table-header-order-number">
+        <strong class="order-table-header-label">{{ "account.orderNumber"|trans|sw_sanitize }}</strong>
+        <span class="order-table-header-value">{{ order.orderNumber|sw_sanitize }}</span>
+    </span>
+{% endblock %}
+
+{% block page_account_order_item_status_col %}
+    <div class="col-12 col-sm">
+     {% block page_account_order_item_status %}
+         <span class="order-table-header-order-status badge">
+             {% if order.transactions.last.stateMachineState.technicalName == 'failed' or order.transactions.last.stateMachineState.technicalName == 'reminded' %}
+                 {{ "account.orderStatusActionRequired"|trans|sw_sanitize }}
+             {% else %}
+                 {{ order.stateMachineState.translated.name }}
+             {% endif %}
+        </span>
+     {% endblock %}
+    </div>
+{% endblock %}

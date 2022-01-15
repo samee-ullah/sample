@@ -1,0 +1,27 @@
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.is-ctl-product {
+  .container-main {
+    padding-bottom: 0;
+  }
+
+  .container-base {
+    max-width: 100%;
+  }
+}
+
+// remove space on navigation pages between header and cms page
+.is-ctl-navigation {
+  .container-main {
+    padding-top: 0;
+  }
+}
+
+.is-ctl-wishlist {
+    .container-main {
+        min-height: unset;
+    }
+}

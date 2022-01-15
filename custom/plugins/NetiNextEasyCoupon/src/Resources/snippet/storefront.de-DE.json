@@ -1,0 +1,104 @@
+{
+    "neti-easy-coupon": {
+        "product-detail": {
+            "error-value-selection": "Bitte wählen Sie einen Gutscheinwert.",
+            "error-value-input": "Bitte geben Sie einen Gutscheinwert zwischen minValue und maxValue an.",
+            "vouchertyp_range": {
+                "info": "Bitte geben Sie einen Gutscheinwert zwischen minValue und maxValue an."
+            },
+            "vouchertyp_preselected": {
+                "title": "Gutscheinwert",
+                "info": "Bitte wählen Sie einen Gutscheinwert."
+            }
+        },
+        "messages": {
+            "purchase-voucher": {
+                "currency-change": "Der Kaufgutschein \"name\" wurde aus dem Warenkorb entfernt."
+            },
+            "link-voucher":{
+                "added-later": "Der Gutschein wird hinzugefügt, nach dem Sie etwas in Ihren Warenkorb gelegt haben.",
+                "added-now": "Der Gutschein wurde zu Ihrem Warenkorb hinzugefügt.",
+                "voucher-not-found": "Der Gutschein mit dem Code \"voucherCode\" konnte nicht gefunden werden.",
+                "voucher-not-active": "Der Gutschein ist ungültig und kann nicht genutzt werden."
+            }
+        },
+        "store-front": {
+            "account": {
+                "meta": {
+                    "title": "EasyCoupon | Meine Gutscheine"
+                },
+                "side-bar": {
+                    "title": "Meine Gutscheine"
+                },
+                "list-table": {
+                    "code": "Code",
+                    "value": "Wert",
+                    "rest-value": "Restwert",
+                    "paid": "Bezahlt",
+                    "created-at": "Kaufdatum",
+                    "redeem": "Einlösen",
+                    "cart-empty": "Bitte einen Artikel in den Warenkorb legen",
+                    "title": "Meine Gutscheine",
+                    "description": "Übersicht über Gutscheine und Transaktionen",
+                    "transactions": "Transaktionen",
+                    "info-message-no-voucher": "Es sind keine Gutscheine vorhanden.",
+                    "showAfterPayment": "Nach der Bezahlung sichtbar"
+                },
+                "transactions-table": {
+                    "customer": "Aktiver Kunde",
+                    "redeem-value": "Eingelöster Wert",
+                    "caused-by": "Ausgelöst durch",
+                    "shop": "Shop",
+                    "date": "Datum",
+                    "order": "Bestellung",
+                    "import": "Import",
+                    "admin": "Shopbetreiber"
+                }
+            },
+            "warning": {
+                "login-needed": "Loggen Sie sich ein um Ihre Gutscheine zu sehen.",
+                "deactivated": "Diese Option wurde von dem Shopbetreiber deaktiviert."
+            },
+            "checkout": {
+                "finish": {
+                    "purchase-voucher": {
+                        "headline-singular": "Informationen zu Ihrem gekauften Gutschein:",
+                        "headline-plural": "Informationen zu Ihren gekauften Gutscheinen:",
+                        "title": "Coupon",
+                        "info-message-singular": "Der Gutschein ist erst einlösbar, nachdem dieser Einkauf bezahlt wurde.<br>Ihre Gutscheine finden Sie ebenfalls im <a href=\"%accountVoucherLink%\" title=\"Zum Kundenkonto\">Kundenkonto</a>",
+                        "info-message-plural": "Die Gutscheine sind erst einlösbar, nachdem dieser Einkauf bezahlt wurde.<br>Ihre Gutscheine finden Sie ebenfalls im <a href=\"%accountVoucherLink%\" title=\"Zum Kundenkonto\">Kundenkonto</a>",
+                        "table-header": {
+                            "article-name": "Artikel",
+                            "voucher-code": "Code",
+                            "voucher-value": "Wert"
+                        },
+                        "showAfterPayment": "Nach der Bezahlung sichtbar"
+                    },
+                    "multipleRestValues": "Folgende Gutscheine wurden eingesetzt. Wenn der Wert über 0 liegt, können Sie diese bei der nächsten Bestellung nochmals einlösen.",
+                    "singleRestValue": "Der Gutschein mit dem Code <strong>%code%</strong> hat noch ein Restguthaben von <strong>%restValue%</strong>.<br/>Sie können den Gutschein bei der nächsten Bestellung nochmals einlösen.",
+                    "noSingleRestValue": "Der Gutschein mit dem Code <strong>%code%</strong> hat kein Restguthaben mehr."
+                }
+            }
+        }
+    },
+    "checkout": {
+        "easy-coupon-product-price-out-of-range": "Der Kaufgutschein %name% im Warenkorb hat einen ungültigen Wert.",
+        "easy-coupon-purchase-voucher-deleted": "Der Kaufgutschein %name% wurde aus dem Warenkorb entfernt, da Sie die Währung gewechselt haben.",
+        "easy-coupon-purchase-voucher-without-value": "Der Artikel %name% kann leider nur über die Detailseite in den Warenkorb gelegt werden.",
+        "easy-coupon-payment-activation-state-error": "Der Gutschein %id% wurde noch noch nicht bezahlt. Daher kann dieser noch nicht eingelöst werden.",
+        "easy-coupon-conditions-error": "Der Gutschein %id% konnte nicht eingelöst werden, da mindestens eine Bedingung nicht zutrifft.",
+        "easy-coupon-empty-cart-error": "Der/die Gutschein(e) wurde(n) aus dem Warenkorb entfernt, da der Warenkorb leer ist.",
+        "easy-coupon-credit-error": "Der Gutschein %id% hat nicht genügend Guthaben, um eingelöst zu werden.",
+        "easy-coupon-not-active-or-deleted-error": "Der Gutschein %id% ist nicht aktiv oder wurde gelöscht.",
+        "easy-coupon-already-redeemed-error": "Der Gutschein %id% wurde bereits eingelöst.",
+        "easy-coupon-individual-percental-redeemed": "Der individuelle, prozentualle Gutschein wurde bereits eingelöst.",
+        "easy-coupon-not-combine-error": "Der Gutschein %id% darf nicht mit anderen Gutscheinen kombiniert werden.",
+        "easy-coupon-not-valid-error": "Der Gutschein %id% ist nicht mehr gültig.",
+        "easy-coupon-error": "Leider ist etwas schief gelaufen."
+    },
+    "error": {
+        "easy-coupon-product-price-out-of-range": "Der Kaufgutschein im Warenkorb hat einen ungültigen Wert. Bitte entfernen Sie ihn, um die Bestellung abschließen zu können.",
+        "easy-coupon-purchase-voucher-deleted": "Der Kaufgutschein wurde aus dem Warenkorb entfernt, da Sie die Währung gewechselt haben.",
+        "easy-coupon-conditions-error": "Der Gutschein wurde aus dem Warenkorb entfernt, da mindestens eine Bediungen nicht zutrifft."
+    }
+}

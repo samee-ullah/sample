@@ -1,0 +1,21 @@
+.payment-method {
+  margin-bottom: 20px;
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  &-description {
+    strong {
+      font-weight: normal;
+    }
+
+    p {
+      margin-left: 3px;
+    }
+  }
+
+  &-image {
+    margin-bottom: 8px;
+  }
+}

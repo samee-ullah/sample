@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/page/account/sidebar.html.twig' %}
+
+{% block page_account_sidebar_header %}
+    {% if not headerWidget %}
+        <div class="card-header account-aside-header h4">
+            {{ "account.greetings"|trans|sw_sanitize }} {{ context.customer.firstName }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block page_account_sidebar_logout %}
+    <a href="{{ path('frontend.account.logout.page') }}" class="btn btn-light">
+        {{ "account.logout"|trans|sw_sanitize }}
+    </a>
+{% endblock %}

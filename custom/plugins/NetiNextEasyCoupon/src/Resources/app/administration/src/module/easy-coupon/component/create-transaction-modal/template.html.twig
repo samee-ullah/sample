@@ -1,0 +1,49 @@
+<div class="neti-easy-coupon-create-transaction-modal">
+    <sw-modal
+            v-if="active"
+            @modal-close="onClose"
+            :title="$t('neti-easy-coupon.transaction-list.create-transaction.title')"
+    >
+        <sw-container columns="1fr 1fr" gap="15px">
+            <neti-easy-coupon-value-field
+                v-model="transaction.value"
+                :label="$t('neti-easy-coupon.transaction-list.create-transaction.valueLabel')"
+                :error="transactionValueError"
+                :currencyFactor="transaction.currencyFactor"
+            ></neti-easy-coupon-value-field>
+
+            <sw-entity-single-select
+                :label="$t('neti-easy-coupon.transaction-list.create-transaction.currencyLabel')"
+                v-model="transaction.currencyId"
+                entity="currency"
+                :error="transactionCurrencyIdError"
+            ></sw-entity-single-select>
+        </sw-container>
+
+        <sw-text-field
+            :label="$t('neti-easy-coupon.transaction-list.create-transaction.internCommentLabel')"
+            v-model="transaction.internComment"
+        ></sw-text-field>
+
+        <template #modal-footer>
+            <sw-button
+                    @click="onCloseButtonClicked"
+                    size="small"
+            >
+                {{ $t('neti-easy-coupon.transaction-list.create-transaction.buttonCancel') }}
+            </sw-button>
+
+            <sw-button-process
+                    :isLoading="isCreating"
+                    :processSuccess="isCreateSuccessful"
+                    :disabled="isCreating"
+                    variant="primary"
+                    size="small"
+                    @process-finish="onCreateFinish"
+                    @click.prevent="onCreateButtonClicked"
+            >
+                {{ $t('neti-easy-coupon.transaction-list.create-transaction.buttonCreate') }}
+            </sw-button-process>
+        </template>
+    </sw-modal>
+</div>

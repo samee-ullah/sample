@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/flyout.html.twig' %}
+
+{% block layout_navigation_flyout_bar %}
+    <div class="row navigation-flyout-bar">
+        {% block layout_navigation_flyout_bar_category %}
+            <div class="col">
+                <div class="navigation-flyout-category-link">
+                    {% block layout_navigation_flyout_bar_category_link %}
+                        {% if category.type == 'page' %}
+                            <a class="nav-link"
+                               href="{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}"
+                               itemprop="url"
+                               title="{{ name }}">
+                                {% block layout_navigation_flyout_bar_category_link_text %}
+                                    {{ "general.toCategory"|trans|sw_sanitize }} {{ name }}
+                                    {% sw_icon 'chevron-right' style { 'pack': 'feather', 'size': 'sm' } %}
+                                {% endblock %}
+                            </a>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block layout_navigation_flyout_bar_close %}
+            {# remove flyout bar close button #}
+        {% endblock %}
+    </div>
+{% endblock %}

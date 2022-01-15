@@ -1,0 +1,20 @@
+/*
+ * Base stuff
+ * ---------- */
+// Importing custom fonts
+@import 'base/font';
+
+// Importing layout scss
+@import 'footer/aj-footer';
+
+//Importing rumble scss
+@import "rumble";
+
+// Importing Product-Detail page custom scss
+@import "product-detail/quantity-form";
+
+// Importing Sticky Header scss
+@import "header/sticky-header";
+
+// Importing MAin Slider scss
+@import "header/slider";

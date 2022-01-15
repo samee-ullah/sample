@@ -1,0 +1,80 @@
+{% sw_extends '@Storefront/storefront/page/checkout/address/index.html.twig' %}
+
+{% set expressSettings = page.extensions[constant('Swag\\PayPal\\Checkout\\ExpressCheckout\\ExpressCheckoutSubscriber::PAYPAL_EXPRESS_CHECKOUT_BUTTON_DATA_EXTENSION_ID')] %}
+{% set expressEnabled = expressSettings.loginEnabled %}
+{% set installmentBanner = page.extensions[constant('Swag\\PayPal\\Installment\\Banner\\InstallmentBannerSubscriber::PAYPAL_INSTALLMENT_BANNER_DATA_EXTENSION_ID')] %}
+{% set installmentBannerEnabled = installmentBanner is not null %}
+
+{% block page_checkout_address %}
+    {{ block('page_checkout_address_header') }}
+
+    {% block page_checkout_address_login_toggle %}
+        <div class="register-login-collapse-toogle">
+            {% sw_icon 'user' style { 'pack': 'feather' } %}
+            {{ "checkout.addressAlreadyHaveAccount"|trans|sw_sanitize }}
+            <a href="#loginCollapse"
+            class="login-collapse-toggle"
+            data-toggle="collapse"
+            aria-expanded="false">
+                <strong>{{ "checkout.addressLoginToggle"|trans|sw_sanitize }}</strong>
+            </a>
+        </div>
+    {% endblock %}
+
+    <div class="page-checkout-address-login">
+        {{ block('page_checkout_address_login') }}
+
+        {% if block('page_checkout_address_login_swag_amazon_pay_card') is defined %}
+            {% block page_checkout_address_login_swag_amazon_pay %}
+                {% set amazonPayButton = page.extensions.SwagAmazonPayButton %}
+                {% if amazonPayButton and not amazonPayButton.hideButton %}
+                    <div class="card swag-amazon-pay-card">
+                        <div class="card-body">
+                            {% block page_checkout_address_login_swag_amazon_pay_card_body %}
+                                <div class="row no-gutters">
+                                    <div class="card-title">{{ "SwagAmazonPay.register.headline"|trans|striptags }}</div>
+                                </div>
+                                <div class="row align-items-top">
+                                    {% block component_account_login_swag_amazon_pay_description %}
+                                        <div class="swag-amazon-pay-card__description col-12 col-md-7 col-lg-8">
+                                            <p class="card-text sm:mb-1">{{ "SwagAmazonPay.register.text"|trans|striptags }}</p>
+                                        </div>
+                                    {% endblock %}
+                                    {% block component_account_login_swag_amazon_pay_button %}
+                                        <div class="col-12 col-md-4 offset-md-1 col-lg-3 mt-2 mt-lg-0">
+                                            {{ parent() }}
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endif %}
+
+        {% if expressEnabled or installmentBannerEnabled %}
+            {% block page_checkout_address_login_swag_paypal %}
+                <div class="row mb-2">
+                    {% if expressEnabled %}
+                        {% block page_checkout_address_login_swag_paypal_button %}
+                            {% sw_include '@SwagPayPal/storefront/component/ecs-spb-checkout/ecs-button.html.twig' ignore missing with {button_class: 'col-6'} %}
+                        {% endblock %}
+                    {% endif %}
+
+                    {% if installmentBannerEnabled %}
+                        {% block page_checkout_address_login_swag_paypal_banner %}
+                            <div class="col-6 mt-md-2"
+                                data-swag-paypal-installment-banner="true"
+                                data-swag-pay-pal-installment-banner-options="{{ installmentBanner|json_encode }}">
+                            </div>
+                        {% endblock %}
+                    {% endif %}
+                </div>
+            {% endblock %}
+        {% endif %}
+    </div>
+
+    {{ block('page_checkout_address_register') }}
+
+{% endblock %}

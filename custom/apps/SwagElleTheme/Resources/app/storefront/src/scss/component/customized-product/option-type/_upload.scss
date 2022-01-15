@@ -1,0 +1,33 @@
+.customized-products-upload-dropzone {
+  padding: 36px;
+}
+
+.customized-products-upload-dropzone-text-headline {
+  font-size: $h5-font-size;
+  font-weight: normal;
+  color: $gray-900;
+}
+
+.customized-products-upload-dropzone-col,
+.customized-products-upload-dropzone-button {
+  text-align: center;
+}
+
+.customized-products-upload-dropzone-button {
+  margin-top: 20px;
+}
+
+.customized-products-upload-dropzone-icon {
+  margin-top: -3px;
+  margin-right: 0;
+
+  .icon {
+    color: $gray-900;
+  }
+}
+
+.customized-products-upload-dropzone-text-restrictions {
+  margin-top: 5px;
+  text-align: right;
+  color: $gray-700;
+}

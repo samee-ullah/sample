@@ -1,0 +1,69 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
+
+{% block element_product_slider_alignment %}
+    {% if config.verticalAlign.value %}
+        <div class="cms-element-alignment{% if sliderConfig.verticalAlign.value == "center" %} align-self-center{% elseif sliderConfig.verticalAlign.value == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+    {% endif %}
+
+    {% set productSliderOptions = {
+        productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
+        slider: {
+            gutter: 20,
+            autoplayButtonOutput: false,
+            nav: false,
+            mouseDrag: false,
+            controls: sliderConfig.navigation.value ? true : false,
+            autoplay: sliderConfig.rotate.value ? true : false
+        }
+    } %}
+
+    {% if not sliderConfig.navigation.value %}
+        {% set productSliderOptions = productSliderOptions|replace_recursive({
+            slider: {
+                mouseDrag: true
+            }
+        }) %}
+    {% endif %}
+
+    {% block element_product_slider_slider %}
+        <div class="base-slider product-slider{% if sliderConfig.border.value %} has-border{% endif %}{% if sliderConfig.navigation.value %} has-nav{% endif %}"
+             data-product-slider="true"
+             data-product-slider-options="{{ productSliderOptions|json_encode }}">
+
+            {% block element_product_slider_title %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block element_product_slider_inner %}
+                {% block element_product_slider_element %}
+                    {{ parent() }}
+                {% endblock %}
+
+                {% block element_product_slider_controls %}
+                    {% if sliderConfig.navigation.value %}
+                        <div class="product-slider-controls-container">
+                            <div class="base-slider-controls"
+                                 data-product-slider-controls="true">
+                                {% block element_product_slider_controls_items %}
+                                    <button class="base-slider-controls-prev product-slider-controls-prev{% if sliderConfig.border.value %} has-border{% endif %}">
+                                        {% block element_product_slider_controls_items_prev_icon %}
+                                            {% sw_icon 'chevron-left' style { 'pack': 'feather', 'size': 'xl' } %}
+                                        {% endblock %}
+                                    </button>
+                                    <button class="base-slider-controls-next product-slider-controls-next{% if sliderConfig.border.value %} has-border{% endif %}">
+                                        {% block element_product_slider_controls_items_next_icon %}
+                                            {% sw_icon 'chevron-right' style { 'pack': 'feather', 'size': 'xl' } %}
+                                        {% endblock %}
+                                    </button>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+    {% if config.verticalAlign.value %}
+        </div>
+    {% endif %}
+{% endblock %}
